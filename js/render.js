@@ -294,9 +294,13 @@
     <div class="cta-footnote">${esc(cta.footnote)}</div>
     ${cta.logos && cta.logos.length ? `
       <div class="cta-logos">
-        ${cta.logos.map((l) => l.img
-          ? `<img src="${esc(l.img)}" alt="${esc(l.name || "")}" loading="lazy">`
-          : `<span>${esc(l.name)}</span>`).join("")}
+        ${cta.logos.map((slot) => {
+          const items = Array.isArray(slot) ? slot : [slot];
+          return `<span class="logo-slot">${items.map((l, i) => `
+            <span class="logo-item${i === 0 ? " in" : ""}">${l.img
+              ? `<img src="${esc(l.img)}" alt="${esc(l.name || "")}" loading="lazy">`
+              : `<span class="logo-word">${esc(l.name)}</span>`}</span>`).join("")}</span>`;
+        }).join("")}
       </div>` : ""}`;
 
   /* ---- Footer ---- */
@@ -314,6 +318,8 @@
     .filter((x) => x.el);
   const chapters = [...document.querySelectorAll(".chapter")];
   const collages = [...document.querySelectorAll(".collage")];
+  const ctaBtn = $(".cta-btn");
+  const ctaSec = $("#contact");
   const onScroll = () => {
     /* glass pill as soon as scrolling starts */
     pill.classList.toggle("scrolled", window.scrollY > 10);
@@ -328,6 +334,13 @@
         if (c.getBoundingClientRect().top < window.innerHeight * 0.55) ci = i;
       });
       collages.forEach((col, i) => col.classList.toggle("active", i === ci));
+    }
+    /* CTA button rides up + tilts into the headline as the section scrolls in */
+    if (ctaBtn && ctaSec) {
+      const r = ctaSec.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / (window.innerHeight * 1.1)));
+      const e = 1 - Math.pow(1 - p, 3);
+      ctaBtn.style.transform = `translateY(${(1 - e) * 260}px) rotate(${-12 * e}deg)`;
     }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -362,6 +375,28 @@
       set(n - 1);
     });
     set(0);
+  })();
+
+  /* ---- CTA logo split-flap: slots advance one at a time, round-robin ---- */
+  (function logoFlip() {
+    const slots = [...document.querySelectorAll(".logo-slot")];
+    if (!slots.length) return;
+    const state = slots.map(() => 0);
+    let turn = 0;
+    setInterval(() => {
+      const s = turn % slots.length;
+      const items = slots[s].querySelectorAll(".logo-item");
+      if (items.length > 1) {
+        const cur = state[s], next = (cur + 1) % items.length;
+        items[cur].classList.remove("in");
+        items[cur].classList.add("out");
+        items[next].classList.remove("out");
+        items[next].classList.add("in");
+        setTimeout(() => items[cur].classList.remove("out"), 600);
+        state[s] = next;
+      }
+      turn++;
+    }, 1500);
   })();
 
   /* ---- Quote deck: top card draggable; throw it to cycle ---- */

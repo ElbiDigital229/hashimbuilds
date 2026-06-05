@@ -437,29 +437,41 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 }
 /* 620px cap breaks "Let's build / something" onto two lines */
 .cta h2 { font-size: clamp(3.2rem, 11vw, 7.5rem); color: var(--white); margin: 0 auto; max-width: 620px; line-height: 0.9; }
-/* dark glass card overlapping the headline, like the reference */
+/* dark glass card overlapping the headline; its transform is scroll-driven
+   (rides up from below and tilts to -12° as the section enters) */
 .cta-btn {
   display: inline-block; margin-top: -28px; position: relative; z-index: 1;
   text-decoration: none;
-  font-family: var(--body); font-weight: 600; font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-family: var(--body); font-weight: 600; font-size: clamp(1.9rem, 4.5vw, 3rem);
   color: var(--white); letter-spacing: -0.02em;
-  padding: 26px 48px; border-radius: 14px;
+  padding: 24px 36px; border-radius: 12px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(28px);
   box-shadow: rgba(0, 0, 0, 0.25) 0 12px 24px;
-  transform: rotate(-8deg);
-  transition: transform 0.25s ease, background 0.25s;
+  transform: rotate(-12deg);
+  transition: background 0.25s;
 }
-.cta-btn:hover { transform: rotate(0deg) scale(1.05); background: rgba(255, 255, 255, 0.16); }
+.cta-btn:hover { transform: rotate(0deg) scale(1.05) !important; transition: transform 0.25s ease, background 0.25s; background: rgba(255, 255, 255, 0.16); }
 .cta-footnote { margin-top: 180px; color: rgba(255, 255, 255, 0.5); font-size: 1rem; }
 .cta-logos {
   margin-top: 26px; display: flex; justify-content: center; align-items: center;
-  gap: 56px; flex-wrap: wrap; opacity: 0.55;
+  gap: 44px; flex-wrap: wrap; opacity: 0.55;
 }
-.cta-logos img { height: 26px; width: auto; display: block; }
-.cta-logos span {
-  font-weight: 600; font-size: 1.3rem; color: var(--white); letter-spacing: -0.02em;
+/* split-flap window: items slide up and out, next rises from below */
+.logo-slot { position: relative; display: block; width: 160px; height: 40px; overflow: hidden; }
+.logo-item {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  transform: translateY(130%); opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.35, 1.1, 0.45, 1), opacity 0.4s ease;
+}
+.logo-item.in { transform: none; opacity: 1; }
+.logo-item.out { transform: translateY(-130%); opacity: 0; }
+.logo-item img { height: 34px; width: auto; display: block; }
+.logo-word {
+  font-weight: 600; font-size: 1.5rem; color: var(--white);
+  letter-spacing: -0.02em; white-space: nowrap;
 }
 
 /* ---------- Footer: transparent, sits inside the CTA gradient's black bottom ---------- */
