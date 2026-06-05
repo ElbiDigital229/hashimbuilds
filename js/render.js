@@ -144,8 +144,31 @@
       </div>
       <div class="skills reveal">
         <h2>${esc(about.skillsHeading)}</h2>
-        ${about.skills.map((s) => `
-          <div class="skill-row"><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join("")}
+        <div class="skills-grid">
+          <div class="skill-list">
+            ${about.skills.map((s, i) => `
+              <div class="skill-row${i === 0 ? " open" : ""}" data-i="${i}" role="button" tabindex="0">
+                <h3>${esc(s.title)}</h3>
+                <div class="skill-desc"><p>${esc(s.desc)}</p></div>
+              </div>`).join("")}
+          </div>
+          <div class="knob-wrap" aria-hidden="true">
+            <svg class="knob-ticks" viewBox="0 0 380 380">
+              <circle cx="190" cy="190" r="170" fill="none" stroke="rgba(0,0,0,0.3)"
+                stroke-width="9" stroke-dasharray="1.5 7.4"/>
+              ${[45, 135, 225, 315].map((a) =>
+                `<line x1="190" y1="6" x2="190" y2="32" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"
+                   transform="rotate(${a} 190 190)"/>`).join("")}
+            </svg>
+            <span class="knob-num" style="top:22px;left:60px">2</span>
+            <span class="knob-num" style="top:22px;right:60px">3</span>
+            <span class="knob-num" style="bottom:22px;left:60px">1</span>
+            <span class="knob-num" style="bottom:22px;right:60px">4</span>
+            <div class="knob-bezel">
+              <div class="knob-face" id="knob-face"><span class="knob-dot"></span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>`;
 
@@ -240,6 +263,24 @@
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  /* ---- Skills accordion + knob: one row open at a time, the knob's
+          green dot rotates to point at the active row's number ---- */
+  (function skillsKnob() {
+    const rows = [...document.querySelectorAll(".skill-row")];
+    const face = $("#knob-face");
+    if (!rows.length || !face) return;
+    const set = (i) => {
+      rows.forEach((r, j) => r.classList.toggle("open", i === j));
+      face.style.transform = `rotate(${i * 90}deg)`;
+    };
+    rows.forEach((r) => {
+      r.addEventListener("click", () => set(+r.dataset.i));
+      r.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); set(+r.dataset.i); }
+      });
+    });
+  })();
 
   /* ---- Hero cards: fly-in on load, fan out again on scroll ---- */
   (function heroCardMotion() {
