@@ -1,5 +1,5 @@
 /* =========================================================================
-   RENDERER v3 — fills the page from CONTENT (js/content.js).
+   RENDERER v3.1 — fills the page from CONTENT (js/content.js).
    You should not need to edit this file to change site content.
    ========================================================================= */
 
@@ -48,7 +48,7 @@
       </div>
     </div>`;
 
-  /* ---- About: stats + skills ---- */
+  /* ---- 01 · Stats + skills ---- */
   const about = CONTENT.about;
   $("#about").innerHTML = `
     <div class="wrap">
@@ -67,17 +67,18 @@
       </div>
     </div>`;
 
-  /* ---- Work ---- */
+  /* ---- 02 · Companies ---- */
   const work = CONTENT.work;
   const card = (p) => {
+    const lock = p.locked ? `<span class="wc-lock">🔒 Coming soon</span>` : "";
     const inner = `
-      <div class="wc-head">${esc(p.name)}</div>
+      <div class="wc-head"><span>${esc(p.name)}</span>${lock}</div>
       <div class="wc-body"><div class="wc-emoji">${p.emoji}</div>
-        <div class="wc-desc">${esc(p.desc)}</div></div>
+        ${p.desc ? `<div class="wc-desc">${esc(p.desc)}</div>` : ""}</div>
       <div class="wc-industry">${esc(p.industry)}</div>`;
     return p.link
       ? `<a class="work-card" href="${esc(p.link)}"${ext(p.link)}>${inner}</a>`
-      : `<article class="work-card">${inner}</article>`;
+      : `<article class="work-card${p.locked ? " locked" : ""}">${inner}</article>`;
   };
   $("#work").innerHTML = `
     <div class="wrap reveal">
@@ -85,7 +86,24 @@
       <div class="work-grid">${work.items.map(card).join("")}</div>
     </div>`;
 
-  /* ---- Story ---- */
+  /* ---- 03 · Testimonials ---- */
+  const t = CONTENT.testimonials;
+  $("#testimonials").innerHTML = `
+    <div class="wrap reveal">
+      <h2 class="t-center">${esc(t.heading)}</h2>
+      <div class="quote-grid">
+        ${t.items.map((q) => `
+          <figure class="quote-card">
+            <blockquote>${esc(q.quote)}</blockquote>
+            <figcaption>
+              <span class="avatar">${esc(q.initials)}</span>
+              <span><strong>${esc(q.name)}</strong><br><em>${esc(q.role)}</em></span>
+            </figcaption>
+          </figure>`).join("")}
+      </div>
+    </div>`;
+
+  /* ---- 04 · Story ---- */
   const story = CONTENT.story;
   $("#story").innerHTML = `
     <div class="wrap">
@@ -95,6 +113,19 @@
           <h3>${esc(c.title)}</h3>
           ${c.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}
         </div>`).join("")}
+    </div>`;
+
+  /* ---- 05 · Life photo wall ---- */
+  const life = CONTENT.life;
+  $("#life").innerHTML = `
+    <div class="wrap reveal">
+      <h2>${esc(life.heading)}</h2>
+      <div class="photo-wall">
+        ${life.photos.map((p, i) => p.img
+          ? `<div class="photo" style="--h:${220 + ((i * 53) % 140)}px"><img src="${esc(p.img)}" alt="${esc(p.label)}" loading="lazy"></div>`
+          : `<div class="photo placeholder" style="--h:${220 + ((i * 53) % 140)}px"><span>${esc(p.label)}</span></div>`
+        ).join("")}
+      </div>
     </div>`;
 
   /* ---- CTA ---- */
