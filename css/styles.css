@@ -318,7 +318,7 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 
 /* ---------- Work cards (light) ---------- */
 #work { padding-top: 20px; }
-.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 48px; }
+.work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 48px; }
 .work-card {
   display: flex; flex-direction: column; text-decoration: none; color: inherit;
   border-radius: 12px; overflow: hidden;
@@ -337,6 +337,7 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 .work-card .wc-industry { padding: 0 16px 14px; color: rgba(0, 0, 0, 0.4); font-size: 0.9rem; }
 
 .work-card .wc-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.wc-img { display: block; width: 100%; aspect-ratio: 1.22 / 1; object-fit: cover; }
 .wc-lock { font-size: 0.78rem; font-weight: 500; color: rgba(0, 0, 0, 0.35); white-space: nowrap; }
 .work-card.locked .wc-head span:first-child { color: rgba(0, 0, 0, 0.45); }
 .work-card.locked .wc-emoji { filter: grayscale(1); opacity: 0.5; }

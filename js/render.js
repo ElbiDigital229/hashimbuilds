@@ -176,10 +176,14 @@
   const work = CONTENT.work;
   const card = (p) => {
     const lock = p.locked ? `<span class="wc-lock">🔒 Coming soon</span>` : "";
+    /* p.image (optional): full-bleed logo art replaces the emoji body */
+    const body = p.image
+      ? `<img class="wc-img" src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy">`
+      : `<div class="wc-body"><div class="wc-emoji">${p.emoji}</div>
+          ${p.desc ? `<div class="wc-desc">${esc(p.desc)}</div>` : ""}</div>`;
     const inner = `
       <div class="wc-head"><span>${esc(p.name)}</span>${lock}</div>
-      <div class="wc-body"><div class="wc-emoji">${p.emoji}</div>
-        ${p.desc ? `<div class="wc-desc">${esc(p.desc)}</div>` : ""}</div>
+      ${body}
       <div class="wc-industry">${esc(p.industry)}</div>`;
     return p.link
       ? `<a class="work-card" href="${esc(p.link)}"${ext(p.link)}>${inner}</a>`
