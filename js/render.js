@@ -19,16 +19,19 @@
   /* ---- Pill nav ---- */
   const COMPASS = `
     <svg class="compass" viewBox="0 0 26 26" aria-hidden="true">
-      <circle cx="13" cy="13" r="11.4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.75)" stroke-width="1.5"/>
-      <g stroke="rgba(255,255,255,0.4)" stroke-width="1.3" stroke-linecap="round">
-        <line x1="13" y1="3.2" x2="13" y2="5.6"/><line x1="13" y1="20.4" x2="13" y2="22.8"/>
-        <line x1="3.2" y1="13" x2="5.6" y2="13"/><line x1="20.4" y1="13" x2="22.8" y2="13"/>
-      </g>
+      <defs>
+        <linearGradient id="needle-grad" x1="13" y1="2.6" x2="13" y2="23.4" gradientUnits="userSpaceOnUse">
+          <stop offset="0.16" stop-color="#14F590"/>
+          <stop offset="0.56" stop-color="#0FCCD8" stop-opacity="0.2"/>
+          <stop offset="0.74" stop-color="#1DCAD5" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <circle cx="13" cy="13" r="11.6" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.4"/>
+      <circle cx="13" cy="13" r="9.2" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1" stroke-dasharray="1 2.6"/>
       <g class="needle">
-        <path d="M13 5.8 L15.3 13 L13 20.2 L10.7 13 Z" fill="#11f590"/>
-        <path d="M13 5.8 L15.3 13 L10.7 13 Z" fill="#fff" opacity="0.9"/>
+        <path d="M13 2.9 C13.05 2.8 13.2 2.8 13.25 2.9 L15.6 12.55 a1 1 0 0 1 0 0.9 L13.25 23.1 C13.2 23.2 13.05 23.2 13 23.1 L10.65 13.45 a1 1 0 0 1 0 -0.9 Z" fill="#fff"/>
+        <path d="M13 2.9 C13.05 2.8 13.2 2.8 13.25 2.9 L15.6 12.55 a1 1 0 0 1 0 0.9 L13.25 23.1 C13.2 23.2 13.05 23.2 13 23.1 L10.65 13.45 a1 1 0 0 1 0 -0.9 Z" fill="url(#needle-grad)"/>
       </g>
-      <circle cx="13" cy="13" r="1.4" fill="#fff"/>
     </svg>`;
   const SOCIAL_ICONS = {
     instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor" stroke="none"/></svg>`,
