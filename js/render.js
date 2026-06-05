@@ -96,6 +96,7 @@
       <div class="polaroid" style="top:174px;left:44px;transform:rotate(-6deg)">${ph("photo-a", "width:76px;height:92px", c.images && c.images[1])}</div>`,
     /* c.image: polaroid photo · c.caption: handwritten label
        c.extra: image replacing the CSS player */
+    cover: (c) => `<img style="width:100%;height:100%;object-fit:cover;display:block" src="${esc(c.image)}" alt="">`,
     photos: (c) => `
       <div class="polaroid" style="top:54px;left:24px;transform:rotate(-2deg)">
         ${ph("photo-c", "width:168px;height:148px", c.image)}<span class="caption">${esc(c.caption || "photos coming soon")}</span>
@@ -487,6 +488,109 @@
     };
     requestAnimationFrame(intro);
     window.addEventListener("scroll", apply, { passive: true });
+  })();
+
+  /* ---- Case study overlay ---- */
+  (function caseStudyOverlay() {
+    /* build the overlay shell once */
+    const overlay = document.createElement("div");
+    overlay.className = "cs-overlay";
+    document.body.appendChild(overlay);
+
+    const open = (item) => {
+      const cs = item.caseStudy;
+      const closeBtn = `
+        <button class="cs-close" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>`;
+      if (cs.isContact) {
+        overlay.innerHTML = `${closeBtn}
+          <div class="cs-inner">
+            <div class="cs-card cs-contact">
+              <div class="cs-headline">${esc(cs.headline)}</div>
+              <p class="cs-summary">${esc(cs.summary)}</p>
+              <div class="cs-divider"></div>
+              <div class="cs-contact-links">
+                ${cs.contactLinks.map((l) =>
+                  `<a class="cs-contact-link" href="${esc(l.href)}"${ext(l.href)}>${esc(l.label)}<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>`
+                ).join("")}
+              </div>
+            </div>
+          </div>`;
+      } else {
+        overlay.innerHTML = `${closeBtn}
+          <div class="cs-inner">
+            <div class="cs-card">
+              <div class="cs-name">${esc(item.name)}</div>
+              <div class="cs-meta">
+                ${cs.area ? `Area: ${esc(cs.area)}<br>` : ""}
+                ${cs.when ? `When: ${esc(cs.when)}<br>` : ""}
+                ${cs.role ? `${esc(cs.role)}` : ""}
+              </div>
+              <div class="cs-screenshot"><span>Screenshot coming soon</span></div>
+              <div class="cs-divider"></div>
+              <div class="cs-headline">${esc(cs.headline)}</div>
+              <p class="cs-summary">${esc(cs.summary)}</p>
+              <div class="cs-sections">
+                ${cs.sections.map((s) => `
+                  <div class="cs-section">
+                    <h4>${esc(s.title)}</h4>
+                    <p>${esc(s.body)}</p>
+                  </div>`).join("")}
+              </div>
+            </div>
+          </div>`;
+      }
+      overlay.scrollTop = 0;
+      overlay.classList.add("open");
+      document.body.classList.add("cs-open");
+      overlay.querySelector(".cs-close").addEventListener("click", close);
+    };
+
+    const close = () => {
+      overlay.classList.remove("open");
+      document.body.classList.remove("cs-open");
+      /* only go back if we pushed a state */
+      if (history.state && history.state.caseStudy) history.back();
+    };
+
+    /* close on Escape */
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("open")) close();
+    });
+
+    /* browser back button support */
+    window.addEventListener("popstate", () => {
+      if (overlay.classList.contains("open")) {
+        overlay.classList.remove("open");
+        document.body.classList.remove("cs-open");
+      }
+    });
+
+    /* attach click handlers to work cards that have caseStudy data */
+    const workItems = CONTENT.work.items;
+    const cards = [...document.querySelectorAll("#work .work-card")];
+    cards.forEach((card, i) => {
+      const item = workItems[i];
+      if (!item || !item.caseStudy) return;
+      card.style.cursor = "pointer";
+      card.addEventListener("click", (e) => {
+        /* don't hijack mailto or external links */
+        if (item.link && !item.caseStudy) return;
+        e.preventDefault();
+        history.pushState({ caseStudy: item.name }, "", `#case/${item.name.toLowerCase().replace(/\s+/g, "-")}`);
+        open(item);
+      });
+    });
+
+    /* open from direct URL hash on load (e.g. #case/stayloop) */
+    if (location.hash.startsWith("#case/")) {
+      const slug = location.hash.replace("#case/", "");
+      const match = workItems.find((it) => it.caseStudy && it.name.toLowerCase().replace(/\s+/g, "-") === slug);
+      if (match) open(match);
+    }
   })();
 
   /* ---- Scroll-reveal animation ---- */
