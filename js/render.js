@@ -206,6 +206,16 @@
     <span>${CONTENT.footer.links.map((l) =>
       `<a href="${esc(l.href)}"${ext(l.href)}>${esc(l.label)}</a>`).join("")}</span>`;
 
+  /* ---- Nav: transparent over the hero, glass pill after crossing it ---- */
+  const pill = $(".nav-pill");
+  const heroEl = $("#hero");
+  const onScroll = () => {
+    const past = window.scrollY > heroEl.offsetTop + heroEl.offsetHeight - 120;
+    pill.classList.toggle("scrolled", past);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
   /* ---- Scroll-reveal animation ---- */
   const observer = new IntersectionObserver(
     (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
