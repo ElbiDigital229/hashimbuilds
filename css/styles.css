@@ -99,10 +99,14 @@ h1, h2, h3 {
   box-shadow: rgba(0, 0, 0, 0.35) 0 13px 16px;
   transition: transform 0.3s ease, z-index 0s;
 }
-.float-card:nth-child(1) { left: -10px;  top: 48px;  transform: rotate(-14deg); z-index: 3; }
-.float-card:nth-child(2) { left: 50%;    top: -16px; margin-left: -170px; transform: rotate(7deg); z-index: 2; }
-.float-card:nth-child(3) { right: -36px; top: 56px;  transform: rotate(24deg); z-index: 1; }
+.float-card:nth-child(1) { left: 8px;    top: 70px;  transform: rotate(-3deg);  z-index: 3; }
+.float-card:nth-child(2) { left: 50%;    top: -8px;  margin-left: -185px; transform: rotate(-12deg); z-index: 2; }
+.float-card:nth-child(3) { right: -16px; top: 44px;  transform: rotate(12deg);  z-index: 1; }
 .float-card:hover { transform: rotate(0deg) translateY(-8px); z-index: 5; }
+.float-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.09), transparent 38%);
+}
 .float-card .fc-head {
   height: 46px; display: flex; align-items: center; padding: 0 16px;
   font-weight: 600; color: var(--white); font-size: 1.1rem; letter-spacing: -0.02em;
@@ -112,21 +116,27 @@ h1, h2, h3 {
 
 /* card body: 3D word pills */
 .pill {
-  position: absolute; padding: 12px 26px; border-radius: 20px;
+  position: absolute; padding: 16px 28px; border-radius: 20px;
   font-family: var(--display); font-weight: 700; font-variation-settings: 'wdth' 85;
-  font-size: 1.9rem; letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
+  font-size: 2.5rem; letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
 }
 .pill-green {
-  background: #62ecb5; color: #0d8e6f;
-  box-shadow: inset 0 2px 2px #abffdf, inset 0 -4px 2.5px #009e81, 0 12px 16px rgba(0, 0, 0, 0.25);
+  background: #62ecb5; color: #11a885;
+  text-shadow: 0 1px 0 #a3ffd0, 0 -1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 2px 2px #abffdf, inset 0 -2px 1px rgba(59, 246, 177, 0.5),
+              inset 0 -4px 2.6px #009e81, 0 12px 16px rgba(0, 0, 0, 0.25);
 }
 .pill-teal {
-  background: #1395a1; color: #aef3f6;
-  box-shadow: inset 0 2px 2px rgba(33, 237, 255, 0.5), inset 0 -4px 2.5px #035770, 0 12px 16px rgba(0, 0, 0, 0.25);
+  background: #1395a1; color: #51d7db;
+  text-shadow: 0 1px 0 #b8fff5, 0 -1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3), inset 0 2px 2px rgba(33, 237, 255, 0.5),
+              inset 0 -4px 2.5px #035770, 0 12px 16px rgba(0, 0, 0, 0.25);
 }
 .pill-blue {
-  background: #1537b3; color: #b9c9ff;
-  box-shadow: inset 0 2px 2px rgba(33, 196, 255, 0.5), inset 0 -4px 2.5px #07136e, 0 8px 16px rgba(0, 0, 0, 0.25);
+  background: #1537b3; color: #6c89eb;
+  text-shadow: 0 1px 0 #8db8f0, 0 -1px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3), inset 0 2px 2px rgba(33, 196, 255, 0.5),
+              inset 0 -4px 2.5px #07136e, 0 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 /* card body: journey squiggle + polaroids */
@@ -138,19 +148,45 @@ h1, h2, h3 {
 }
 .map-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #6f6f6f; }
 
-/* photo placeholders (striped until real images are added) */
-.ph {
-  border-radius: 3px;
-  background: repeating-linear-gradient(45deg, #3a3a3a, #3a3a3a 10px, #2e2e2e 10px, #2e2e2e 20px);
-}
-.ph.loose {
-  position: absolute; border-radius: 8px;
-  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.4);
-  background: repeating-linear-gradient(45deg, #4a4a48, #4a4a48 10px, #3c3c3a 10px, #3c3c3a 20px);
-}
+/* photo placeholders — gradient fills that read as photos until real
+   images are added (swap each .photo-* background for a real <img>) */
+.ph { border-radius: 3px; }
+.photo-a { background: linear-gradient(170deg, #cdbb9b 0%, #8d7b62 45%, #4e463a 100%); }   /* sepia */
+.photo-b { background: linear-gradient(180deg, #b9f2c8 0%, #7fc89a 38%, #28352e 72%, #11160f 100%); } /* portrait */
+.photo-c { background: linear-gradient(180deg, #c2d6e8 0%, #8aa7c0 36%, #3d4b56 62%, #181d20 100%); } /* street */
 .caption {
-  display: block; text-align: center; margin-top: 4px;
-  font-family: 'Caveat', cursive; font-size: 1rem; font-weight: 600; color: #1c1c1c;
+  display: block; text-align: center; margin-top: 5px;
+  font-family: 'Caveat', cursive; font-size: 1.1rem; font-weight: 600; color: #161616;
+}
+
+/* retro music player (Life off-screen card) */
+.ipod {
+  position: absolute; width: 98px; height: 172px; border-radius: 14px;
+  background: linear-gradient(160deg, #f5e070 0%, #dcba3c 55%, #ba951f 100%);
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.75), inset 0 -3px 4px rgba(0, 0, 0, 0.3),
+              0 14px 16px rgba(0, 0, 0, 0.45);
+}
+.ipod-screen {
+  position: absolute; top: 10px; left: 10px; right: 10px; height: 66px; border-radius: 6px;
+  background:
+    radial-gradient(7px 7px at 22% 28%, #ff5f57 96%, transparent),
+    radial-gradient(7px 7px at 50% 28%, #ffbd2e 96%, transparent),
+    radial-gradient(7px 7px at 78% 28%, #28c840 96%, transparent),
+    radial-gradient(7px 7px at 22% 62%, #4aa3ff 96%, transparent),
+    radial-gradient(7px 7px at 50% 62%, #c97bff 96%, transparent),
+    radial-gradient(7px 7px at 78% 62%, #2ee6d6 96%, transparent),
+    #11161b;
+  box-shadow: inset 0 0 0 2px #2a3036, inset 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+.ipod-wheel {
+  position: absolute; bottom: 13px; left: 50%; width: 64px; height: 64px; margin-left: -32px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 38%, #fbf0b8, #e5ca5e 72%);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8), inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+}
+.ipod-wheel::after {
+  content: ""; position: absolute; inset: 21px; border-radius: 50%;
+  background: #d9b83a; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 /* ---------- Gradient transition strips ---------- */

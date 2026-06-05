@@ -61,26 +61,28 @@
   const CARD_BODIES = {
     pills: (c) => c.pills.map((word, i) => {
       const conf = [
-        { cls: "pill-green", style: "top:48px;left:84px;transform:rotate(-27deg)" },
-        { cls: "pill-teal",  style: "top:122px;left:48px;transform:rotate(-6deg)" },
-        { cls: "pill-blue",  style: "top:196px;left:96px;transform:rotate(-17deg)" },
+        { cls: "pill-green", style: "top:40px;left:104px;transform:rotate(-27deg)" },
+        { cls: "pill-teal",  style: "top:124px;left:40px;transform:rotate(-6deg)" },
+        { cls: "pill-blue",  style: "top:204px;left:88px;transform:rotate(-17deg)" },
       ][i % 3];
       return `<span class="pill ${conf.cls}" style="${conf.style}">${esc(word)}</span>`;
     }).join(""),
     journey: () => `
       <svg class="squiggle" viewBox="0 0 340 320" fill="none" aria-hidden="true">
-        <path d="M40 280 C 100 230, 60 140, 150 150 S 270 90, 295 50"
-          stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <path d="M64 304 C 28 248, 96 236, 84 184 C 72 132, 16 144, 38 100 C 58 62, 122 78, 110 132 C 98 184, 162 194, 202 152 C 242 112, 198 58, 250 48 C 292 40, 306 92, 284 136"
+          stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
       </svg>
-      <div class="polaroid" style="top:64px;left:200px;transform:rotate(5deg)">${ph("", "width:84px;height:96px")}</div>
-      <div class="polaroid" style="top:158px;left:38px;transform:rotate(-5deg)">${ph("", "width:64px;height:74px")}</div>
-      <span class="map-dot" style="top:272px;left:64px"></span>
-      <span class="map-dot" style="top:118px;left:296px"></span>`,
+      <div class="polaroid" style="top:52px;left:192px;transform:rotate(5deg)">${ph("photo-b", "width:96px;height:118px")}</div>
+      <div class="polaroid" style="top:168px;left:34px;transform:rotate(-5deg)">${ph("photo-a", "width:72px;height:88px")}</div>
+      <span class="map-dot" style="top:286px;left:92px"></span>
+      <span class="map-dot" style="top:194px;left:260px"></span>`,
     photos: () => `
-      <div class="polaroid" style="top:52px;left:42px;transform:rotate(-14deg)">
-        ${ph("", "width:140px;height:130px")}<span class="caption">photos soon</span>
+      <div class="polaroid" style="top:46px;left:30px;transform:rotate(-8deg)">
+        ${ph("photo-c", "width:152px;height:152px")}<span class="caption">photos coming soon</span>
       </div>
-      ${ph("loose", "top:96px;left:188px;width:120px;height:132px;transform:rotate(-20deg)")}`,
+      <div class="ipod" style="top:78px;left:206px;transform:rotate(12deg)">
+        <span class="ipod-screen"></span><span class="ipod-wheel"></span>
+      </div>`,
   };
   $("#hero").innerHTML = `
     <div class="wrap">
