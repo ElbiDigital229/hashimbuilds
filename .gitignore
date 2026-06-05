@@ -1,0 +1,4 @@
+# Reference assets from the downloaded site — LOCAL ONLY, never commit
+img/reference/
+js/local-overrides.js
+.DS_Store

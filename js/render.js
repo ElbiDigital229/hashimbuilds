@@ -36,10 +36,14 @@
     x: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.4 2h6.4l4.4 5.9L18.9 2z"/></svg>`,
   };
   const nav = CONTENT.nav;
+  /* nav.logo (optional): image URL replaces the built-in compass SVG */
+  const logoHTML = nav.logo
+    ? `<img class="compass" src="${esc(nav.logo)}" alt="">`
+    : COMPASS;
   $("#nav").innerHTML = `
     <div class="nav-pill">
       <div class="nav-left">
-        <a class="nav-compass" href="#" aria-label="Home">${COMPASS}</a>
+        <a class="nav-compass" href="#" aria-label="Home">${logoHTML}</a>
         <div class="nav-sep"></div>
         <div class="nav-links-mid">
           ${nav.links.map((l) => `<a class="link" href="${esc(l.href)}">${esc(l.label)}</a>`).join("")}
@@ -57,7 +61,10 @@
 
   /* ---- Hero ---- */
   const hero = CONTENT.hero;
-  const ph = (cls, style) => `<div class="ph ${cls}" style="${style}"></div>`;
+  /* ph(): renders an <img> when a URL is given, else a gradient placeholder */
+  const ph = (cls, style, img) => img
+    ? `<img class="ph ${cls}" style="${style};object-fit:cover" src="${esc(img)}" alt="">`
+    : `<div class="ph ${cls}" style="${style}"></div>`;
   const CARD_BODIES = {
     pills: (c) => c.pills.map((word, i) => {
       const conf = [
@@ -67,22 +74,27 @@
       ][i % 3];
       return `<span class="pill ${conf.cls}" style="${conf.style}">${esc(word)}</span>`;
     }).join(""),
-    journey: () => `
+    /* c.images (optional): [bigPolaroidURL, smallPolaroidURL] */
+    journey: (c) => `
       <svg class="squiggle" viewBox="0 0 340 320" fill="none" aria-hidden="true">
         <path d="M64 304 C 28 248, 96 236, 84 184 C 72 132, 16 144, 38 100 C 58 62, 122 78, 110 132 C 98 184, 162 194, 202 152 C 242 112, 198 58, 250 48 C 292 40, 306 92, 284 136"
           stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
       </svg>
-      <div class="polaroid" style="top:52px;left:192px;transform:rotate(5deg)">${ph("photo-b", "width:96px;height:118px")}</div>
-      <div class="polaroid" style="top:168px;left:34px;transform:rotate(-5deg)">${ph("photo-a", "width:72px;height:88px")}</div>
+      <div class="polaroid" style="top:52px;left:192px;transform:rotate(5deg)">${ph("photo-b", "width:96px;height:118px", c.images && c.images[0])}</div>
+      <div class="polaroid" style="top:168px;left:34px;transform:rotate(-5deg)">${ph("photo-a", "width:72px;height:88px", c.images && c.images[1])}</div>
       <span class="map-dot" style="top:286px;left:92px"></span>
       <span class="map-dot" style="top:194px;left:260px"></span>`,
-    photos: () => `
+    /* c.image: polaroid photo · c.caption: handwritten label
+       c.extra: image replacing the CSS player */
+    photos: (c) => `
       <div class="polaroid" style="top:46px;left:30px;transform:rotate(-8deg)">
-        ${ph("photo-c", "width:152px;height:152px")}<span class="caption">photos coming soon</span>
+        ${ph("photo-c", "width:152px;height:152px", c.image)}<span class="caption">${esc(c.caption || "photos coming soon")}</span>
       </div>
-      <div class="ipod" style="top:78px;left:206px;transform:rotate(12deg)">
-        <span class="ipod-screen"></span><span class="ipod-wheel"></span>
-      </div>`,
+      ${c.extra
+        ? `<img class="ipod-img" src="${esc(c.extra)}" alt="" style="top:64px;left:196px;transform:rotate(12deg)">`
+        : `<div class="ipod" style="top:78px;left:206px;transform:rotate(12deg)">
+             <span class="ipod-screen"></span><span class="ipod-wheel"></span>
+           </div>`}`,
   };
   $("#hero").innerHTML = `
     <div class="wrap">
