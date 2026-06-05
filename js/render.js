@@ -124,7 +124,7 @@
   $("#about").innerHTML = `
     <div class="wrap">
       <div class="reveal">
-        <h2>${esc(about.heading)}</h2>
+        <h2 class="h-display">${esc(about.heading)}</h2>
         <p class="intro">${esc(about.intro)}</p>
         <div class="stats">
           ${about.stats.map((s) => `

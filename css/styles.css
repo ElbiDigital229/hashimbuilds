@@ -117,9 +117,9 @@ h1, h2, h3 {
   box-shadow: rgba(0, 0, 0, 0.35) 0 13px 16px;
   transition: transform 0.3s ease, z-index 0s;
 }
-.float-card:nth-child(1) { left: 8px;    top: 70px;  transform: rotate(-3deg);  z-index: 3; }
+.float-card:nth-child(1) { left: 8px;    top: 70px;  transform: rotate(-3deg);  z-index: 1; }
 .float-card:nth-child(2) { left: 50%;    top: -8px;  margin-left: -185px; transform: rotate(-12deg); z-index: 2; }
-.float-card:nth-child(3) { right: -16px; top: 44px;  transform: rotate(12deg);  z-index: 1; }
+.float-card:nth-child(3) { right: -16px; top: 44px;  transform: rotate(12deg);  z-index: 3; }
 .float-card:hover { transform: rotate(0deg) translateY(-8px); z-index: 5; }
 .float-card::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -226,7 +226,10 @@ h1, h2, h3 {
 
 /* ---------- Light sections ---------- */
 .light { background: var(--white); color: var(--ink); padding: 70px 0; position: relative; z-index: 1; }
-.light h2 { font-size: clamp(2.6rem, 7vw, 5.2rem); color: var(--ink); max-width: 12em; }
+/* sub-section headings — 56px tier */
+.light h2 { font-size: clamp(2.1rem, 5.5vw, 3.5rem); line-height: 0.9; color: var(--ink); max-width: 14em; }
+/* major section headings — 96px tier (matches reference h2/86px LH) */
+h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width: 9em; }
 .light .intro { margin-top: 18px; font-size: 1.1rem; color: var(--muted-light); max-width: 38em; line-height: 1.45; }
 
 /* stat columns */
@@ -238,7 +241,6 @@ h1, h2, h3 {
 
 /* skills list */
 .skills { margin-top: 90px; }
-.skills h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
 .skill-row { padding: 22px 0; border-bottom: 1px solid var(--line-light); }
 .skill-row:first-of-type { margin-top: 28px; border-top: 1px solid var(--line-light); }
 .skill-row h3 { font-family: var(--body); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.02em; }
@@ -304,7 +306,7 @@ h1, h2, h3 {
 
 /* ---------- Story (dark) ---------- */
 .story { background: var(--black); padding: 90px 0 110px; position: relative; z-index: 1; }
-.story h2 { font-size: clamp(2.8rem, 8vw, 5.5rem); color: var(--white); max-width: 9em; line-height: 1.02; }
+.story h2 { font-size: clamp(3rem, 9.5vw, 6rem); color: var(--white); max-width: 9em; line-height: 1.04; }
 .chapter { padding: 70px 0; }
 .chapter + .chapter { border-top: 1px solid; border-image: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 100%) 1; }
 .chapter h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--white); line-height: 1.15; }
@@ -318,7 +320,7 @@ h1, h2, h3 {
     #fff 0%, #e2fee9 6%, #95eabb 16%, #3ea790 28%, #267176 36%,
     #0f445d 45%, #0a223f 52%, #061024 58%, #000 70%);
 }
-.cta h2 { font-size: clamp(3rem, 10vw, 7rem); color: var(--white); margin: 0 auto; max-width: 10em; line-height: 0.95; }
+.cta h2 { font-size: clamp(3.2rem, 11vw, 7.5rem); color: var(--white); margin: 0 auto; max-width: 10em; line-height: 0.9; }
 .cta-btn {
   display: inline-block; margin-top: 56px; text-decoration: none;
   font-family: var(--body); font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.6rem);
