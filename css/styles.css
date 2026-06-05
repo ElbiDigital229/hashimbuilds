@@ -213,14 +213,19 @@ h1, h2, h3 {
 }
 
 /* ---------- Gradient transition strips ---------- */
-.divider { height: 170px; position: relative; overflow: hidden; background: var(--white); }
+.divider { height: 220px; position: relative; overflow: hidden; background: var(--white); }
+/* colored haze: blurred gradient, dissolved into the white below by a mask
+   (no hard clip line at the strip's bottom edge) */
 .divider::before {
-  content: ""; position: absolute; inset: -160px -60px 70px;
+  content: ""; position: absolute; inset: -170px -70px 0;
   background: var(--grad); filter: blur(40px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 94%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 52%, transparent 94%);
 }
+/* black bleed from the dark section above */
 .divider::after {
-  content: ""; position: absolute; inset: -200px -160px 110px;
-  background: var(--black); filter: blur(32px);
+  content: ""; position: absolute; inset: -240px -170px 138px;
+  background: var(--black); filter: blur(34px);
 }
 .divider.flip { transform: rotate(180deg); }
 
