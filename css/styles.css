@@ -450,7 +450,8 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
   backdrop-filter: blur(28px);
   box-shadow: rgba(0, 0, 0, 0.25) 0 12px 24px;
   transform: rotate(-12deg);
-  transition: background 0.25s;
+  transition: transform 0.18s ease-out, background 0.25s;
+  will-change: transform;
 }
 .cta-btn:hover { transform: rotate(0deg) scale(1.05) !important; transition: transform 0.25s ease, background 0.25s; background: rgba(255, 255, 255, 0.16); }
 .cta-footnote { margin-top: 180px; color: rgba(255, 255, 255, 0.5); font-size: 1rem; }

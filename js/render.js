@@ -319,7 +319,7 @@
   const chapters = [...document.querySelectorAll(".chapter")];
   const collages = [...document.querySelectorAll(".collage")];
   const ctaBtn = $(".cta-btn");
-  const ctaSec = $("#contact");
+  const ctaH2 = $("#contact h2");
   const onScroll = () => {
     /* glass pill as soon as scrolling starts */
     pill.classList.toggle("scrolled", window.scrollY > 10);
@@ -335,12 +335,15 @@
       });
       collages.forEach((col, i) => col.classList.toggle("active", i === ci));
     }
-    /* CTA button rides up + tilts into the headline as the section scrolls in */
-    if (ctaBtn && ctaSec) {
-      const r = ctaSec.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, (window.innerHeight - r.top) / (window.innerHeight * 1.1)));
+    /* CTA button rides up + tilts into the headline. Progress tracks the
+       HEADLINE's viewport position so the motion plays while visible:
+       starts when the heading clears the bottom, settles overlapping it. */
+    if (ctaBtn && ctaH2) {
+      const hr = ctaH2.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * 0.95 - hr.bottom) / (vh * 0.4)));
       const e = 1 - Math.pow(1 - p, 3);
-      ctaBtn.style.transform = `translateY(${(1 - e) * 260}px) rotate(${-12 * e}deg)`;
+      ctaBtn.style.transform = `translateY(${(1 - e) * 320}px) rotate(${-12 * e}deg)`;
     }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
