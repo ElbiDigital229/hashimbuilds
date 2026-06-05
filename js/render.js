@@ -216,13 +216,12 @@
           Scroll-spy: the section currently in view gets the white + green-dot
           state on its nav link. ---- */
   const pill = $(".nav-pill");
-  const heroEl = $("#hero");
   const spyLinks = [...document.querySelectorAll(".nav-links-mid a.link")]
     .map((a) => ({ a, el: $(a.getAttribute("href")) }))
     .filter((x) => x.el);
   const onScroll = () => {
-    const past = window.scrollY > heroEl.offsetTop + heroEl.offsetHeight - 120;
-    pill.classList.toggle("scrolled", past);
+    /* glass pill as soon as scrolling starts */
+    pill.classList.toggle("scrolled", window.scrollY > 10);
     const mark = window.scrollY + window.innerHeight * 0.4;
     let current = null;
     spyLinks.forEach((x) => { if (x.el.offsetTop <= mark) current = x; });
