@@ -431,9 +431,9 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 .cta {
   position: relative; overflow: hidden; text-align: center;
   padding: 230px 32px 130px;
-  background: radial-gradient(150% 170% at 50% 125%,
-    #000 0%, #061024 20%, #0a223f 28%, #0f445d 36%, #267176 44%,
-    #3ea790 52%, #95eabb 63%, #c4fad5 72%, #e2fee9 80%, #fff 92%);
+  background: radial-gradient(115% 115% at 50% 106%,
+    #000 0%, #000 16%, #061024 30%, #0a223f 38%, #0f445d 46%,
+    #267176 54%, #3ea790 62%, #95eabb 73%, #c4fad5 81%, #e2fee9 88%, #fff 97%);
 }
 /* 620px cap breaks "Let's build / something" onto two lines */
 .cta h2 { font-size: clamp(3.2rem, 11vw, 7.5rem); color: var(--white); margin: 0 auto; max-width: 620px; line-height: 0.9; }
