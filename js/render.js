@@ -198,12 +198,12 @@
       <div class="work-grid">${work.items.map(card).join("")}</div>
     </div>`;
 
-  /* ---- 03 · Testimonials ---- */
+  /* ---- 03 · Testimonials: stacked draggable deck ---- */
   const t = CONTENT.testimonials;
   $("#testimonials").innerHTML = `
     <div class="wrap reveal">
       <h2 class="t-center">${esc(t.heading)}</h2>
-      <div class="quote-grid">
+      <div class="quote-deck" id="quote-deck">
         ${t.items.map((q) => `
           <figure class="quote-card">
             <blockquote>${esc(q.quote)}</blockquote>
@@ -300,6 +300,58 @@
       set(n - 1);
     });
     set(0);
+  })();
+
+  /* ---- Quote deck: top card draggable; throw it to cycle ---- */
+  (function quoteDeck() {
+    const deck = $("#quote-deck");
+    if (!deck) return;
+    let order = [...deck.querySelectorAll(".quote-card")];
+    const layout = () => {
+      order.forEach((c, i) => {
+        c.style.zIndex = order.length - i;
+        c.style.transform = i === 0
+          ? "rotate(-3.5deg)"
+          : `translate(${15 * i}px, ${-8 * i}px) scale(${1 - 0.05 * i}) rotate(${-3.5 + i * 3.6}deg)`;
+        c.classList.toggle("top", i === 0);
+      });
+    };
+    layout();
+    let drag = null;
+    deck.addEventListener("pointerdown", (e) => {
+      const top = order[0];
+      if (!top.contains(e.target)) return;
+      drag = { x0: e.clientX, y0: e.clientY, dx: 0, dy: 0 };
+      top.setPointerCapture(e.pointerId);
+      top.style.transition = "none";
+      e.preventDefault();
+    });
+    deck.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      drag.dx = e.clientX - drag.x0;
+      drag.dy = e.clientY - drag.y0;
+      order[0].style.transform =
+        `translate(${drag.dx}px, ${drag.dy}px) rotate(${-3.5 + drag.dx / 18}deg)`;
+    });
+    const release = () => {
+      if (!drag) return;
+      const top = order[0];
+      top.style.transition = "";
+      if (Math.abs(drag.dx) > 90) {
+        const dir = Math.sign(drag.dx) || 1;
+        top.style.transform =
+          `translate(${dir * 760}px, ${drag.dy - 40}px) rotate(${dir * 18}deg)`;
+        top.style.opacity = "0";
+        setTimeout(() => {
+          order.push(order.shift());
+          top.style.opacity = "1";
+          layout();
+        }, 280);
+      } else layout();
+      drag = null;
+    };
+    deck.addEventListener("pointerup", release);
+    deck.addEventListener("pointercancel", release);
   })();
 
   /* ---- Hero cards: fly-in on load, fan out again on scroll ---- */

@@ -123,6 +123,12 @@ const CONTENT = {
         role: "Founder & CEO, Threadbase",
         initials: "PR",
       },
+      {
+        quote: "“Hashim took a vague idea and turned it into a working product in weeks. Clear updates, no surprises, and the final build was better than the brief.”",
+        name: "Tomas Eriksen",
+        role: "Founder, Stayloop Labs",
+        initials: "TE",
+      },
     ],
   },
 
