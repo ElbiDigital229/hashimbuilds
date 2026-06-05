@@ -40,9 +40,14 @@
     x: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.4 2h6.4l4.4 5.9L18.9 2z"/></svg>`,
   };
   const nav = CONTENT.nav;
-  /* nav.logo (optional): image URL replaces the built-in compass SVG */
+  /* nav.logo (optional): image URL replaces the built-in compass SVG.
+     nav.logoArrow (optional): second image layered + rotating on top,
+     matching the dial-plus-arrow construction of the reference. */
   const logoHTML = nav.logo
-    ? `<img class="compass" src="${esc(nav.logo)}" alt="">`
+    ? `<span class="compass-stack">
+         <img class="compass" src="${esc(nav.logo)}" alt="">
+         ${nav.logoArrow ? `<img class="compass-arrow" src="${esc(nav.logoArrow)}" alt="">` : ""}
+       </span>`
     : COMPASS;
   $("#nav").innerHTML = `
     <div class="nav-pill">
