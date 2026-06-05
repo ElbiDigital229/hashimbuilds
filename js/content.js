@@ -1,6 +1,7 @@
 /* =========================================================================
    SITE CONTENT — edit this file to change anything on the site.
-   No HTML or CSS knowledge needed. Save → commit → push → live in ~30s.
+   PLACEHOLDER NOTE: stats, story, and project copy are drafts — replace
+   with your real numbers and history before sharing widely.
    ========================================================================= */
 
 const CONTENT = {
@@ -9,93 +10,144 @@ const CONTENT = {
   meta: {
     title: "Hashim — Builder & Developer",
     description:
-      "Hashim builds software products — from mobile apps to full-stack web platforms. Portfolio and selected work.",
+      "Hashim builds software products end to end — mobile apps, web platforms, and the systems behind them.",
   },
 
-  /* ---- Logo (rendered as: first + accent-colored second part) ----------- */
-  brand: { first: "hashim", accent: "builds" },
+  /* ---- Pill nav ---------------------------------------------------------- */
+  nav: {
+    brand: { first: "hashim", accent: "builds" },
+    links: [
+      { label: "Work",  href: "#work" },
+      { label: "About", href: "#about" },
+      { label: "Story", href: "#story" },
+    ],
+    cta: { label: "Say hi!", href: "mailto:hashim.hma@gmail.com" },
+  },
 
-  /* ---- Top navigation ---------------------------------------------------- */
-  nav: [
-    { label: "About",    href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact",  href: "#contact" },
-  ],
-
-  /* ---- Hero -------------------------------------------------------------- */
+  /* ---- Hero (dark) -------------------------------------------------------- */
   hero: {
-    badge: "Available for new projects",
-    heading: "I build software products, end to end.",
-    sub: "I'm Hashim — a developer who takes ideas from rough sketch to shipped product. Mobile apps, web platforms, and the systems behind them.",
-    ctas: [
-      { label: "See my work",  href: "#projects", style: "primary" },
-      { label: "Get in touch", href: "#contact",  style: "ghost" },
+    status: "Available for new projects · Remote-friendly",
+    heading: "Hashim builds.",
+    sub: "Developer who takes ideas from rough sketch to shipped product — mobile apps, web platforms, and the systems that keep them running.",
+    cards: [
+      { emoji: "🛠️", label: "What I build",   href: "#work",    rotate: -7 },
+      { emoji: "📖", label: "How I got here", href: "#story",   rotate: 4 },
+      { emoji: "⚡", label: "Let's talk",     href: "#contact", rotate: 9 },
     ],
   },
 
-  /* ---- About ------------------------------------------------------------- */
+  /* ---- About / stats (light) — PLACEHOLDER numbers ------------------------ */
   about: {
-    label: "About",
-    title: "Builder first, specialist second.",
-    paragraphs: [
-      "I work across the full stack — designing interfaces, writing the backend that powers them, and wiring up the infrastructure that keeps everything running. I care about shipping things that work, not just things that demo well.",
-      "Recently I've been building customer-facing mobile apps, property-management tooling, and messaging systems. I like small, sharp products with a clear job to do.",
+    heading: "Where I make a dent",
+    intro:
+      "I work across the full stack — interfaces, backends, and infrastructure. I care about shipping things that work, not just things that demo well.",
+    stats: [
+      {
+        title: "Products shipped end to end",
+        desc: "Customer-facing mobile apps, internal ops tooling, and the messaging systems connecting them.",
+      },
+      {
+        title: "Full-stack ownership",
+        desc: "Design in Figma, build in TypeScript, deploy and keep it running — one person, whole picture.",
+      },
+      {
+        title: "Small, sharp products",
+        desc: "I like tools with a clear job to do, built for the people who actually use them daily.",
+      },
     ],
-    toolboxTitle: "Toolbox",
-    toolbox: [
-      "TypeScript", "React", "React Native", "Node.js",
-      "PostgreSQL", "Figma", "AWS",
+    skillsHeading: "How I work",
+    skills: [
+      {
+        title: "Own the full lifecycle",
+        desc: "From messy idea to shipped product — scoping, building, deploying, and iterating after launch.",
+      },
+      {
+        title: "Design and code, together",
+        desc: "I design what I build and build what I design, so nothing gets lost in translation.",
+      },
+      {
+        title: "Systems that don't fall over",
+        desc: "Audit trails, hardening, backups — the unglamorous work that keeps products trustworthy.",
+      },
     ],
   },
 
-  /* ---- Projects ----------------------------------------------------------
-     Add/remove/reorder items freely. `link` is optional — if present, the
-     whole card becomes clickable. `icon` is any emoji. ---------------------- */
-  projects: {
-    label: "Selected work",
-    title: "Projects",
+  /* ---- Projects (light) --------------------------------------------------- */
+  work: {
+    heading: "Things I've built",
     items: [
       {
-        icon: "📱",
+        emoji: "📱",
         name: "Guest Mobile App",
-        description:
-          "A customer-facing mobile app for short-stay guests — booking details, check-in flows, and real-time messaging with property managers, all in one place.",
-        tags: ["React Native", "Design system"],
+        industry: "Hospitality / Mobile",
+        desc: "Booking details, check-in flows, and real-time messaging for short-stay guests.",
         link: null,
       },
       {
-        icon: "💬",
+        emoji: "💬",
         name: "Unified Messaging",
-        description:
-          "A messaging layer that merges automated and manual conversations into a single channel per guest — no split threads, no missed context.",
-        tags: ["Node.js", "Real-time"],
+        industry: "Real-time / Backend",
+        desc: "Automated and manual conversations merged into one channel per guest — no split threads.",
         link: null,
       },
       {
-        icon: "🛠️",
+        emoji: "🛠️",
         name: "Operations Platform",
-        description:
-          "Internal tooling for property management teams — task tracking, audit trails, and hardened infrastructure built for reliability.",
-        tags: ["React", "PostgreSQL"],
+        industry: "Internal tools / SaaS",
+        desc: "Task tracking, audit trails, and hardened infrastructure for property management teams.",
         link: null,
+      },
+      {
+        emoji: "🔒",
+        name: "What's next?",
+        industry: "Your project here",
+        desc: "Have something in mind? Let's scope it together.",
+        link: "mailto:hashim.hma@gmail.com",
       },
     ],
   },
 
-  /* ---- Contact ------------------------------------------------------------ */
-  contact: {
-    label: "Contact",
-    title: "Let's build something.",
-    text: "Have a project in mind, or want to talk through an idea? I'm always open to interesting work.",
-    links: [
-      { label: "Email me", href: "mailto:hashim.hma@gmail.com",          style: "primary" },
-      { label: "GitHub",   href: "https://github.com/ElbiDigital229",    style: "ghost" },
+  /* ---- Story (dark) — PLACEHOLDER, replace with your real story ----------- */
+  story: {
+    heading: "How I found my way in",
+    chapters: [
+      {
+        title: "Origins",
+        paragraphs: [
+          "It started the way it usually does — taking things apart to see how they work, and occasionally getting them back together.",
+          "The first time I made a computer do something I told it to, I was hooked. Still am.",
+        ],
+      },
+      {
+        title: "Going deeper",
+        paragraphs: [
+          "Learning by building: small tools, broken prototypes, projects that taught me more by failing than any course did.",
+          "Somewhere along the way, 'I wonder if I could build that' became the default response to every problem.",
+        ],
+      },
+      {
+        title: "Today",
+        paragraphs: [
+          "Now I build products end to end — mobile apps, web platforms, the systems behind them.",
+          "Still that curious kid. The difference is now the things I build get used by real people every day.",
+        ],
+      },
     ],
   },
 
-  /* ---- Footer ------------------------------------------------------------- */
+  /* ---- CTA (radial gradient) ----------------------------------------------- */
+  cta: {
+    heading: "Let's build something",
+    button: { label: "Say hi!", href: "mailto:hashim.hma@gmail.com" },
+    footnote: "Usually replies within a day · hashim.hma@gmail.com",
+  },
+
+  /* ---- Footer ---------------------------------------------------------------- */
   footer: {
     copyright: "© 2026 Hashim. All rights reserved.",
-    note: "hashimbuilds.com",
+    links: [
+      { label: "GitHub", href: "https://github.com/ElbiDigital229" },
+      { label: "Email",  href: "mailto:hashim.hma@gmail.com" },
+    ],
   },
 };

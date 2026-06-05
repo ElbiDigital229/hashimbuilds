@@ -1,5 +1,5 @@
 /* =========================================================================
-   RENDERER — fills the page from CONTENT (js/content.js).
+   RENDERER v3 — fills the page from CONTENT (js/content.js).
    You should not need to edit this file to change site content.
    ========================================================================= */
 
@@ -10,76 +10,110 @@
     d.textContent = s ?? "";
     return d.innerHTML;
   };
-  const tags = (list) =>
-    `<div class="tags">${list.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>`;
-  const btn = (l) =>
-    `<a class="btn btn-${l.style}" href="${esc(l.href)}"${/^https?:/.test(l.href) ? ' target="_blank" rel="noopener"' : ""}>${esc(l.label)}</a>`;
+  const ext = (href) => (/^https?:/.test(href) ? ' target="_blank" rel="noopener"' : "");
 
   /* ---- Meta ---- */
   document.title = CONTENT.meta.title;
   $('meta[name="description"]').setAttribute("content", CONTENT.meta.description);
 
-  /* ---- Nav ---- */
-  $("#logo").innerHTML = `${esc(CONTENT.brand.first)}<span>${esc(CONTENT.brand.accent)}</span>`;
-  $("#nav-links").innerHTML = CONTENT.nav
-    .map((n) => `<a href="${esc(n.href)}">${esc(n.label)}</a>`)
-    .join("");
+  /* ---- Pill nav ---- */
+  const nav = CONTENT.nav;
+  $("#nav").innerHTML = `
+    <div class="nav-pill">
+      <div class="nav-left">
+        <a class="nav-brand" href="#">${esc(nav.brand.first)}<span>${esc(nav.brand.accent)}</span></a>
+        <div class="nav-sep"></div>
+        <div class="nav-left nav-links-mid">
+          ${nav.links.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`).join("")}
+        </div>
+      </div>
+      <div class="nav-right">
+        <a href="${esc(nav.cta.href)}">${esc(nav.cta.label)}</a>
+      </div>
+    </div>`;
 
   /* ---- Hero ---- */
+  const hero = CONTENT.hero;
   $("#hero").innerHTML = `
-    <span class="kicker">${esc(CONTENT.hero.badge)}</span>
-    <h1>${esc(CONTENT.hero.heading)}</h1>
-    <p class="hero-sub">${esc(CONTENT.hero.sub)}</p>
-    <div class="hero-cta">${CONTENT.hero.ctas.map(btn).join("")}</div>`;
-
-  /* ---- About ---- */
-  $("#about").innerHTML = `
-    <div class="section-label">${esc(CONTENT.about.label)}</div>
-    <h2>${esc(CONTENT.about.title)}</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        ${CONTENT.about.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}
-      </div>
-      <div class="stack-card">
-        <h3>${esc(CONTENT.about.toolboxTitle)}</h3>
-        ${tags(CONTENT.about.toolbox)}
+    <div class="wrap">
+      <div class="hero-status"><span class="dot"></span>${esc(hero.status)}</div>
+      <h1>${esc(hero.heading)}</h1>
+      <p class="hero-sub">${esc(hero.sub)}</p>
+      <div class="hero-cards">
+        ${hero.cards.map((c) => `
+          <a class="float-card" href="${esc(c.href)}" style="transform: rotate(${Number(c.rotate) || 0}deg)">
+            <div class="fc-head">${esc(c.label)}</div>
+            <div class="fc-body">${c.emoji}</div>
+          </a>`).join("")}
       </div>
     </div>`;
 
-  /* ---- Projects ---- */
+  /* ---- About: stats + skills ---- */
+  const about = CONTENT.about;
+  $("#about").innerHTML = `
+    <div class="wrap">
+      <div class="reveal">
+        <h2>${esc(about.heading)}</h2>
+        <p class="intro">${esc(about.intro)}</p>
+        <div class="stats">
+          ${about.stats.map((s) => `
+            <div class="stat"><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join("")}
+        </div>
+      </div>
+      <div class="skills reveal">
+        <h2>${esc(about.skillsHeading)}</h2>
+        ${about.skills.map((s) => `
+          <div class="skill-row"><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join("")}
+      </div>
+    </div>`;
+
+  /* ---- Work ---- */
+  const work = CONTENT.work;
   const card = (p) => {
     const inner = `
-      <div class="project-icon">${p.icon}</div>
-      <h3>${esc(p.name)}</h3>
-      <p>${esc(p.description)}</p>
-      ${tags(p.tags)}`;
+      <div class="wc-head">${esc(p.name)}</div>
+      <div class="wc-body"><div class="wc-emoji">${p.emoji}</div>
+        <div class="wc-desc">${esc(p.desc)}</div></div>
+      <div class="wc-industry">${esc(p.industry)}</div>`;
     return p.link
-      ? `<a class="project" href="${esc(p.link)}" target="_blank" rel="noopener">${inner}</a>`
-      : `<article class="project">${inner}</article>`;
+      ? `<a class="work-card" href="${esc(p.link)}"${ext(p.link)}>${inner}</a>`
+      : `<article class="work-card">${inner}</article>`;
   };
-  $("#projects").innerHTML = `
-    <div class="section-label">${esc(CONTENT.projects.label)}</div>
-    <h2>${esc(CONTENT.projects.title)}</h2>
-    <div class="projects-grid">${CONTENT.projects.items.map(card).join("")}</div>`;
-
-  /* ---- Contact ---- */
-  $("#contact").innerHTML = `
-    <div class="contact-card">
-      <div class="section-label">${esc(CONTENT.contact.label)}</div>
-      <h2>${esc(CONTENT.contact.title)}</h2>
-      <p>${esc(CONTENT.contact.text)}</p>
-      <div class="contact-links">${CONTENT.contact.links.map(btn).join("")}</div>
+  $("#work").innerHTML = `
+    <div class="wrap reveal">
+      <h2>${esc(work.heading)}</h2>
+      <div class="work-grid">${work.items.map(card).join("")}</div>
     </div>`;
+
+  /* ---- Story ---- */
+  const story = CONTENT.story;
+  $("#story").innerHTML = `
+    <div class="wrap">
+      <h2 class="reveal">${esc(story.heading)}</h2>
+      ${story.chapters.map((c) => `
+        <div class="chapter reveal">
+          <h3>${esc(c.title)}</h3>
+          ${c.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}
+        </div>`).join("")}
+    </div>`;
+
+  /* ---- CTA ---- */
+  const cta = CONTENT.cta;
+  $("#contact").innerHTML = `
+    <h2>${esc(cta.heading)}</h2>
+    <div><a class="cta-btn" href="${esc(cta.button.href)}">${esc(cta.button.label)}</a></div>
+    <div class="cta-footnote">${esc(cta.footnote)}</div>`;
 
   /* ---- Footer ---- */
   $("#footer").innerHTML = `
     <span>${esc(CONTENT.footer.copyright)}</span>
-    <a href="#">${esc(CONTENT.footer.note)}</a>`;
+    <span>${CONTENT.footer.links.map((l) =>
+      `<a href="${esc(l.href)}"${ext(l.href)}>${esc(l.label)}</a>`).join("")}</span>`;
 
   /* ---- Scroll-reveal animation ---- */
   const observer = new IntersectionObserver(
     (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("visible")),
-    { threshold: 0.1 }
+    { threshold: 0.08 }
   );
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 })();
