@@ -430,12 +430,13 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
    bottom — giant radial centered far below the section */
 .cta {
   position: relative; overflow: hidden; text-align: center;
-  padding: 230px 32px 70px;
+  padding: 230px 32px 130px;
   background: radial-gradient(150% 170% at 50% 125%,
     #000 0%, #061024 20%, #0a223f 28%, #0f445d 36%, #267176 44%,
     #3ea790 52%, #95eabb 63%, #c4fad5 72%, #e2fee9 80%, #fff 92%);
 }
-.cta h2 { font-size: clamp(3.2rem, 11vw, 7.5rem); color: var(--white); margin: 0 auto; max-width: 10em; line-height: 0.9; }
+/* 620px cap breaks "Let's build / something" onto two lines */
+.cta h2 { font-size: clamp(3.2rem, 11vw, 7.5rem); color: var(--white); margin: 0 auto; max-width: 620px; line-height: 0.9; }
 /* dark glass card overlapping the headline, like the reference */
 .cta-btn {
   display: inline-block; margin-top: -28px; position: relative; z-index: 1;
@@ -461,8 +462,12 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
   font-weight: 600; font-size: 1.3rem; color: var(--white); letter-spacing: -0.02em;
 }
 
-/* ---------- Footer ---------- */
-footer { background: var(--black); border-top: 1px solid var(--line-dark); padding: 28px 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.45); }
+/* ---------- Footer: transparent, sits inside the CTA gradient's black bottom ---------- */
+footer {
+  background: transparent; border: none;
+  margin-top: -86px; position: relative; z-index: 1;
+  padding: 0 0 26px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.45);
+}
 footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
 footer a { color: var(--muted-dark); text-decoration: none; margin-left: 18px; }
 footer a:hover { color: var(--white); }
