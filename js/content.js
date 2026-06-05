@@ -16,13 +16,17 @@ const CONTENT = {
 
   /* ---- Pill nav ---------------------------------------------------------- */
   nav: {
-    brand: { first: "hashim", accent: "builds" },
     links: [
       { label: "Work",  href: "#work" },
       { label: "Story", href: "#story" },
       { label: "Life",  href: "#life" },
     ],
     cta: { label: "Say hi!", href: "mailto:hashim.hma@gmail.com" },
+    socials: [
+      { type: "instagram", href: "#" },
+      { type: "linkedin",  href: "#" },
+      { type: "x",         href: "#" },
+    ],
   },
 
   /* ---- Hero (dark) -------------------------------------------------------- */
@@ -30,10 +34,12 @@ const CONTENT = {
     status: "Dubai, UAE · Remote · GST/CET-friendly",
     heading: "Hashim Builds",
     sub: "Developer who takes products from rough sketch to shipped — without pretending the details don't matter.",
+    /* type: "pills" = 3D word badges · "journey" = dotted path + polaroids
+       · "photos" = tilted photo frames (placeholders until you add images) */
     cards: [
-      { emoji: "🛠️", label: "Where I help",    href: "#work",  rotate: -7 },
-      { emoji: "📖", label: "How I got here",  href: "#story", rotate: 4 },
-      { emoji: "🏔️", label: "Life off-screen", href: "#life",  rotate: 9 },
+      { title: "Where I help",    href: "#work",  type: "pills", pills: ["Design", "Build", "Ship"] },
+      { title: "How I got here",  href: "#story", type: "journey" },
+      { title: "Life off-screen", href: "#life",  type: "photos" },
     ],
   },
 

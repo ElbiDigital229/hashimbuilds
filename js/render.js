@@ -17,23 +17,71 @@
   $('meta[name="description"]').setAttribute("content", CONTENT.meta.description);
 
   /* ---- Pill nav ---- */
+  const COMPASS = `
+    <svg class="compass" viewBox="0 0 26 26" aria-hidden="true">
+      <circle cx="13" cy="13" r="11.4" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.75)" stroke-width="1.5"/>
+      <g stroke="rgba(255,255,255,0.4)" stroke-width="1.3" stroke-linecap="round">
+        <line x1="13" y1="3.2" x2="13" y2="5.6"/><line x1="13" y1="20.4" x2="13" y2="22.8"/>
+        <line x1="3.2" y1="13" x2="5.6" y2="13"/><line x1="20.4" y1="13" x2="22.8" y2="13"/>
+      </g>
+      <g class="needle">
+        <path d="M13 5.8 L15.3 13 L13 20.2 L10.7 13 Z" fill="#11f590"/>
+        <path d="M13 5.8 L15.3 13 L10.7 13 Z" fill="#fff" opacity="0.9"/>
+      </g>
+      <circle cx="13" cy="13" r="1.4" fill="#fff"/>
+    </svg>`;
+  const SOCIAL_ICONS = {
+    instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor" stroke="none"/></svg>`,
+    linkedin: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.2 0H1.8C.8 0 0 .8 0 1.7v20.6C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0zM7.1 20.5H3.6V9h3.5v11.5zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zM20.5 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.2 2.4 4.2 5.4v6.4z"/></svg>`,
+    x: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.4 2h6.4l4.4 5.9L18.9 2z"/></svg>`,
+  };
   const nav = CONTENT.nav;
   $("#nav").innerHTML = `
     <div class="nav-pill">
       <div class="nav-left">
-        <a class="nav-brand" href="#">${esc(nav.brand.first)}<span>${esc(nav.brand.accent)}</span></a>
+        <a class="nav-compass" href="#" aria-label="Home">${COMPASS}</a>
         <div class="nav-sep"></div>
-        <div class="nav-left nav-links-mid">
-          ${nav.links.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`).join("")}
+        <div class="nav-links-mid">
+          ${nav.links.map((l) => `<a class="link" href="${esc(l.href)}">${esc(l.label)}</a>`).join("")}
         </div>
       </div>
       <div class="nav-right">
-        <a href="${esc(nav.cta.href)}">${esc(nav.cta.label)}</a>
+        <a class="link" href="${esc(nav.cta.href)}">${esc(nav.cta.label)}</a>
+        <div class="nav-sep"></div>
+        <div class="nav-socials">
+          ${nav.socials.map((s) =>
+            `<a href="${esc(s.href)}"${ext(s.href)} aria-label="${esc(s.type)}">${SOCIAL_ICONS[s.type] || ""}</a>`).join("")}
+        </div>
       </div>
     </div>`;
 
   /* ---- Hero ---- */
   const hero = CONTENT.hero;
+  const ph = (cls, style) => `<div class="ph ${cls}" style="${style}"></div>`;
+  const CARD_BODIES = {
+    pills: (c) => c.pills.map((word, i) => {
+      const conf = [
+        { cls: "pill-green", style: "top:48px;left:84px;transform:rotate(-27deg)" },
+        { cls: "pill-teal",  style: "top:122px;left:48px;transform:rotate(-6deg)" },
+        { cls: "pill-blue",  style: "top:196px;left:96px;transform:rotate(-17deg)" },
+      ][i % 3];
+      return `<span class="pill ${conf.cls}" style="${conf.style}">${esc(word)}</span>`;
+    }).join(""),
+    journey: () => `
+      <svg class="squiggle" viewBox="0 0 340 320" fill="none" aria-hidden="true">
+        <path d="M40 280 C 100 230, 60 140, 150 150 S 270 90, 295 50"
+          stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+      </svg>
+      <div class="polaroid" style="top:64px;left:200px;transform:rotate(5deg)">${ph("", "width:84px;height:96px")}</div>
+      <div class="polaroid" style="top:158px;left:38px;transform:rotate(-5deg)">${ph("", "width:64px;height:74px")}</div>
+      <span class="map-dot" style="top:272px;left:64px"></span>
+      <span class="map-dot" style="top:118px;left:296px"></span>`,
+    photos: () => `
+      <div class="polaroid" style="top:52px;left:42px;transform:rotate(-14deg)">
+        ${ph("", "width:140px;height:130px")}<span class="caption">photos soon</span>
+      </div>
+      ${ph("loose", "top:96px;left:188px;width:120px;height:132px;transform:rotate(-20deg)")}`,
+  };
   $("#hero").innerHTML = `
     <div class="wrap">
       <div class="hero-status"><span class="dot"></span>${esc(hero.status)}</div>
@@ -41,9 +89,9 @@
       <p class="hero-sub">${esc(hero.sub)}</p>
       <div class="hero-cards">
         ${hero.cards.map((c) => `
-          <a class="float-card" href="${esc(c.href)}" style="transform: rotate(${Number(c.rotate) || 0}deg)">
-            <div class="fc-head">${esc(c.label)}</div>
-            <div class="fc-body">${c.emoji}</div>
+          <a class="float-card" href="${esc(c.href)}">
+            <div class="fc-head">${esc(c.title)}</div>
+            <div class="fc-body">${(CARD_BODIES[c.type] || (() => ""))(c)}</div>
           </a>`).join("")}
       </div>
     </div>`;

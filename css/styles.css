@@ -42,18 +42,35 @@ h1, h2, h3 {
 .nav-pill {
   width: 100%; max-width: 924px; height: 46px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 16px;
+  padding: 5px 12px;
   background: rgba(31, 31, 31, 0.9);
-  border: 1px solid rgba(133, 133, 133, 0.25);
-  border-radius: 10px;
+  border: 1px solid rgba(133, 133, 133, 0.2);
+  border-radius: 8px;
   backdrop-filter: blur(12px);
 }
-.nav-left, .nav-right { display: flex; align-items: center; gap: 18px; }
-.nav-pill a { text-decoration: none; color: var(--muted-dark); font-size: 0.95rem; transition: color 0.15s; }
-.nav-pill a:hover { color: var(--white); }
-.nav-brand { font-weight: 700; color: var(--white) !important; letter-spacing: -0.02em; }
-.nav-brand span { color: var(--green); }
-.nav-sep { width: 1px; height: 20px; background: rgba(133, 133, 133, 0.3); }
+.nav-left, .nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-links-mid { display: flex; align-items: center; gap: 24px; }
+.nav-pill a.link {
+  position: relative; text-decoration: none;
+  color: var(--muted-dark); font-size: 1rem; letter-spacing: -0.01em; line-height: 24px;
+  transition: color 0.15s;
+}
+.nav-pill a.link:hover { color: var(--white); }
+.nav-pill a.link::after {
+  content: ""; position: absolute; left: 50%; bottom: -3px;
+  width: 2px; height: 2px; border-radius: 24px; background: var(--green);
+  opacity: 0; transition: opacity 0.15s;
+}
+.nav-pill a.link:hover::after { opacity: 1; }
+.nav-sep { width: 1px; height: 24px; background: rgba(133, 133, 133, 0.35); }
+.nav-compass { display: block; width: 26px; height: 26px; }
+.compass { width: 100%; height: 100%; display: block; }
+.needle { transform-origin: 13px 13px; animation: needle-drift 7s ease-in-out infinite alternate; }
+@keyframes needle-drift { from { transform: rotate(-160deg); } to { transform: rotate(25deg); } }
+.nav-socials { display: flex; align-items: center; gap: 10px; }
+.nav-socials a { width: 16px; height: 16px; color: var(--muted-dark); transition: color 0.15s; }
+.nav-socials a:hover { color: var(--white); }
+.nav-socials svg { width: 100%; height: 100%; display: block; }
 
 /* ---------- Hero (dark) ---------- */
 .hero { padding: 150px 0 80px; position: relative; overflow: visible; }
@@ -71,23 +88,70 @@ h1, h2, h3 {
 .hero h1 { font-size: clamp(3.4rem, 11vw, 7.5rem); letter-spacing: -0.02em; line-height: 0.9; }
 .hero-sub { margin-top: 20px; font-size: clamp(1.1rem, 2.4vw, 1.5rem); color: var(--muted-dark); max-width: 30em; line-height: 1.4; }
 
-/* floating tilted glass cards */
-.hero-cards { margin-top: 70px; display: flex; gap: 28px; flex-wrap: wrap; }
+/* floating tilted glass cards — scattered band like the reference */
+.hero-cards { position: relative; height: 440px; margin-top: 72px; }
 .float-card {
-  display: flex; flex-direction: column; text-decoration: none;
-  width: 200px; border-radius: 12px; overflow: hidden;
+  position: absolute; display: flex; flex-direction: column; text-decoration: none;
+  width: 340px; border-radius: 12px; overflow: hidden;
   background: rgba(201, 201, 201, 0.12);
   border: 1px solid rgba(181, 181, 181, 0.25);
   backdrop-filter: blur(16px);
   box-shadow: rgba(0, 0, 0, 0.35) 0 13px 16px;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease, z-index 0s;
 }
-.float-card:hover { transform: rotate(0deg) translateY(-6px) !important; }
+.float-card:nth-child(1) { left: -10px;  top: 48px;  transform: rotate(-14deg); z-index: 3; }
+.float-card:nth-child(2) { left: 50%;    top: -16px; margin-left: -170px; transform: rotate(7deg); z-index: 2; }
+.float-card:nth-child(3) { right: -36px; top: 56px;  transform: rotate(24deg); z-index: 1; }
+.float-card:hover { transform: rotate(0deg) translateY(-8px); z-index: 5; }
 .float-card .fc-head {
-  padding: 10px 14px; font-weight: 600; color: var(--white); font-size: 0.95rem;
+  height: 46px; display: flex; align-items: center; padding: 0 16px;
+  font-weight: 600; color: var(--white); font-size: 1.1rem; letter-spacing: -0.02em;
   background: rgba(201, 201, 201, 0.05); border-bottom: 1px solid rgba(181, 181, 181, 0.2);
 }
-.float-card .fc-body { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 2.6rem; }
+.float-card .fc-body { height: 320px; position: relative; overflow: hidden; }
+
+/* card body: 3D word pills */
+.pill {
+  position: absolute; padding: 12px 26px; border-radius: 20px;
+  font-family: var(--display); font-weight: 700; font-variation-settings: 'wdth' 85;
+  font-size: 1.9rem; letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
+}
+.pill-green {
+  background: #62ecb5; color: #0d8e6f;
+  box-shadow: inset 0 2px 2px #abffdf, inset 0 -4px 2.5px #009e81, 0 12px 16px rgba(0, 0, 0, 0.25);
+}
+.pill-teal {
+  background: #1395a1; color: #aef3f6;
+  box-shadow: inset 0 2px 2px rgba(33, 237, 255, 0.5), inset 0 -4px 2.5px #035770, 0 12px 16px rgba(0, 0, 0, 0.25);
+}
+.pill-blue {
+  background: #1537b3; color: #b9c9ff;
+  box-shadow: inset 0 2px 2px rgba(33, 196, 255, 0.5), inset 0 -4px 2.5px #07136e, 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* card body: journey squiggle + polaroids */
+.squiggle { position: absolute; inset: 0; width: 100%; height: 100%; }
+.polaroid {
+  position: absolute; background: var(--white); padding: 5px 5px 18px; border-radius: 5px;
+  box-shadow: 0 10px 12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.map-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #6f6f6f; }
+
+/* photo placeholders (striped until real images are added) */
+.ph {
+  border-radius: 3px;
+  background: repeating-linear-gradient(45deg, #3a3a3a, #3a3a3a 10px, #2e2e2e 10px, #2e2e2e 20px);
+}
+.ph.loose {
+  position: absolute; border-radius: 8px;
+  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.4);
+  background: repeating-linear-gradient(45deg, #4a4a48, #4a4a48 10px, #3c3c3a 10px, #3c3c3a 20px);
+}
+.caption {
+  display: block; text-align: center; margin-top: 4px;
+  font-family: 'Caveat', cursive; font-size: 1rem; font-weight: 600; color: #1c1c1c;
+}
 
 /* ---------- Gradient transition strips ---------- */
 .divider { height: 170px; position: relative; overflow: hidden; background: var(--white); }
@@ -222,14 +286,19 @@ footer a:hover { color: var(--white); }
 .reveal.visible { opacity: 1; transform: none; }
 
 /* ---------- Mobile ---------- */
+@media (max-width: 960px) {
+  .hero-cards { height: auto; display: flex; flex-direction: column; align-items: center; gap: 36px; }
+  .float-card { position: static; margin-left: 0 !important; width: min(340px, 88vw); }
+  .float-card:nth-child(1) { transform: rotate(-4deg); }
+  .float-card:nth-child(2) { transform: rotate(3deg); }
+  .float-card:nth-child(3) { transform: rotate(-3deg); }
+}
+
 @media (max-width: 720px) {
   .photo-wall { columns: 2; }
   .quote-card:nth-child(1), .quote-card:nth-child(3) { transform: none; }
-  .nav-links-mid { display: none; }
+  .nav-links-mid, .nav-socials, .nav-right .nav-sep { display: none; }
   .hero { padding: 120px 0 60px; }
-  .hero-cards { gap: 18px; }
-  .float-card { width: 150px; }
-  .float-card .fc-body { height: 90px; font-size: 2rem; }
   .stats { flex-direction: column; gap: 28px; }
   .stat + .stat { border-left: none; padding-left: 0; border-top: 1px solid var(--line-light); padding-top: 28px; }
   .chapter { padding: 48px 0; }
