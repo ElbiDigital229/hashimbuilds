@@ -337,7 +337,25 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 .work-card .wc-industry { padding: 0 16px 14px; color: rgba(0, 0, 0, 0.4); font-size: 0.9rem; }
 
 .work-card .wc-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.wc-img { display: block; width: 100%; aspect-ratio: 1.22 / 1; object-fit: cover; }
+/* logo art: tilt + light sweep on hover */
+.wc-art { position: relative; overflow: hidden; }
+.wc-img {
+  display: block; width: 100%; aspect-ratio: 1.22 / 1; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.work-card:hover .wc-img { transform: rotate(3deg) scale(1.05); }
+.wc-sheen {
+  position: absolute; inset: -20%; pointer-events: none;
+  mix-blend-mode: overlay;
+  background: linear-gradient(118deg,
+    transparent 32%, rgba(255, 255, 255, 0.85) 44%,
+    rgba(255, 255, 255, 0.85) 52%, transparent 64%);
+  transform: translateX(-130%);
+}
+.work-card:hover .wc-sheen {
+  transform: translateX(130%);
+  transition: transform 0.7s ease;
+}
 .wc-lock { font-size: 0.78rem; font-weight: 500; color: rgba(0, 0, 0, 0.35); white-space: nowrap; }
 .work-card.locked .wc-head span:first-child { color: rgba(0, 0, 0, 0.45); }
 .work-card.locked .wc-emoji { filter: grayscale(1); opacity: 0.5; }
