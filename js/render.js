@@ -152,7 +152,7 @@
                 <div class="skill-desc"><p>${esc(s.desc)}</p></div>
               </div>`).join("")}
           </div>
-          <div class="knob-wrap" aria-hidden="true">
+          <div class="knob-wrap">
             <svg class="knob-ticks" viewBox="0 0 380 380">
               <circle cx="190" cy="190" r="170" fill="none" stroke="rgba(0,0,0,0.3)"
                 stroke-width="9" stroke-dasharray="1.5 7.4"/>
@@ -281,6 +281,16 @@
       r.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); set(+r.dataset.i); }
       });
+    });
+    /* the knob is a control too: click a quadrant (or its number)
+       to turn the dial and open the matching row */
+    const wrap = $(".knob-wrap");
+    wrap.addEventListener("click", (e) => {
+      const rect = wrap.getBoundingClientRect();
+      const dx = e.clientX - rect.left - rect.width / 2;
+      const dy = e.clientY - rect.top - rect.height / 2;
+      const n = dy < 0 ? (dx < 0 ? 2 : 3) : (dx < 0 ? 1 : 4);
+      set(n - 1);
     });
     set(0);
   })();

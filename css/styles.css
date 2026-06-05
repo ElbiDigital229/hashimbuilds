@@ -285,7 +285,7 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 
 /* the dial: tick ring + numbers + dark bezel + brushed-metal face.
    The face (with its green dot) rotates 90° per active row. */
-.knob-wrap { position: relative; width: 380px; height: 380px; flex: 0 0 auto; }
+.knob-wrap { position: relative; width: 380px; height: 380px; flex: 0 0 auto; cursor: pointer; user-select: none; }
 .knob-ticks { position: absolute; inset: 0; width: 100%; height: 100%; }
 .knob-num {
   position: absolute; font-size: 18px; color: var(--ink);
