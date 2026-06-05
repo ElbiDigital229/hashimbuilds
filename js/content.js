@@ -1,7 +1,8 @@
 /* =========================================================================
    SITE CONTENT — edit this file to change anything on the site.
-   Structure mirrors the reference portfolio 1:1. Anything in [brackets]
-   is a placeholder — replace with your real details.
+   ⚠️ ALL COMPANIES, TESTIMONIALS, NUMBERS AND STORY BELOW ARE FICTIONAL
+   FILLER so the design previews naturally. Replace with Hashim's real
+   details before sharing this site with anyone.
    ========================================================================= */
 
 const CONTENT = {
@@ -10,7 +11,7 @@ const CONTENT = {
   meta: {
     title: "Hashim — Builder & Developer",
     description:
-      "Hashim builds software products end to end — and keeps the people around them on the same page.",
+      "Hashim builds software products end to end — mobile apps, web platforms, and the systems behind them.",
   },
 
   /* ---- Pill nav ---------------------------------------------------------- */
@@ -26,9 +27,9 @@ const CONTENT = {
 
   /* ---- Hero (dark) -------------------------------------------------------- */
   hero: {
-    status: "[Your City, Country] · Remote · [Timezone]-friendly",
-    heading: "Hashim [Lastname]",
-    sub: "[One-liner: who you are and the value you bring — e.g. “Developer who ships products end to end — without pretending the details don't matter.”]",
+    status: "Dubai, UAE · Remote · GST/CET-friendly",
+    heading: "Hashim Builds",
+    sub: "Developer who takes products from rough sketch to shipped — without pretending the details don't matter.",
     cards: [
       { emoji: "🛠️", label: "Where I help",    href: "#work",  rotate: -7 },
       { emoji: "📖", label: "How I got here",  href: "#story", rotate: 4 },
@@ -36,112 +37,112 @@ const CONTENT = {
     ],
   },
 
-  /* ---- 01 · Stats (light) -------------------------------------------------- */
+  /* ---- 01 · Stats (light) — FICTIONAL FILLER ------------------------------- */
   about: {
     heading: "Where I drive impact",
     intro:
-      "Since [year], I've worked at the intersection of [discipline 1], [discipline 2] and [discipline 3] — helping teams ship, launch, and grow without the chaos.",
+      "Since 2020, I've worked at the intersection of engineering, design and product — helping teams ship, launch, and grow without the chaos.",
     stats: [
       {
-        title: "[30+] teams served",
-        desc: "From early-stage to scale-up — across [fintech, devtools, cybersec], and beyond.",
+        title: "25+ products shipped",
+        desc: "From early-stage to scale-up — across hospitality, fintech, internal tooling, and beyond.",
       },
       {
-        title: "[$1.5M+] in shipped work",
-        desc: "Scoped, built, delivered — without burning the relationship.",
+        title: "End-to-end ownership",
+        desc: "Scoped, designed, built, deployed — without anyone needing to chase status updates.",
       },
       {
-        title: "[6] years in tech",
-        desc: "[Sales, product, engineering] — agency, product, remote.",
+        title: "6 years in tech",
+        desc: "Engineering, product, and design — agency, startup, remote.",
       },
     ],
     skillsHeading: "How I move the needle",
     skills: [
       {
         title: "Own the full lifecycle",
-        desc: "[From messy brief to shipped product — you manage the timeline, the tradeoffs, and the follow-through, so nobody is chasing you at 11pm.]",
+        desc: "From messy brief to shipped product. I manage timelines, tradeoffs, and follow-through — so nobody's sending 11pm messages about scope creep.",
       },
       {
         title: "Product fluency",
-        desc: "[You've sat in roadmap meetings, filed bug reports, run demos. When something escalates you troubleshoot, not just relay.]",
+        desc: "I've sat in roadmap meetings, filed the bug reports, run the demos. When something breaks, I troubleshoot — I don't just relay.",
       },
       {
-        title: "Close without burning bridges",
-        desc: "[How you pitch, scope, and land work while keeping people happy to come back.]",
+        title: "Build without burning out the team",
+        desc: "Realistic scoping, honest estimates, and the discipline to cut the right corners — never the load-bearing ones.",
       },
       {
         title: "Communicate so things move",
-        desc: "[Clear briefs, sharp kickoffs, feedback that lands. Less back-and-forth, faster decisions.]",
+        desc: "Clear briefs, sharp kickoffs, feedback that lands. Less back-and-forth, faster decisions, happier clients.",
       },
     ],
   },
 
-  /* ---- 02 · Companies (light) ----------------------------------------------
+  /* ---- 02 · Companies (light) — FICTIONAL NAMES -----------------------------
      `locked: true` renders a "Coming soon" 🔒 card.
      The last card links to your email. ---------------------------------------- */
   work: {
     heading: "Companies I've helped grow",
     items: [
-      { emoji: "🛡️", name: "[Company One]",   industry: "Cybersecurity / SaaS B2B", desc: "", link: null },
-      { emoji: "⛓️", name: "[Company Two]",   industry: "Web3 / SaaS B2B",          desc: "", link: null },
-      { emoji: "👁️", name: "[Company Three]", industry: "Cybersecurity / SaaS B2B", desc: "", link: null },
-      { emoji: "📊", name: "[Company Four]",  industry: "Data / SaaS B2B",          desc: "", locked: true, link: null },
-      { emoji: "💳", name: "[Company Five]",  industry: "Fintech / SaaS B2B",       desc: "", locked: true, link: null },
-      { emoji: "✉️", name: "What's next?",    industry: "Your project here",        desc: "", link: "mailto:hashim.hma@gmail.com" },
+      { emoji: "🏠", name: "Stayloop",    industry: "Hospitality / SaaS B2B",  desc: "", link: null },
+      { emoji: "💬", name: "Threadbase",  industry: "Messaging / Real-time",   desc: "", link: null },
+      { emoji: "🛡️", name: "Vaultic",     industry: "Cybersecurity / SaaS B2B", desc: "", link: null },
+      { emoji: "📊", name: "Quantelle",   industry: "Data / SaaS B2B",          desc: "", locked: true, link: null },
+      { emoji: "💳", name: "Ferropay",    industry: "Fintech / SaaS B2B",       desc: "", locked: true, link: null },
+      { emoji: "✉️", name: "What's next?", industry: "Your project here",       desc: "", link: "mailto:hashim.hma@gmail.com" },
     ],
   },
 
-  /* ---- 03 · Testimonials (light) -------------------------------------------- */
+  /* ---- 03 · Testimonials (light) — FICTIONAL PEOPLE -------------------------- */
   testimonials: {
     heading: "What clients actually say",
     items: [
       {
-        quote: "[“Hashim was our primary point of contact and owned the relationship end-to-end. He translated our goals into a clear plan and kept everything moving without us needing to chase.”]",
-        name: "[Client Name]",
-        role: "[Title, Company · ex-Somewhere]",
-        initials: "CN",
+        quote: "“Hashim was our primary point of contact and owned the build end-to-end. He turned our goals into a clear plan and kept everything moving without us needing to chase.”",
+        name: "Dana Whitfield",
+        role: "Co-founder, Stayloop",
+        initials: "DW",
       },
       {
-        quote: "[“Hashim ran the whole engagement without us needing to babysit the process. We got the product fast — and it captured our concept better than anything we'd tried internally.”]",
-        name: "[Client Name]",
-        role: "[CEO & Co-Founder, Company]",
-        initials: "CN",
+        quote: "“He ran the whole engagement without us babysitting the process. We got the product fast — and it captured our concept better than anything we'd tried internally.”",
+        name: "Marcus Oyelaran",
+        role: "CEO & Co-Founder, Vaultic",
+        initials: "MO",
       },
       {
-        quote: "[“Not only on time and efficient, but a great communicator. An engineer at heart — I truly enjoyed our brainstorming sessions.”]",
-        name: "[Client Name]",
-        role: "[Founder & CEO, Company · ex-BigCo]",
-        initials: "CN",
+        quote: "“On time, efficient, and a great communicator. An engineer at heart — I genuinely enjoyed our brainstorming sessions.”",
+        name: "Priya Raghunathan",
+        role: "Founder & CEO, Threadbase",
+        initials: "PR",
       },
     ],
   },
 
-  /* ---- 04 · Story (dark) ------------------------------------------------------ */
+  /* ---- 04 · Story (dark) — FICTIONAL FILLER ----------------------------------- */
   story: {
     heading: "How I found my way in",
     chapters: [
       {
         title: "Origins",
         paragraphs: [
-          "[Hometown, Country]. [Birth year]. [A line about where you started and what you were like as a kid.]",
-          "[The moment tech hooked you — e.g. the first computer, the dial-up modem, the first thing you built. Why it felt magical.]",
-          "[A closing beat — an entire universe on the other end of a cable, and you, impatient to break into it.]",
+          "A kid with a screwdriver and zero patience for being bored. Everything with a battery got opened; some of it even got reassembled.",
+          "Then the first family computer arrived, and with it the first time a machine did exactly what I told it to. That was it. Hooked.",
+          "An entire universe on the other end of a cable — and me, impatient to break into it.",
         ],
       },
       {
         title: "Going places",
         paragraphs: [
-          "[Teen years — what you tinkered with, built, broke, traded. The clunky early-internet stuff that shaped you.]",
-          "[A move, a school, a first job at 16 — whatever changed your trajectory.]",
-          "[Coming back / moving on — older, sharper, same instinct to poke at things until they made sense.]",
+          "Teenage years were forums, half-broken prototypes, and games modded until they crashed. Clunky, slow — and, looking back, kind of amazing.",
+          "First real job at 16. First paid website not long after. Every project taught me more by failing than any course ever did.",
+          "Somewhere along the way, “I wonder if I could build that” became the default response to every problem.",
         ],
       },
       {
         title: "The turning point",
         paragraphs: [
-          "[The detour — the degree or job that taught you what you didn't want, and what it taught you anyway.]",
-          "[The leap — the city, the company, the week you got hooked on this work for good.]",
-          "[Where you are now — still that curious kid. Back then you waited for the connection. Now you create them.]",
+          "A degree that taught me what I didn't want — and discipline I still use every day.",
+          "Then the leap: a small agency, a chaotic first week, and the realization that shipping real products for real people was the only work that didn't feel like work.",
+          "Still that curious kid. Back then I waited for the connection. Now I create them.",
         ],
       },
     ],
@@ -153,15 +154,15 @@ const CONTENT = {
   life: {
     heading: "What my world looks like",
     photos: [
-      { img: null, label: "[Travel photo]" },
-      { img: null, label: "[Hobby photo]" },
-      { img: null, label: "[Workspace photo]" },
-      { img: null, label: "[Family / friends]" },
-      { img: null, label: "[The view outside]" },
-      { img: null, label: "[Something you made]" },
-      { img: null, label: "[A place you love]" },
-      { img: null, label: "[Pet / nature]" },
-      { img: null, label: "[Anything fun]" },
+      { img: null, label: "Travel" },
+      { img: null, label: "The desk where it happens" },
+      { img: null, label: "Weekend hikes" },
+      { img: null, label: "Family" },
+      { img: null, label: "The view outside" },
+      { img: null, label: "Side projects" },
+      { img: null, label: "Favorite city" },
+      { img: null, label: "Coffee, always" },
+      { img: null, label: "More soon" },
     ],
   },
 
@@ -169,7 +170,7 @@ const CONTENT = {
   cta: {
     heading: "Let's build something",
     button: { label: "Say hi!", href: "mailto:hashim.hma@gmail.com" },
-    footnote: "[30+] teams, from early-stage to scale-ups · hashim.hma@gmail.com",
+    footnote: "25+ products, from early-stage to scale-ups · hashim.hma@gmail.com",
   },
 
   /* ---- Footer ---------------------------------------------------------------------- */
