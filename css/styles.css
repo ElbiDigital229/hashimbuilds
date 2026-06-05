@@ -403,6 +403,21 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 .story { background: var(--black); padding: 90px 0 110px; position: relative; z-index: 1; }
 /* 520px cap breaks "How I found / my way in" onto two lines */
 .story h2 { font-size: clamp(3rem, 9.5vw, 6rem); color: var(--white); max-width: 520px; line-height: 1.04; }
+/* chapters left, sticky collage right */
+.story-grid { display: flex; gap: 32px; align-items: flex-start; }
+.story-left { flex: 1; min-width: 0; }
+.story-right { width: 460px; flex: 0 0 auto; align-self: stretch; }
+.story-sticky { position: sticky; top: 230px; height: 500px; }
+.collage {
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: 0; transform: translateY(30px) scale(0.96);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.collage.active { opacity: 1; transform: none; }
+.sc-item { position: absolute; }
+.sc-loose { height: auto; filter: drop-shadow(0 14px 14px rgba(0, 0, 0, 0.45)); border-radius: 6px; }
+.sc-ph { background: linear-gradient(160deg, #3c4654, #171c22); border-radius: 4px; }
+
 .chapter { padding: 70px 0; }
 .chapter + .chapter { border-top: 1px solid; border-image: linear-gradient(270deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 100%) 1; }
 .chapter h3 { font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--white); line-height: 1.15; }
@@ -452,6 +467,7 @@ footer a:hover { color: var(--white); }
 }
 
 @media (max-width: 960px) {
+  .story-right { display: none; }
   .skills-grid { flex-direction: column; align-items: center; }
   .knob-wrap { width: 300px; height: 300px; }
   .knob-bezel { inset: 38px; }

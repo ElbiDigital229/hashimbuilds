@@ -215,16 +215,62 @@
       </div>
     </div>`;
 
-  /* ---- 04 · Story ---- */
+  /* ---- 04 · Story: chapters left, sticky per-chapter collage right ----
+     Each chapter can define images[] matching its cluster's slots;
+     missing images render as gradient placeholders. */
   const story = CONTENT.story;
+  const CLUSTERS = [
+    [ /* chapter 1 */
+      { frame: true, w: 220, h: 270, top: 70,  left: 90,  r: -6, z: 2 },
+      { w: 170, top: 0,   left: 260, r: 0,   z: 3 },
+      { w: 190, top: 270, left: 0,   r: -8,  z: 4 },
+      { w: 140, top: 300, left: 300, r: 8,   z: 1 },
+    ],
+    [ /* chapter 2 */
+      { w: 250, top: 10,  left: 30,  r: -14, z: 2 },
+      { frame: true, w: 290, h: 195, top: 150, left: 90, r: 2, z: 3 },
+      { w: 115, top: 320, left: 330, r: 18,  z: 4 },
+    ],
+    [ /* chapter 3 */
+      { frame: true, w: 250, h: 300, top: 50, left: 110, r: 3, z: 2 },
+      { w: 230, top: 0,   left: 240, r: 8,   z: 3 },
+      { w: 210, top: 330, left: 10,  r: -10, z: 4 },
+    ],
+  ];
+  const collageItem = (slot, img) => {
+    const pos = `top:${slot.top}px;left:${slot.left}px;transform:rotate(${slot.r}deg);z-index:${slot.z};`;
+    if (slot.frame) {
+      return `<div class="polaroid sc-item" style="${pos}width:${slot.w}px">
+        ${img
+          ? `<img src="${esc(img)}" alt="" loading="lazy" style="display:block;width:100%;height:${slot.h}px;object-fit:cover;border-radius:3px">`
+          : `<div class="ph sc-ph" style="width:100%;height:${slot.h}px"></div>`}
+      </div>`;
+    }
+    return img
+      ? `<img class="sc-item sc-loose" src="${esc(img)}" alt="" loading="lazy" style="${pos}width:${slot.w}px">`
+      : `<div class="sc-item sc-loose ph sc-ph" style="${pos}width:${slot.w}px;height:${Math.round(slot.w * 0.8)}px"></div>`;
+  };
   $("#story").innerHTML = `
     <div class="wrap">
       <h2 class="reveal">${esc(story.heading)}</h2>
-      ${story.chapters.map((c) => `
-        <div class="chapter reveal">
-          <h3>${esc(c.title)}</h3>
-          ${c.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}
-        </div>`).join("")}
+      <div class="story-grid">
+        <div class="story-left">
+          ${story.chapters.map((c, i) => `
+            <div class="chapter reveal" data-ch="${i}">
+              <h3>${esc(c.title)}</h3>
+              ${c.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}
+            </div>`).join("")}
+        </div>
+        <div class="story-right" aria-hidden="true">
+          <div class="story-sticky">
+            ${CLUSTERS.map((cluster, i) => `
+              <div class="collage${i === 0 ? " active" : ""}">
+                ${cluster.map((slot, j) =>
+                  collageItem(slot, story.chapters[i] && story.chapters[i].images && story.chapters[i].images[j])).join("")}
+              </div>`).join("")}
+          </div>
+        </div>
+      </div>
     </div>`;
 
   /* ---- 05 · Life photo wall ---- */
@@ -260,6 +306,8 @@
   const spyLinks = [...document.querySelectorAll(".nav-links-mid a.link")]
     .map((a) => ({ a, el: $(a.getAttribute("href")) }))
     .filter((x) => x.el);
+  const chapters = [...document.querySelectorAll(".chapter")];
+  const collages = [...document.querySelectorAll(".collage")];
   const onScroll = () => {
     /* glass pill as soon as scrolling starts */
     pill.classList.toggle("scrolled", window.scrollY > 10);
@@ -267,6 +315,14 @@
     let current = null;
     spyLinks.forEach((x) => { if (x.el.offsetTop <= mark) current = x; });
     spyLinks.forEach((x) => x.a.classList.toggle("active", x === current));
+    /* story collage follows the chapter in view */
+    if (chapters.length && collages.length) {
+      let ci = 0;
+      chapters.forEach((c, i) => {
+        if (c.getBoundingClientRect().top < window.innerHeight * 0.55) ci = i;
+      });
+      collages.forEach((col, i) => col.classList.toggle("active", i === ci));
+    }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
