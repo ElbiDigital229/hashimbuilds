@@ -21,9 +21,10 @@
     <svg class="compass" viewBox="0 0 26 26" aria-hidden="true">
       <defs>
         <linearGradient id="needle-grad" x1="13" y1="2.6" x2="13" y2="23.4" gradientUnits="userSpaceOnUse">
-          <stop offset="0.16" stop-color="#14F590"/>
-          <stop offset="0.56" stop-color="#0FCCD8" stop-opacity="0.2"/>
-          <stop offset="0.74" stop-color="#1DCAD5" stop-opacity="0"/>
+          <stop offset="0" stop-color="#14F590"/>
+          <stop offset="0.42" stop-color="#14F590" stop-opacity="0.95"/>
+          <stop offset="0.66" stop-color="#0FCCD8" stop-opacity="0.35"/>
+          <stop offset="0.85" stop-color="#1DCAD5" stop-opacity="0"/>
         </linearGradient>
       </defs>
       <circle cx="13" cy="13" r="11.6" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.4"/>

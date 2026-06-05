@@ -2,9 +2,10 @@
   <!-- hashimbuilds compass mark (matches the nav icon) -->
   <defs>
     <linearGradient id="ng" x1="16" y1="3" x2="16" y2="29" gradientUnits="userSpaceOnUse">
-      <stop offset="0.16" stop-color="#14F590"/>
-      <stop offset="0.56" stop-color="#0FCCD8" stop-opacity="0.2"/>
-      <stop offset="0.74" stop-color="#1DCAD5" stop-opacity="0"/>
+      <stop offset="0" stop-color="#14F590"/>
+      <stop offset="0.45" stop-color="#14F590" stop-opacity="0.95"/>
+      <stop offset="0.68" stop-color="#0FCCD8" stop-opacity="0.35"/>
+      <stop offset="0.88" stop-color="#1DCAD5" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <rect width="32" height="32" rx="8" fill="#161616"/>
