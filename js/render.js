@@ -160,10 +160,10 @@
                 `<line x1="190" y1="6" x2="190" y2="32" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"
                    transform="rotate(${a} 190 190)"/>`).join("")}
             </svg>
-            <span class="knob-num" data-n="2" style="top:22px;left:60px">2</span>
-            <span class="knob-num" data-n="3" style="top:22px;right:60px">3</span>
-            <span class="knob-num" data-n="1" style="bottom:22px;left:60px">1</span>
-            <span class="knob-num" data-n="4" style="bottom:22px;right:60px">4</span>
+            <span class="knob-num" data-n="2" style="top:45px;left:45px">2</span>
+            <span class="knob-num" data-n="3" style="top:45px;left:335px">3</span>
+            <span class="knob-num" data-n="1" style="top:335px;left:45px">1</span>
+            <span class="knob-num" data-n="4" style="top:335px;left:335px">4</span>
             <div class="knob-bezel">
               <div class="knob-face" id="knob-face"><span class="knob-dot"></span></div>
             </div>
