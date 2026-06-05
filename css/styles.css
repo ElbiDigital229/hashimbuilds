@@ -1,0 +1,145 @@
+/* =========================================================================
+   STYLES — design tokens up top, one block per section below.
+   ========================================================================= */
+
+/* ---- Design tokens ------------------------------------------------------ */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --muted: #78716c;
+  --faint: #a8a29e;
+  --accent: #2563eb;
+  --accent-soft: #eff6ff;
+  --border: #e7e5e4;
+  --radius: 14px;
+}
+
+/* ---- Base --------------------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+/* ---- Shared: buttons ----------------------------------------------------- */
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  padding: 12px 24px; border-radius: 10px; transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--text); color: #fff; }
+.btn-primary:hover { box-shadow: 0 6px 20px rgba(28, 25, 23, 0.2); }
+.btn-ghost { color: var(--text); border: 1px solid var(--border); background: var(--surface); }
+.btn-ghost:hover { border-color: var(--faint); }
+
+/* ---- Shared: tags & section headers -------------------------------------- */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag {
+  font-size: 0.82rem; font-weight: 500; color: var(--text);
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 5px 12px; border-radius: 100px;
+}
+.section-label {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--faint); margin-bottom: 12px;
+}
+section { padding: 72px 0; }
+h2 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 28px; }
+
+/* ---- Nav ------------------------------------------------------------------ */
+nav {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(250, 250, 249, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* ---- Hero ------------------------------------------------------------------ */
+header { padding: 110px 0 90px; }
+.kicker {
+  display: inline-block;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft);
+  padding: 6px 12px; border-radius: 100px; margin-bottom: 24px;
+}
+h1 {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
+  max-width: 16ch;
+}
+.hero-sub { margin-top: 20px; font-size: 1.15rem; color: var(--muted); max-width: 52ch; }
+.hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* ---- About ------------------------------------------------------------------ */
+.about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
+.about-text p { color: var(--muted); font-size: 1.05rem; }
+.about-text p + p { margin-top: 16px; }
+.stack-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px;
+}
+.stack-card h3 {
+  font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--faint); margin-bottom: 14px;
+}
+
+/* ---- Projects ----------------------------------------------------------------- */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.project {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 28px; display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.project:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(28, 25, 23, 0.08); }
+.project-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: var(--accent-soft); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 18px;
+}
+.project h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
+.project p { color: var(--muted); font-size: 0.95rem; margin-top: 8px; flex: 1; }
+.project .tags { margin-top: 18px; }
+
+/* ---- Contact --------------------------------------------------------------------- */
+.contact-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 56px 40px; text-align: center;
+}
+.contact-card h2 { margin-bottom: 12px; }
+.contact-card p { color: var(--muted); max-width: 44ch; margin: 0 auto 28px; }
+.contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ---- Footer ---------------------------------------------------------------------- */
+footer { border-top: 1px solid var(--border); padding: 32px 0; margin-top: 40px; color: var(--faint); font-size: 0.85rem; }
+footer .wrap { display: flex; justify-content: space-between; align-items: center; }
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--text); }
+
+/* ---- Scroll-reveal animation ------------------------------------------------------ */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ---- Mobile ------------------------------------------------------------------------ */
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  header { padding: 70px 0 60px; }
+  section { padding: 52px 0; }
+}

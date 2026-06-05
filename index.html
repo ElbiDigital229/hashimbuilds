@@ -3,282 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title & description are set from js/content.js -->
   <title>Hashim — Builder &amp; Developer</title>
-  <meta name="description" content="Hashim builds software products — from mobile apps to full-stack web platforms. Portfolio and selected work.">
+  <meta name="description" content="Hashim builds software products — from mobile apps to full-stack web platforms.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #fafaf9;
-      --surface: #ffffff;
-      --text: #1c1917;
-      --muted: #78716c;
-      --faint: #a8a29e;
-      --accent: #2563eb;
-      --accent-soft: #eff6ff;
-      --border: #e7e5e4;
-      --radius: 14px;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-
-    /* ---------- Nav ---------- */
-    nav {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(250, 250, 249, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .logo { font-weight: 800; font-size: 1.05rem; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
-    .logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 28px; }
-    .nav-links a {
-      text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500;
-      transition: color 0.15s;
-    }
-    .nav-links a:hover { color: var(--text); }
-
-    /* ---------- Hero ---------- */
-    header { padding: 110px 0 90px; }
-    .kicker {
-      display: inline-block;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--accent); background: var(--accent-soft);
-      padding: 6px 12px; border-radius: 100px; margin-bottom: 24px;
-    }
-    h1 {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
-      max-width: 16ch;
-    }
-    .hero-sub {
-      margin-top: 20px; font-size: 1.15rem; color: var(--muted); max-width: 52ch;
-    }
-    .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn {
-      display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
-      padding: 12px 24px; border-radius: 10px; transition: transform 0.15s, box-shadow 0.15s;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--text); color: #fff; }
-    .btn-primary:hover { box-shadow: 0 6px 20px rgba(28, 25, 23, 0.2); }
-    .btn-ghost { color: var(--text); border: 1px solid var(--border); background: var(--surface); }
-    .btn-ghost:hover { border-color: var(--faint); }
-
-    /* ---------- Sections ---------- */
-    section { padding: 72px 0; }
-    .section-label {
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--faint); margin-bottom: 12px;
-    }
-    h2 { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 28px; }
-
-    /* ---------- About ---------- */
-    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; align-items: start; }
-    .about-text p { color: var(--muted); font-size: 1.05rem; }
-    .about-text p + p { margin-top: 16px; }
-    .stack-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 24px;
-    }
-    .stack-card h3 { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--faint); margin-bottom: 14px; }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag {
-      font-size: 0.82rem; font-weight: 500; color: var(--text);
-      background: var(--bg); border: 1px solid var(--border);
-      padding: 5px 12px; border-radius: 100px;
-    }
-
-    /* ---------- Projects ---------- */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .project {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 28px; display: flex; flex-direction: column;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .project:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(28, 25, 23, 0.08); }
-    .project-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: var(--accent-soft); color: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; margin-bottom: 18px;
-    }
-    .project h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
-    .project p { color: var(--muted); font-size: 0.95rem; margin-top: 8px; flex: 1; }
-    .project .tags { margin-top: 18px; }
-
-    /* ---------- Contact ---------- */
-    .contact-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 56px 40px; text-align: center;
-    }
-    .contact-card h2 { margin-bottom: 12px; }
-    .contact-card p { color: var(--muted); max-width: 44ch; margin: 0 auto 28px; }
-    .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
-    /* ---------- Footer ---------- */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0; margin-top: 40px;
-      color: var(--faint); font-size: 0.85rem;
-    }
-    footer .wrap { display: flex; justify-content: space-between; align-items: center; }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
-
-    /* ---------- Reveal animation ---------- */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 720px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-      header { padding: 70px 0 60px; }
-      section { padding: 52px 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <!-- ======================================================================
+       PAGE SKELETON — all content comes from js/content.js.
+       To change text, projects, or links, edit that file only.
+       ====================================================================== -->
 
   <nav>
     <div class="wrap nav-inner">
-      <a class="logo" href="#">hashim<span>builds</span></a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
+      <a class="logo" id="logo" href="#"></a>
+      <div class="nav-links" id="nav-links"></div>
     </div>
   </nav>
 
-  <header class="wrap">
-    <span class="kicker">Available for new projects</span>
-    <h1>I build software products, end to end.</h1>
-    <p class="hero-sub">
-      I'm Hashim — a developer who takes ideas from rough sketch to shipped product.
-      Mobile apps, web platforms, and the systems behind them.
-    </p>
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#projects">See my work</a>
-      <a class="btn btn-ghost" href="#contact">Get in touch</a>
-    </div>
-  </header>
+  <header class="wrap" id="hero"></header>
 
-  <section id="about" class="wrap reveal">
-    <div class="section-label">About</div>
-    <h2>Builder first, specialist second.</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>
-          I work across the full stack — designing interfaces, writing the backend that
-          powers them, and wiring up the infrastructure that keeps everything running.
-          I care about shipping things that work, not just things that demo well.
-        </p>
-        <p>
-          Recently I've been building customer-facing mobile apps, property-management
-          tooling, and messaging systems. I like small, sharp products with a clear job to do.
-        </p>
-      </div>
-      <div class="stack-card">
-        <h3>Toolbox</h3>
-        <div class="tags">
-          <span class="tag">TypeScript</span>
-          <span class="tag">React</span>
-          <span class="tag">React Native</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Figma</span>
-          <span class="tag">AWS</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section class="wrap reveal" id="about"></section>
 
-  <section id="projects" class="wrap reveal">
-    <div class="section-label">Selected work</div>
-    <h2>Projects</h2>
-    <div class="projects-grid">
-      <article class="project">
-        <div class="project-icon">📱</div>
-        <h3>Guest Mobile App</h3>
-        <p>
-          A customer-facing mobile app for short-stay guests — booking details, check-in
-          flows, and real-time messaging with property managers, all in one place.
-        </p>
-        <div class="tags">
-          <span class="tag">React Native</span>
-          <span class="tag">Design system</span>
-        </div>
-      </article>
-      <article class="project">
-        <div class="project-icon">💬</div>
-        <h3>Unified Messaging</h3>
-        <p>
-          A messaging layer that merges automated and manual conversations into a single
-          channel per guest — no split threads, no missed context.
-        </p>
-        <div class="tags">
-          <span class="tag">Node.js</span>
-          <span class="tag">Real-time</span>
-        </div>
-      </article>
-      <article class="project">
-        <div class="project-icon">🛠️</div>
-        <h3>Operations Platform</h3>
-        <p>
-          Internal tooling for property management teams — task tracking, audit trails,
-          and hardened infrastructure built for reliability.
-        </p>
-        <div class="tags">
-          <span class="tag">React</span>
-          <span class="tag">PostgreSQL</span>
-        </div>
-      </article>
-    </div>
-  </section>
+  <section class="wrap reveal" id="projects"></section>
 
-  <section id="contact" class="wrap reveal">
-    <div class="contact-card">
-      <div class="section-label">Contact</div>
-      <h2>Let's build something.</h2>
-      <p>
-        Have a project in mind, or want to talk through an idea?
-        I'm always open to interesting work.
-      </p>
-      <div class="contact-links">
-        <a class="btn btn-primary" href="mailto:hashim.hma@gmail.com">Email me</a>
-        <a class="btn btn-ghost" href="https://github.com/ElbiDigital229" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </section>
+  <section class="wrap reveal" id="contact"></section>
 
-  <footer>
-    <div class="wrap">
-      <span>© 2026 Hashim. All rights reserved.</span>
-      <a href="#">hashimbuilds.com</a>
-    </div>
-  </footer>
+  <footer><div class="wrap" id="footer"></div></footer>
 
-  <script>
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('visible')),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-  </script>
-
+  <script src="js/content.js"></script>
+  <script src="js/render.js"></script>
 </body>
 </html>
