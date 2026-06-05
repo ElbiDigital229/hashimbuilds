@@ -265,14 +265,23 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 
 /* skills: accordion list + knob */
 .skills { margin-top: 90px; }
-.skills-grid { display: flex; gap: 40px; align-items: center; margin-top: 40px; }
-.skill-list { flex: 1; min-width: 0; }
+.skills-grid { display: flex; gap: 40px; align-items: flex-start; margin-top: 40px; }
+/* min-height ≈ list with one row open, so switching rows doesn't move
+   the section below; knob stays put instead of re-centering */
+.skill-list { flex: 1; min-width: 0; min-height: 400px; }
+.knob-wrap { margin-top: 10px; }
 .skill-row { padding: 22px 0; border-bottom: 1px solid var(--line-light); cursor: pointer; }
 .skill-row:first-child { border-top: 1px solid var(--line-light); }
 .skill-row h3 { font-family: var(--body); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.02em; }
-.skill-desc { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
-.skill-row.open .skill-desc { max-height: 240px; }
-.skill-desc p { margin-top: 10px; color: var(--muted-light); line-height: 1.5; font-size: 18px; letter-spacing: -0.01em; }
+/* grid-rows 0fr→1fr animates to the row's exact height — no max-height guess */
+.skill-desc { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s ease; }
+.skill-row.open .skill-desc { grid-template-rows: 1fr; }
+.skill-desc p {
+  min-height: 0; overflow: hidden; margin: 0; padding-top: 0;
+  color: var(--muted-light); line-height: 1.5; font-size: 18px; letter-spacing: -0.01em;
+  transition: padding-top 0.45s ease;
+}
+.skill-row.open .skill-desc p { padding-top: 10px; }
 
 /* the dial: tick ring + numbers + dark bezel + brushed-metal face.
    The face (with its green dot) rotates 90° per active row. */
