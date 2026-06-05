@@ -424,28 +424,40 @@ h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width:
 .chapter p { margin-top: 18px; color: var(--muted-dark); font-size: 1.1rem; max-width: 36em; line-height: 1.45; letter-spacing: -0.01em; }
 
 /* ---------- CTA (radial gradient) ---------- */
+/* white above melts straight into green, darkening to black at the
+   bottom — giant radial centered far below the section */
 .cta {
   position: relative; overflow: hidden; text-align: center;
-  padding: 170px 32px 150px;
-  background: radial-gradient(120% 130% at 50% 115%,
-    #fff 0%, #e2fee9 6%, #95eabb 16%, #3ea790 28%, #267176 36%,
-    #0f445d 45%, #0a223f 52%, #061024 58%, #000 70%);
+  padding: 230px 32px 70px;
+  background: radial-gradient(150% 170% at 50% 125%,
+    #000 0%, #061024 20%, #0a223f 28%, #0f445d 36%, #267176 44%,
+    #3ea790 52%, #95eabb 63%, #c4fad5 72%, #e2fee9 80%, #fff 92%);
 }
 .cta h2 { font-size: clamp(3.2rem, 11vw, 7.5rem); color: var(--white); margin: 0 auto; max-width: 10em; line-height: 0.9; }
+/* dark glass card overlapping the headline, like the reference */
 .cta-btn {
-  display: inline-block; margin-top: 56px; text-decoration: none;
-  font-family: var(--body); font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.6rem);
+  display: inline-block; margin-top: -28px; position: relative; z-index: 1;
+  text-decoration: none;
+  font-family: var(--body); font-weight: 600; font-size: clamp(1.8rem, 4.5vw, 3rem);
   color: var(--white); letter-spacing: -0.02em;
-  padding: 22px 44px; border-radius: 14px;
+  padding: 26px 48px; border-radius: 14px;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(28px);
-  box-shadow: rgba(0, 0, 0, 0.2) 0 9px 20px;
-  transform: rotate(-4deg);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 12px 24px;
+  transform: rotate(-8deg);
   transition: transform 0.25s ease, background 0.25s;
 }
-.cta-btn:hover { transform: rotate(0deg) scale(1.04); background: rgba(255, 255, 255, 0.16); }
-.cta-footnote { margin-top: 60px; color: rgba(255, 255, 255, 0.5); font-size: 0.95rem; }
+.cta-btn:hover { transform: rotate(0deg) scale(1.05); background: rgba(255, 255, 255, 0.16); }
+.cta-footnote { margin-top: 180px; color: rgba(255, 255, 255, 0.5); font-size: 1rem; }
+.cta-logos {
+  margin-top: 26px; display: flex; justify-content: center; align-items: center;
+  gap: 56px; flex-wrap: wrap; opacity: 0.55;
+}
+.cta-logos img { height: 26px; width: auto; display: block; }
+.cta-logos span {
+  font-weight: 600; font-size: 1.3rem; color: var(--white); letter-spacing: -0.02em;
+}
 
 /* ---------- Footer ---------- */
 footer { background: var(--black); border-top: 1px solid var(--line-dark); padding: 28px 0; font-size: 0.85rem; color: rgba(255, 255, 255, 0.45); }

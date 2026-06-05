@@ -185,7 +185,14 @@ const CONTENT = {
   cta: {
     heading: "Let's build something",
     button: { label: "Say hi!", href: "mailto:hashim.hma@gmail.com" },
-    footnote: "25+ products, from early-stage to scale-ups · hashim.hma@gmail.com",
+    footnote: "25+ products, from early-stage to scale-ups:",
+    /* logos: {img} renders an image wordmark; {name} renders styled text */
+    logos: [
+      { name: "Stayloop" },
+      { name: "Threadbase" },
+      { name: "Vaultic" },
+      { name: "Ferropay" },
+    ],
   },
 
   /* ---- Footer ---------------------------------------------------------------------- */

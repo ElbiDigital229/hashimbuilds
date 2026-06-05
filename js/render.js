@@ -291,7 +291,13 @@
   $("#contact").innerHTML = `
     <h2>${esc(cta.heading)}</h2>
     <div><a class="cta-btn" href="${esc(cta.button.href)}">${esc(cta.button.label)}</a></div>
-    <div class="cta-footnote">${esc(cta.footnote)}</div>`;
+    <div class="cta-footnote">${esc(cta.footnote)}</div>
+    ${cta.logos && cta.logos.length ? `
+      <div class="cta-logos">
+        ${cta.logos.map((l) => l.img
+          ? `<img src="${esc(l.img)}" alt="${esc(l.name || "")}" loading="lazy">`
+          : `<span>${esc(l.name)}</span>`).join("")}
+      </div>` : ""}`;
 
   /* ---- Footer ---- */
   $("#footer").innerHTML = `
