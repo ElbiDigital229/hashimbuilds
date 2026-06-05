@@ -45,19 +45,22 @@ const CONTENT = {
 
   /* ---- 01 · Stats (light) — FICTIONAL FILLER ------------------------------- */
   about: {
-    heading: "Where I drive impact",
+    heading: "Where I drive revenue",
     intro:
-      "Since 2020, I've worked at the intersection of engineering, design and product — helping teams ship, launch, and grow without the chaos.",
+      "Since 2020, I've worked at the intersection of engineering, design and product — helping startup teams ship faster, launch cleaner, and grow their products without the usual chaos.",
     stats: [
       {
+        icon: "bolt",
         title: "25+ products shipped",
         desc: "From early-stage to scale-up — across hospitality, fintech, internal tooling, and beyond.",
       },
       {
+        icon: "chart",
         title: "End-to-end ownership",
         desc: "Scoped, designed, built, deployed — without anyone needing to chase status updates.",
       },
       {
+        icon: "trophy",
         title: "6 years in tech",
         desc: "Engineering, product, and design — agency, startup, remote.",
       },

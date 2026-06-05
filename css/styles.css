@@ -111,20 +111,28 @@ h1, h2, h3 {
 
 /* floating tilted glass cards — scattered band like the reference */
 .hero-cards { position: relative; height: 440px; margin-top: 72px; }
+/* outer shell: positioned + JS-animated (fly-in / scroll fan-out) */
 .float-card {
-  position: absolute; display: flex; flex-direction: column; text-decoration: none;
-  width: 340px; border-radius: 12px; overflow: hidden;
-  background: rgba(201, 201, 201, 0.12);
-  border: 1px solid rgba(181, 181, 181, 0.25);
-  backdrop-filter: blur(16px);
-  box-shadow: rgba(0, 0, 0, 0.35) 0 13px 16px;
-  transition: transform 0.3s ease, z-index 0s;
+  position: absolute; display: block; text-decoration: none;
+  width: 340px; will-change: transform;
 }
 .float-card:nth-child(1) { left: 8px;    top: 70px;  transform: rotate(-3deg);  z-index: 1; }
 .float-card:nth-child(2) { left: 50%;    top: -8px;  margin-left: -185px; transform: rotate(-12deg); z-index: 2; }
 .float-card:nth-child(3) { right: -16px; top: 44px;  transform: rotate(12deg);  z-index: 3; }
-.float-card:hover { transform: rotate(0deg) translateY(-8px); z-index: 5; }
-.float-card::after {
+.float-card:hover { z-index: 5; }
+/* inner: the visible glass card (hover lift lives here so it doesn't
+   fight the JS transform on the shell) */
+.fc-inner {
+  display: flex; flex-direction: column; position: relative;
+  border-radius: 12px; overflow: hidden;
+  background: rgba(201, 201, 201, 0.12);
+  border: 1px solid rgba(181, 181, 181, 0.25);
+  backdrop-filter: blur(16px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0 13px 16px;
+  transition: transform 0.3s ease;
+}
+.float-card:hover .fc-inner { transform: translateY(-8px); }
+.fc-inner::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(120deg, rgba(255, 255, 255, 0.09), transparent 38%);
 }
@@ -137,9 +145,9 @@ h1, h2, h3 {
 
 /* card body: 3D word pills */
 .pill {
-  position: absolute; padding: 16px 28px; border-radius: 20px;
+  position: absolute; padding: 17px 32px; border-radius: 20px;
   font-family: var(--display); font-weight: 700; font-variation-settings: 'wdth' 85;
-  font-size: 2.5rem; letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
+  font-size: 2.4rem; letter-spacing: -0.02em; line-height: 1; white-space: nowrap;
 }
 .pill-green {
   background: #62ecb5; color: #11a885;
@@ -181,19 +189,19 @@ h1, h2, h3 {
 }
 
 .ipod-img {
-  position: absolute; width: 110px; height: auto;
+  position: absolute; width: 110px; height: auto; z-index: 2;
   filter: drop-shadow(0 16px 14px rgba(0, 0, 0, 0.45));
 }
 
 /* retro music player (Life off-screen card) */
 .ipod {
-  position: absolute; width: 98px; height: 172px; border-radius: 14px;
+  position: absolute; width: 98px; height: 198px; border-radius: 14px; z-index: 2;
   background: linear-gradient(160deg, #f5e070 0%, #dcba3c 55%, #ba951f 100%);
   box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.75), inset 0 -3px 4px rgba(0, 0, 0, 0.3),
               0 14px 16px rgba(0, 0, 0, 0.45);
 }
 .ipod-screen {
-  position: absolute; top: 10px; left: 10px; right: 10px; height: 66px; border-radius: 6px;
+  position: absolute; top: 11px; left: 10px; right: 10px; height: 80px; border-radius: 6px;
   background:
     radial-gradient(7px 7px at 22% 28%, #ff5f57 96%, transparent),
     radial-gradient(7px 7px at 50% 28%, #ffbd2e 96%, transparent),
@@ -236,14 +244,22 @@ h1, h2, h3 {
 .light { background: var(--white); color: var(--ink); padding: 70px 0; position: relative; z-index: 1; }
 /* sub-section headings — 56px tier */
 .light h2 { font-size: clamp(2.1rem, 5.5vw, 3.5rem); line-height: 0.9; color: var(--ink); max-width: 14em; }
-/* major section headings — 96px tier (matches reference h2/86px LH) */
-h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width: 9em; }
-.light .intro { margin-top: 18px; font-size: 1.1rem; color: var(--muted-light); max-width: 38em; line-height: 1.45; }
+/* major section headings — 96px tier (matches reference h2/86px LH);
+   480px cap breaks "Where I drive / revenue" onto two lines */
+h2.h-display { font-size: clamp(3rem, 9.5vw, 6rem); line-height: 0.9; max-width: 480px; }
+.light .intro { margin-top: 18px; font-size: 18px; color: var(--muted-light); max-width: 620px; line-height: 1.4; }
 
 /* stat columns */
 .stats { display: flex; gap: 32px; margin-top: 56px; align-items: stretch; }
 .stat { flex: 1; }
 .stat + .stat { border-left: 1px solid; border-image: linear-gradient(#dadada, #fff) 1; padding-left: 32px; }
+.stat-icon {
+  width: 40px; height: 40px; border-radius: 8px; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(17, 17, 17, 0.01);
+  box-shadow: rgba(0, 0, 0, 0.08) 0 0 0 1px, rgba(0, 0, 0, 0.12) 0 2px 4px;
+}
+.stat-icon svg { width: 26px; height: 26px; color: var(--ink); }
 .stat h3 { font-family: var(--body); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.2; }
 .stat p { margin-top: 10px; color: var(--muted-light); font-size: 1rem; line-height: 1.45; }
 

@@ -76,10 +76,11 @@
     : `<div class="ph ${cls}" style="${style}"></div>`;
   const CARD_BODIES = {
     pills: (c) => c.pills.map((word, i) => {
+      /* stacked, slightly overlapping, mild tilts — per reference */
       const conf = [
-        { cls: "pill-green", style: "top:40px;left:104px;transform:rotate(-27deg)" },
-        { cls: "pill-teal",  style: "top:124px;left:40px;transform:rotate(-6deg)" },
-        { cls: "pill-blue",  style: "top:204px;left:88px;transform:rotate(-17deg)" },
+        { cls: "pill-green", style: "top:64px;left:80px;transform:rotate(-12deg)" },
+        { cls: "pill-teal",  style: "top:134px;left:34px;transform:rotate(-2deg)" },
+        { cls: "pill-blue",  style: "top:202px;left:84px;transform:rotate(-9deg)" },
       ][i % 3];
       return `<span class="pill ${conf.cls}" style="${conf.style}">${esc(word)}</span>`;
     }).join(""),
@@ -89,19 +90,19 @@
         <path d="M64 304 C 28 248, 96 236, 84 184 C 72 132, 16 144, 38 100 C 58 62, 122 78, 110 132 C 98 184, 162 194, 202 152 C 242 112, 198 58, 250 48 C 292 40, 306 92, 284 136"
           stroke="rgba(255,255,255,0.28)" stroke-width="1.5"/>
       </svg>
-      <div class="polaroid" style="top:52px;left:192px;transform:rotate(5deg)">${ph("photo-b", "width:96px;height:118px", c.images && c.images[0])}</div>
-      <div class="polaroid" style="top:168px;left:34px;transform:rotate(-5deg)">${ph("photo-a", "width:72px;height:88px", c.images && c.images[1])}</div>
-      <span class="map-dot" style="top:286px;left:92px"></span>
-      <span class="map-dot" style="top:194px;left:260px"></span>`,
+      <span class="map-dot" style="top:206px;left:218px"></span>
+      <span class="map-dot" style="top:280px;left:84px"></span>
+      <div class="polaroid" style="top:56px;left:172px;transform:rotate(4deg)">${ph("photo-b", "width:100px;height:122px", c.images && c.images[0])}</div>
+      <div class="polaroid" style="top:174px;left:44px;transform:rotate(-6deg)">${ph("photo-a", "width:76px;height:92px", c.images && c.images[1])}</div>`,
     /* c.image: polaroid photo · c.caption: handwritten label
        c.extra: image replacing the CSS player */
     photos: (c) => `
-      <div class="polaroid" style="top:46px;left:30px;transform:rotate(-8deg)">
-        ${ph("photo-c", "width:152px;height:152px", c.image)}<span class="caption">${esc(c.caption || "photos coming soon")}</span>
+      <div class="polaroid" style="top:54px;left:24px;transform:rotate(-2deg)">
+        ${ph("photo-c", "width:168px;height:148px", c.image)}<span class="caption">${esc(c.caption || "photos coming soon")}</span>
       </div>
       ${c.extra
-        ? `<img class="ipod-img" src="${esc(c.extra)}" alt="" style="top:64px;left:196px;transform:rotate(12deg)">`
-        : `<div class="ipod" style="top:78px;left:206px;transform:rotate(12deg)">
+        ? `<img class="ipod-img" src="${esc(c.extra)}" alt="" style="top:58px;left:192px;transform:rotate(12deg)">`
+        : `<div class="ipod" style="top:60px;left:194px;transform:rotate(12deg)">
              <span class="ipod-screen"></span><span class="ipod-wheel"></span>
            </div>`}`,
   };
@@ -113,13 +114,20 @@
       <div class="hero-cards">
         ${hero.cards.map((c) => `
           <a class="float-card" href="${esc(c.href)}">
-            <div class="fc-head">${esc(c.title)}</div>
-            <div class="fc-body">${(CARD_BODIES[c.type] || (() => ""))(c)}</div>
+            <div class="fc-inner">
+              <div class="fc-head">${esc(c.title)}</div>
+              <div class="fc-body">${(CARD_BODIES[c.type] || (() => ""))(c)}</div>
+            </div>
           </a>`).join("")}
       </div>
     </div>`;
 
   /* ---- 01 · Stats + skills ---- */
+  const STAT_ICONS = {
+    bolt: `<svg viewBox="0 0 24 24" fill="currentColor" style="transform:rotate(2deg)"><path d="M13.2 2.2 4.6 13.4a.4.4 0 0 0 .32.64h5.1l-1.2 7.5c-.07.43.48.66.74.31l8.6-11.2a.4.4 0 0 0-.32-.65h-5.1l1.2-7.49c.07-.43-.48-.66-.74-.3z"/></svg>`,
+    chart: `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="14.5" width="4.2" height="5.5" rx="1.2"/><rect x="9.9" y="10" width="4.2" height="10" rx="1.2"/><rect x="15.8" y="4.5" width="4.2" height="15.5" rx="1.2"/></svg>`,
+    trophy: `<svg viewBox="0 0 24 24" fill="currentColor" style="transform:rotate(-7deg)"><path d="M7 3h10v1.5h3.5V8a4.5 4.5 0 0 1-4.6 4.5A6 6 0 0 1 13 15.6V18h2.5a1 1 0 0 1 1 1v2h-9v-2a1 1 0 0 1 1-1H11v-2.4a6 6 0 0 1-2.9-3.1A4.5 4.5 0 0 1 3.5 8V4.5H7V3zM5 6v2a3 3 0 0 0 2.3 2.9A11 11 0 0 1 7 8V6H5zm14 0h-2v2c0 1-.1 2-.3 2.9A3 3 0 0 0 19 8V6z"/></svg>`,
+  };
   const about = CONTENT.about;
   $("#about").innerHTML = `
     <div class="wrap">
@@ -128,7 +136,10 @@
         <p class="intro">${esc(about.intro)}</p>
         <div class="stats">
           ${about.stats.map((s) => `
-            <div class="stat"><h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p></div>`).join("")}
+            <div class="stat">
+              ${s.icon ? `<div class="stat-icon">${STAT_ICONS[s.icon] || ""}</div>` : ""}
+              <h3>${esc(s.title)}</h3><p>${esc(s.desc)}</p>
+            </div>`).join("")}
         </div>
       </div>
       <div class="skills reveal">
@@ -229,6 +240,41 @@
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  /* ---- Hero cards: fly-in on load, fan out again on scroll ---- */
+  (function heroCardMotion() {
+    if (window.innerWidth <= 960 ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const cards = [...document.querySelectorAll(".float-card")];
+    if (cards.length !== 3) return;
+    const rest   = [-3, -12, 12];                       // resting rotations
+    const spread = [                                    // offsets when fully spread
+      { x: -420, y: 150, r: -14 },
+      { x: 20,   y: -210, r: -12 },
+      { x: 420,  y: 170, r: 16 },
+    ];
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    let loadT = 0;                                      // 0 → 1 over the intro
+    const heroBand = $(".hero-cards");
+    const apply = () => {
+      const scrollP = Math.min(1, Math.max(0,
+        window.scrollY / (heroBand.offsetTop + heroBand.offsetHeight * 0.9)));
+      const p = Math.min(1, (1 - ease(loadT)) + ease(scrollP));
+      cards.forEach((card, i) => {
+        const s = spread[i];
+        card.style.transform =
+          `translate(${s.x * p}px, ${s.y * p}px) rotate(${rest[i] + s.r * p}deg)`;
+      });
+    };
+    const t0 = performance.now();
+    const intro = (now) => {
+      loadT = Math.min(1, (now - t0) / 1100);
+      apply();
+      if (loadT < 1) requestAnimationFrame(intro);
+    };
+    requestAnimationFrame(intro);
+    window.addEventListener("scroll", apply, { passive: true });
+  })();
 
   /* ---- Scroll-reveal animation ---- */
   const observer = new IntersectionObserver(
