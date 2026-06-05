@@ -212,12 +212,21 @@
     <span>${CONTENT.footer.links.map((l) =>
       `<a href="${esc(l.href)}"${ext(l.href)}>${esc(l.label)}</a>`).join("")}</span>`;
 
-  /* ---- Nav: transparent over the hero, glass pill after crossing it ---- */
+  /* ---- Nav: transparent over the hero, glass pill after crossing it.
+          Scroll-spy: the section currently in view gets the white + green-dot
+          state on its nav link. ---- */
   const pill = $(".nav-pill");
   const heroEl = $("#hero");
+  const spyLinks = [...document.querySelectorAll(".nav-links-mid a.link")]
+    .map((a) => ({ a, el: $(a.getAttribute("href")) }))
+    .filter((x) => x.el);
   const onScroll = () => {
     const past = window.scrollY > heroEl.offsetTop + heroEl.offsetHeight - 120;
     pill.classList.toggle("scrolled", past);
+    const mark = window.scrollY + window.innerHeight * 0.4;
+    let current = null;
+    spyLinks.forEach((x) => { if (x.el.offsetTop <= mark) current = x; });
+    spyLinks.forEach((x) => x.a.classList.toggle("active", x === current));
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
