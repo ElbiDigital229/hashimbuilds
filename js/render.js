@@ -160,10 +160,10 @@
                 `<line x1="190" y1="6" x2="190" y2="32" stroke="rgba(0,0,0,0.45)" stroke-width="2.5"
                    transform="rotate(${a} 190 190)"/>`).join("")}
             </svg>
-            <span class="knob-num" style="top:22px;left:60px">2</span>
-            <span class="knob-num" style="top:22px;right:60px">3</span>
-            <span class="knob-num" style="bottom:22px;left:60px">1</span>
-            <span class="knob-num" style="bottom:22px;right:60px">4</span>
+            <span class="knob-num" data-n="2" style="top:22px;left:60px">2</span>
+            <span class="knob-num" data-n="3" style="top:22px;right:60px">3</span>
+            <span class="knob-num" data-n="1" style="bottom:22px;left:60px">1</span>
+            <span class="knob-num" data-n="4" style="bottom:22px;right:60px">4</span>
             <div class="knob-bezel">
               <div class="knob-face" id="knob-face"><span class="knob-dot"></span></div>
             </div>
@@ -268,10 +268,12 @@
           green dot rotates to point at the active row's number ---- */
   (function skillsKnob() {
     const rows = [...document.querySelectorAll(".skill-row")];
+    const nums = [...document.querySelectorAll(".knob-num")];
     const face = $("#knob-face");
     if (!rows.length || !face) return;
     const set = (i) => {
       rows.forEach((r, j) => r.classList.toggle("open", i === j));
+      nums.forEach((n) => n.classList.toggle("active", +n.dataset.n === i + 1));
       face.style.transform = `rotate(${i * 90}deg)`;
     };
     rows.forEach((r) => {
@@ -280,6 +282,7 @@
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); set(+r.dataset.i); }
       });
     });
+    set(0);
   })();
 
   /* ---- Hero cards: fly-in on load, fan out again on scroll ---- */
