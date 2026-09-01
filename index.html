@@ -1,49 +1,353 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Title & description are set from js/content.js -->
-  <title>Hashim — Builder &amp; Developer</title>
-  <meta name="description" content="Hashim builds software products end to end — mobile apps, web platforms, and the systems behind them.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=Inter:opsz,wght@14..32,400..600&family=Caveat:wght@600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-  <!-- ======================================================================
-       PAGE SKELETON — all content comes from js/content.js.
-       To change text, projects, or links, edit that file only.
-       ====================================================================== -->
+<title>Hashim's Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap">
+<style>
+:root{
+  --ground:#FAFCFD; --fg:#32404F; --muted:rgba(50,64,79,0.584);
+  --hairline:rgba(50,64,79,0.10); --hairline-2:rgba(50,64,79,0.20);
+  --accent:#E65F2E; --card:#FFFFFF; --field:#EDF2FB; --btn:#3B7DED;
+  --navy:#22407C; --flag:#A8340B; --flag-bg:rgba(230,95,46,0.07); --flag-edge:rgba(230,95,46,0.32);
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Geist','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#12161C; --fg:#DCE3EA; --muted:rgba(220,227,234,0.60);
+    --hairline:rgba(220,227,234,0.12); --hairline-2:rgba(220,227,234,0.24);
+    --accent:#F4784C; --card:#1B222B; --field:#232C38; --btn:#4B86EE; --navy:#1D3568;
+    --flag:#F4A183; --flag-bg:rgba(244,120,76,0.09); --flag-edge:rgba(244,120,76,0.34);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12161C; --fg:#DCE3EA; --muted:rgba(220,227,234,0.60);
+  --hairline:rgba(220,227,234,0.12); --hairline-2:rgba(220,227,234,0.24);
+  --accent:#F4784C; --card:#1B222B; --field:#232C38; --btn:#4B86EE; --navy:#1D3568;
+  --flag:#F4A183; --flag-bg:rgba(244,120,76,0.09); --flag-edge:rgba(244,120,76,0.34);
+}
 
-  <nav class="nav-shell" id="nav"></nav>
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--fg);font-family:var(--sans);
+  font-size:15px;line-height:22.5px;margin:0;-webkit-font-smoothing:antialiased}
 
-  <header class="hero" id="hero"></header>
+/* ---------- top nav ---------- */
+.topbar{display:flex;justify-content:center;align-items:center;padding:20px 24px;gap:24px;
+  position:relative;background:var(--ground);border-bottom:1px solid var(--hairline);
+  min-height:32px;z-index:50}
+@media (min-width:1024px){.topbar{height:64px}}
+.topbar-in{max-width:1800px;width:100%;display:flex;align-items:center;gap:24px;position:relative}
+.brand{display:flex;flex-direction:column;gap:0;text-decoration:none;flex:1;min-width:0}
+@media (min-width:640px){.brand{flex-direction:row;align-items:center;gap:16px}}
+.brand .nm{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:500;
+  text-transform:uppercase;color:var(--fg);margin:0;white-space:nowrap}
+.brand .rl{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:400;
+  text-transform:uppercase;color:var(--muted);margin:0;white-space:nowrap}
+.topnav{display:none;gap:32px;align-items:center;justify-content:flex-end}
+@media (min-width:768px){.topnav{display:flex}}
+.topnav a{font-family:var(--mono);font-size:15px;line-height:22.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s}
+.topnav a:hover,.topnav a:focus-visible{color:var(--accent)}
+.topnav a[aria-current="page"]{color:var(--accent)}
+.burger{display:flex;align-items:center;justify-content:center;background:none;border:0;padding:0;
+  color:var(--fg);cursor:pointer;width:24px;height:24px;margin-left:auto}
+@media (min-width:768px){.burger{display:none}}
+.burger span{display:block;width:20px;height:1.5px;background:currentColor;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:currentColor}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.mobnav{position:absolute;left:0;right:0;top:100%;z-index:60;padding:24px;
+  border-bottom:1px solid var(--hairline);background:var(--ground);
+  display:flex;flex-direction:column;gap:12px;
+  transition:opacity .3s ease-in-out,transform .3s ease-in-out;
+  opacity:0;transform:translateY(-8px);pointer-events:none}
+.mobnav.open{opacity:1;transform:none;pointer-events:auto}
+@media (min-width:768px){.mobnav{display:none}}
+.mobnav a{font-family:var(--mono);font-size:15px;text-transform:uppercase;color:var(--muted);text-decoration:none}
 
-  <div class="divider"></div>
+/* ---------- shell ---------- */
+.shell{padding:0 24px;min-height:100vh}
+main{max-width:1800px;margin:0 auto}
+.rowgrid{display:grid;grid-template-columns:1fr;gap:48px;padding:32px 0}
+@media (min-width:1024px){.rowgrid{grid-template-columns:1fr 1fr;gap:24px;padding:26vh 0 32px}}
 
-  <section class="light" id="about"></section>
-  <section class="light" id="work"></section>
-  <section class="light" id="testimonials"></section>
+/* ---------- hero ---------- */
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.4vw,56px);
+  line-height:1.1;letter-spacing:-0.02em;color:var(--fg);margin:0;text-wrap:balance;max-width:14ch}
+h1 em{font-style:italic}
+.ledger{display:flex;flex-direction:column;gap:12px}
+@media (min-width:1024px){.ledger{gap:4px}}
+.lrow{display:grid;grid-template-columns:1fr;gap:2px 24px;align-items:baseline}
+@media (min-width:560px){.lrow{grid-template-columns:minmax(120px,1fr) minmax(180px,1.4fr) auto}}
+.lyr{font-family:var(--mono);font-size:15px;line-height:22.5px;color:var(--muted);text-align:right;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.lyr.todo{color:var(--flag)}
+.lco{font-size:15px;line-height:22.5px;color:var(--fg)}
+.lrl{font-size:15px;line-height:22.5px;color:var(--muted)}
 
-  <div class="divider flip"></div>
+/* ---------- work grid ---------- */
+.work{display:grid;grid-template-columns:1fr;gap:24px;padding:0 0 32px}
+@media (min-width:1024px){.work{grid-template-columns:1fr 1fr}}
+.wcol{display:flex;flex-direction:column;gap:24px}
+.card{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit}
+.cover{width:100%;overflow:hidden;position:relative;border:1px solid var(--hairline);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.card:not(.nolink):hover .cover{transform:translateY(-3px)}
+.nolink{cursor:default}
+.cmeta{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cmeta h3{font-family:var(--serif);font-weight:400;font-size:17px;line-height:25.5px;
+  letter-spacing:-0.01em;color:var(--fg);margin:0}
+.cmeta span{font-family:var(--mono);font-size:15px;line-height:22.5px;
+  text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.card:not(.nolink):hover .cmeta h3{color:var(--accent)}
 
-  <section class="story" id="story"></section>
+/* cover treatments — typographic, not fake screenshots */
+.c-tall{aspect-ratio:4/3}
+.c-wide{aspect-ratio:16/9}
+.c-sq{aspect-ratio:5/4}
+.c-victor{background:var(--navy)}
+.c-victor::before{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
+  mix-blend-mode:overlay;opacity:.55}
+.paycard{position:relative;z-index:2;background:#fff;width:min(78%,320px);border-radius:8px;
+  padding:18px;box-shadow:0 14px 34px rgba(10,22,52,.32);display:flex;flex-direction:column;gap:10px}
+.paycard i{font-style:normal;font-size:11px;color:#32404F;opacity:.8}
+.paycard .f{background:#EDF2FB;border-radius:5px;padding:9px 11px;display:flex;
+  justify-content:space-between;gap:8px;font-size:12px;color:#32404F}
+.paycard .f b{font-family:var(--mono);font-weight:400}
+.paycard .b{background:#3B7DED;color:#fff;border-radius:5px;padding:9px;text-align:center;font-size:12px}
 
-  <div class="divider"></div>
+.c-type{background:var(--field)}
+.c-type .big{font-family:var(--serif);font-size:clamp(26px,4vw,40px);line-height:1.1;
+  letter-spacing:-0.02em;color:var(--fg);text-align:center;margin:0}
+.c-type .sub{font-family:var(--mono);font-size:12px;text-transform:uppercase;
+  color:var(--muted);text-align:center;margin:10px 0 0}
 
-  <section class="light" id="life"></section>
+.c-dark{background:#1B2434}
+.c-dark .big{font-family:var(--serif);font-size:clamp(24px,3.6vw,36px);line-height:1.15;
+  color:#EDE9E1;text-align:center;margin:0;letter-spacing:-0.02em}
+.c-dark .sub{font-family:var(--mono);font-size:12px;text-transform:uppercase;
+  color:rgba(237,233,225,.55);text-align:center;margin:10px 0 0}
 
-  <!-- no divider here: the CTA's radial starts white and darkens down -->
-  <section class="cta" id="contact"></section>
+.c-chart{background:var(--card)}
+.chart{width:100%;max-width:340px}
+.chart .bar{fill:var(--hairline-2)}
+.chart .bar-a{fill:var(--accent)}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.chart text.v{fill:var(--fg);font-size:13px}
 
-  <footer><div class="wrap" id="footer"></div></footer>
+.c-grid-bg{background:var(--card);
+  background-image:linear-gradient(var(--hairline) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--hairline) 1px,transparent 1px);
+  background-size:26px 26px}
+.c-grid-bg .big{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);line-height:1.15;
+  letter-spacing:-0.02em;color:var(--fg);text-align:center;margin:0;
+  background:var(--card);padding:14px 20px;border:1px solid var(--hairline)}
 
-  <script src="js/content.js"></script>
-  <!-- git-ignored, localhost-only design reference; 404s harmlessly in prod -->
-  <script src="js/local-overrides.js"></script>
-  <script src="js/render.js"></script>
-</body>
-</html>
+.note{border:1px dashed var(--flag-edge);background:var(--flag-bg);padding:20px;
+  display:flex;flex-direction:column;gap:8px;margin:0 0 32px}
+.note h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--flag);margin:0;font-weight:500}
+.note p{margin:0;color:var(--fg);font-size:14.5px}
+.note ul{margin:0;padding-left:1.15em;color:var(--fg);font-size:14.5px}
+.note li{margin-bottom:.35em}
+.note li::marker{color:var(--flag)}
+
+footer{width:100%;display:flex;align-items:center;justify-content:center;
+  padding:20px 24px;border-top:1px solid var(--hairline)}
+.foot-in{max-width:1800px;width:100%;display:flex;align-items:center;
+  justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot-in h4,.foot-in a{font-family:var(--mono);font-size:15px;line-height:22.5px;
+  text-transform:uppercase;color:var(--muted);margin:0;font-weight:400;text-decoration:none}
+.foot-in a:hover{color:var(--accent)}
+.socials{display:flex;gap:24px;flex-wrap:wrap}
+.heart{color:var(--accent)}
+
+#cur{display:none}
+@media (hover:hover) and (pointer:fine){
+  body.cursor-on,body.cursor-on *{cursor:none!important}
+  body.cursor-on #cur{display:block}
+  #cur{position:fixed;top:0;left:0;width:13px;height:13px;border-radius:50%;
+    background:var(--accent);pointer-events:none;z-index:99;
+    transform:translate3d(-50px,-50px,0);transition:width .18s,height .18s,opacity .18s;will-change:transform}
+  body.cursor-on #cur.big{width:30px;height:30px;opacity:.55}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  body.cursor-on,body.cursor-on *{cursor:auto!important}
+  body.cursor-on #cur{display:none}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+
+<div id="cur"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#top">
+      <h4 class="nm">Hashim</h4>
+      <h4 class="rl">Product Owner + Engineer</h4>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="#work" aria-current="page">Work</a>
+      <a href="#about">About</a>
+      <a href="#resume">Resume</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobnav"><span></span></button>
+  </div>
+  <div class="mobnav" id="mobnav">
+    <a href="#work">Work</a><a href="#about">About</a><a href="#resume">Resume</a>
+  </div>
+</header>
+
+<div class="shell" id="top">
+<main>
+
+  <!-- ===== hero ===== -->
+  <div class="rowgrid">
+    <h1>I'm Hashim, a product owner who <em>builds</em>.</h1>
+
+    <div class="ledger">
+      <div class="lrow"><span class="lco">VictorFi</span><span class="lrl">Product Owner</span><span class="lyr">2020–2025</span></div>
+      <div class="lrow"><span class="lco">MakersRow</span><span class="lrl">Fractional Product Owner</span><span class="lyr">4 years</span></div>
+      <div class="lrow"><span class="lco">GoVisually</span><span class="lrl">Fractional Product Owner</span><span class="lyr">3 years</span></div>
+      <div class="lrow"><span class="lco">Launchbox</span><span class="lrl">Co-founder</span><span class="lyr"></span></div>
+      <div class="lrow"><span class="lco">Elbi Digital</span><span class="lrl">Founder</span><span class="lyr"></span></div>
+    </div>
+  </div>
+
+  <!-- ===== work ===== -->
+  <div class="work" id="work">
+
+    <div class="wcol">
+
+      <a class="card" href="/projects/victorfi/">
+        <div class="cover c-victor c-tall">
+          <div class="paycard">
+            <i>Payment authorisation</i>
+            <div class="f"><span>Merchant settlement · ACH</span><b>$50,000.00</b></div>
+            <div class="b">Approve and send</div>
+          </div>
+        </div>
+        <div class="cmeta"><h3>Turning banking infrastructure into a product</h3><span>VictorFi · Acquired 2025</span></div>
+      </a>
+
+      <div class="card nolink">
+        <div class="cover c-type c-wide">
+          <div>
+            <p class="big">10,000+ teams<br>reviewing work</p>
+            <p class="sub">Review &amp; approval workflows</p>
+          </div>
+        </div>
+        <div class="cmeta"><h3>Product-led growth for a review tool</h3><span>GoVisually · 3 years</span></div>
+      </div>
+
+      <div class="card nolink">
+        <div class="cover c-grid-bg c-sq">
+          <p class="big">455 passing tests,<br>and a space I run</p>
+        </div>
+        <div class="cmeta"><h3>Coworking software built from inside the business</h3><span>Launchbox OMS · Shipped</span></div>
+      </div>
+
+      <div class="card nolink">
+        <div class="cover c-type c-wide">
+          <div>
+            <p class="big">Retrieval over<br>Pakistani tax law</p>
+            <p class="sub">Statute &amp; case law</p>
+          </div>
+        </div>
+        <div class="cmeta"><h3>Answering legal questions from the statute</h3><span>Law Bot · Shipped 2026</span></div>
+      </div>
+
+    </div>
+
+    <div class="wcol">
+
+      <div class="card nolink">
+        <div class="cover c-chart c-wide">
+          <svg class="chart" viewBox="0 0 340 150" role="img" aria-label="Monthly recurring revenue rising from thirty-five thousand to sixty-five thousand dollars">
+            <text x="60" y="132" text-anchor="middle">BEFORE</text>
+            <text x="260" y="132" text-anchor="middle">AFTER</text>
+            <rect class="bar" x="24" y="66" width="72" height="48"/>
+            <rect class="bar-a" x="224" y="24" width="72" height="90"/>
+            <text class="v" x="60" y="58" text-anchor="middle">$35K</text>
+            <text class="v" x="260" y="16" text-anchor="middle">$65K</text>
+            <line x1="12" y1="114" x2="328" y2="114" stroke="currentColor" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="cmeta"><h3>Moving a stalled marketplace, and holding it</h3><span>MakersRow · 4 years</span></div>
+      </div>
+
+      <div class="card nolink">
+        <div class="cover c-dark c-tall">
+          <div>
+            <p class="big">438 products,<br>one photo each</p>
+            <p class="sub">Generative catalogue at volume</p>
+          </div>
+        </div>
+        <div class="cmeta"><h3>A catalogue photography pipeline</h3><span>1-OPH · Shipped 2026</span></div>
+      </div>
+
+      <div class="card nolink">
+        <div class="cover c-type c-sq">
+          <div>
+            <p class="big">14 data models,<br>20 business rules</p>
+            <p class="sub">Greenfield multi-tenant SaaS</p>
+          </div>
+        </div>
+        <div class="cmeta"><h3>Facility management, built from scratch</h3><span>FixDesk · Shipped</span></div>
+      </div>
+
+      <div class="card nolink">
+        <div class="cover c-grid-bg c-wide">
+          <p class="big">A UX audit that<br>became a fix list</p>
+        </div>
+        <div class="cmeta"><h3>Ticket and network management, audited</h3><span>TNMS · Handed off 2026</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <h4>Designed + coded with <span class="heart">♥</span> by Hashim</h4>
+    <div class="socials">
+      <a href="https://github.com/ElbiDigital229">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var burger=document.getElementById('burger'), mob=document.getElementById('mobnav');
+  if(burger&&mob){
+    burger.addEventListener('click',function(){
+      var open=mob.classList.toggle('open');
+      burger.setAttribute('aria-expanded',open?'true':'false');
+      burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    });
+    mob.addEventListener('click',function(e){ if(e.target.tagName==='A'){
+      mob.classList.remove('open'); burger.setAttribute('aria-expanded','false'); } });
+  }
+  var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(fine&&!reduce){
+    document.body.classList.add('cursor-on');
+    var cur=document.getElementById('cur'),x=-50,y=-50,tick=false;
+    window.addEventListener('mousemove',function(e){
+      x=e.clientX;y=e.clientY;
+      if(!tick){tick=true;requestAnimationFrame(function(){
+        cur.style.transform='translate3d('+(x-6.5)+'px,'+(y-6.5)+'px,0)';tick=false;});}
+    },{passive:true});
+    document.addEventListener('mouseover',function(e){
+      var t=e.target.closest&&e.target.closest('a, button');
+      if(t) cur.classList.add('big'); else cur.classList.remove('big');
+    });
+    document.addEventListener('mouseleave',function(){cur.style.opacity='0';});
+    document.addEventListener('mouseenter',function(){cur.style.opacity='';});
+  }
+})();
+</script>

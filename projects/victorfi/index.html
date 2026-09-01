@@ -1,0 +1,981 @@
+<title>VictorFi — Hashim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<style>
+:root{
+  --ground:#FAFCFD;
+  --fg:#32404F;
+  --muted:rgba(50,64,79,0.584);
+  --hairline:rgba(50,64,79,0.10);
+  --hairline-2:rgba(50,64,79,0.20);
+  --accent:#E65F2E;
+  --navy:#22407C;
+  --card:#FFFFFF;
+  --field:#EDF2FB;
+  --btn:#3B7DED;
+  --flag:#A8340B;
+  --flag-bg:rgba(230,95,46,0.07);
+  --flag-edge:rgba(230,95,46,0.32);
+  --pos:#2E7D5B;
+  --pos-bg:rgba(46,125,91,0.08);
+  --neg:#B3402A;
+  --neg-bg:rgba(179,64,42,0.07);
+  --ui-side:#1B2434;
+  --ui-side-2:#2A3547;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Geist','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#12161C; --fg:#DCE3EA; --muted:rgba(220,227,234,0.60);
+    --hairline:rgba(220,227,234,0.12); --hairline-2:rgba(220,227,234,0.24);
+    --accent:#F4784C; --navy:#1D3568; --card:#1B222B; --field:#232C38; --btn:#4B86EE;
+    --flag:#F4A183; --flag-bg:rgba(244,120,76,0.09); --flag-edge:rgba(244,120,76,0.34);
+    --pos:#6FD3A5; --pos-bg:rgba(111,211,165,0.10);
+    --neg:#F08A6E; --neg-bg:rgba(240,138,110,0.10);
+    --ui-side:#0C1119; --ui-side-2:#1A2434;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12161C; --fg:#DCE3EA; --muted:rgba(220,227,234,0.60);
+  --hairline:rgba(220,227,234,0.12); --hairline-2:rgba(220,227,234,0.24);
+  --accent:#F4784C; --navy:#1D3568; --card:#1B222B; --field:#232C38; --btn:#4B86EE;
+  --flag:#F4A183; --flag-bg:rgba(244,120,76,0.09); --flag-edge:rgba(244,120,76,0.34);
+  --pos:#6FD3A5; --pos-bg:rgba(111,211,165,0.10);
+  --neg:#F08A6E; --neg-bg:rgba(240,138,110,0.10);
+  --ui-side:#0C1119; --ui-side-2:#1A2434;
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--fg);font-family:var(--sans);
+  font-size:15px;line-height:22.5px;margin:0;-webkit-font-smoothing:antialiased}
+
+.shell{padding:0 24px}
+.grid{max-width:1800px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:0}
+@media (min-width:768px){.grid{grid-template-columns:1fr auto 1fr;gap:32px}}
+.aside{padding:48px 0 0}
+@media (min-width:768px){.aside{position:sticky;top:0;height:fit-content;padding:48px 0;min-width:170px}}
+.col{width:100%;padding:48px 0;display:flex;flex-direction:column;gap:48px}
+@media (min-width:768px){.col{max-width:768px;gap:96px}}
+@media (min-width:1024px){.col{max-width:896px}}
+.spacer{display:none}
+@media (min-width:768px){.spacer{display:block;padding:48px 24px}}
+
+.back{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);
+  font-size:15px;line-height:22.5px;text-transform:uppercase;color:var(--muted);
+  text-decoration:none;transition:color .2s}
+.back:hover,.back:focus-visible{color:var(--fg)}
+.sectnav{margin-top:32px;display:none}
+@media (min-width:768px){.sectnav{display:block}}
+.sectnav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.sectnav button{background:none;border:0;padding:0;margin:0;text-align:left;
+  font-family:var(--sans);font-size:16px;line-height:24px;color:var(--muted);
+  cursor:pointer;transition:color .25s}
+.sectnav button:hover{color:var(--fg)}
+.sectnav button[aria-current="true"]{color:var(--fg)}
+
+.head{display:flex;flex-direction:column;gap:32px}
+.head-type{display:flex;flex-direction:column;gap:16px}
+h4,.label{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:400;
+  text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5.6vw,56px);
+  line-height:1.1;letter-spacing:-0.02em;color:var(--fg);margin:0;text-wrap:balance}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(25px,3.4vw,32px);
+  line-height:1.2;letter-spacing:-0.02em;color:var(--fg);margin:0;text-wrap:balance}
+h3{font-family:var(--serif);font-weight:400;font-size:21.2px;line-height:31.8px;
+  letter-spacing:-0.02em;color:var(--fg);margin:0}
+p{margin:0;color:var(--muted)}
+p+p{margin-top:1em}
+strong{font-weight:500;color:var(--fg)}
+a{color:var(--fg)}
+ul.plain{margin:0;padding-left:1.1em;color:var(--muted)}
+ul.plain li{margin-bottom:.35em}
+ul.plain li::marker{color:var(--hairline-2)}
+
+.meta{display:flex;flex-direction:column;gap:24px}
+@media (min-width:768px){.meta{flex-direction:row;gap:48px}}
+.meta-item{display:flex;flex-direction:column;gap:8px;flex:1 1 0;min-width:0}
+
+.sect{display:flex;flex-direction:column;gap:32px;scroll-margin-top:24px}
+.sect-type{display:flex;flex-direction:column;gap:16px}
+.sub{display:flex;flex-direction:column;gap:16px}
+
+/* columns */
+.cols{display:flex;flex-direction:column;gap:32px}
+@media (min-width:640px){.cols{flex-direction:row;gap:32px}}
+.cols>*{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:16px}
+
+/* pull quote */
+.pull{font-family:var(--serif);font-size:21.2px;line-height:31.8px;letter-spacing:-0.02em;
+  color:var(--fg);border-left:2px solid var(--accent);padding-left:20px;margin:0}
+
+/* media */
+.media{width:100%;aspect-ratio:16/9;border:1px solid var(--hairline);overflow:hidden;position:relative}
+.hero{background:var(--navy);display:flex;align-items:center;justify-content:center}
+.hero::before{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
+  mix-blend-mode:overlay;opacity:.55;pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 45%,rgba(255,255,255,0.07),transparent 62%)}
+.paycard{position:relative;z-index:2;background:var(--card);width:min(64%,420px);
+  border-radius:8px;padding:26px;box-shadow:0 18px 44px rgba(10,22,52,.30);
+  display:flex;flex-direction:column;gap:14px}
+.pc-label{font-size:13px;color:var(--fg);opacity:.85}
+.pc-field{background:var(--field);border-radius:6px;padding:11px 13px;display:flex;
+  align-items:center;justify-content:space-between;gap:10px;font-size:14px;color:var(--fg)}
+.pc-amt{font-family:var(--mono);font-size:15px;color:var(--fg)}
+.pc-btn{background:var(--btn);color:#fff;border-radius:6px;padding:12px;text-align:center;
+  font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:9px}
+.pc-dot{width:15px;height:15px;border-radius:50%;border:2.2px solid #fff;flex:none;position:relative}
+.pc-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#fff}
+
+/* diagrams */
+.dg{width:100%;border:1px solid var(--hairline);padding:clamp(20px,3.6vw,40px);overflow-x:auto}
+.dg svg{display:block;width:100%;height:auto;min-width:420px}
+.d-node{fill:none;stroke:var(--hairline-2);stroke-width:1}
+.d-node-a{fill:none;stroke:var(--accent);stroke-width:1.4}
+.d-line{fill:none;stroke:var(--hairline-2);stroke-width:1}
+.d-line-a{fill:none;stroke:var(--accent);stroke-width:1.4}
+.d-lbl{font-family:var(--mono);font-size:11.5px;fill:var(--muted);text-transform:uppercase}
+.d-ttl{font-family:var(--serif);font-size:16px;fill:var(--fg)}
+.d-sm{font-family:var(--sans);font-size:12.5px;fill:var(--muted)}
+.d-acc{fill:var(--accent)}
+
+/* slot */
+.slot{border:1px dashed var(--flag-edge);background:var(--flag-bg);display:flex;
+  align-items:center;justify-content:center;text-align:center;padding:24px}
+.slot span{font-family:var(--mono);font-size:15px;line-height:22.5px;
+  text-transform:uppercase;color:var(--flag);max-width:38ch}
+
+/* stats */
+.stats{display:flex;flex-direction:column;gap:24px}
+@media (min-width:640px){.stats{flex-direction:row;gap:48px}}
+.stat{display:flex;flex-direction:column;gap:8px;flex:1 1 0}
+.stat b{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,32px);
+  line-height:38.4px;letter-spacing:-0.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+
+/* internal */
+.internal{border-top:1px solid var(--hairline);padding-top:32px;display:flex;flex-direction:column;gap:24px}
+.internal ol,.internal ul{margin:0;padding-left:1.15em;color:var(--muted)}
+.internal li{margin-bottom:.5em}
+.internal li::marker{color:var(--accent)}
+.internal code{font-family:var(--mono);font-size:13.5px;color:var(--fg)}
+
+footer{width:100%;display:flex;align-items:center;justify-content:center;padding:20px 24px;
+  border-top:1px solid var(--hairline);font-family:var(--mono);font-size:15px;
+  line-height:22.5px;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- top nav (scrolls away; the left rail sticks on its own) ---------- */
+.topbar{
+  display:flex;justify-content:center;align-items:center;
+  padding:20px 24px;gap:24px;position:relative;
+  background:var(--ground);border-bottom:1px solid var(--hairline);
+  min-height:32px;z-index:50;
+}
+@media (min-width:1024px){.topbar{height:64px}}
+.topbar-in{max-width:1800px;width:100%;display:flex;align-items:center;gap:24px;position:relative}
+.brand{display:flex;flex-direction:column;gap:0;text-decoration:none;flex:1;min-width:0}
+@media (min-width:640px){.brand{flex-direction:row;align-items:center;gap:16px}}
+.brand .nm{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:500;
+  text-transform:uppercase;color:var(--fg);margin:0;white-space:nowrap}
+.brand .rl{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:400;
+  text-transform:uppercase;color:var(--muted);margin:0;white-space:nowrap}
+.topnav{display:none;gap:32px;align-items:center;justify-content:flex-end}
+@media (min-width:768px){.topnav{display:flex}}
+.topnav a{font-family:var(--mono);font-size:15px;line-height:22.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s}
+.topnav a:hover,.topnav a:focus-visible{color:var(--accent)}
+.burger{display:flex;align-items:center;justify-content:center;background:none;border:0;
+  padding:0;color:var(--fg);cursor:pointer;width:24px;height:24px;margin-left:auto}
+@media (min-width:768px){.burger{display:none}}
+.burger span{display:block;width:20px;height:1.5px;background:currentColor;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:currentColor}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.mobnav{position:absolute;left:0;right:0;top:100%;z-index:60;padding:24px;
+  border-bottom:1px solid var(--hairline);background:var(--ground);
+  display:flex;flex-direction:column;gap:12px;
+  transition:opacity .3s ease-in-out,transform .3s ease-in-out;
+  opacity:0;transform:translateY(-8px);pointer-events:none}
+.mobnav.open{opacity:1;transform:none;pointer-events:auto}
+@media (min-width:768px){.mobnav{display:none}}
+.mobnav a{font-family:var(--mono);font-size:15px;line-height:22.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none}
+
+/* owned-ledger */
+table.own{width:100%;border-collapse:collapse;font-size:14.5px}
+table.own th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-align:left;font-weight:400;border-bottom:1px solid var(--fg);padding:0 16px 8px 0}
+table.own td{border-bottom:1px solid var(--hairline);padding:10px 16px 10px 0;vertical-align:top;color:var(--muted)}
+table.own td:first-child{width:32%;color:var(--fg)}
+.statgrp{display:flex;flex-direction:column;gap:16px}
+.stat.gap b{color:var(--flag)}
+
+/* figures */
+figure{margin:0;display:flex;flex-direction:column;gap:12px}
+figcaption{font-family:var(--mono);font-size:15px;line-height:22.5px;color:var(--muted)}
+.d-pos{fill:none;stroke:var(--pos);stroke-width:1.4}
+.d-neg{fill:none;stroke:var(--neg);stroke-width:1.4}
+.t-pos{fill:var(--pos)}
+.t-neg{fill:var(--neg)}
+.t-acc{fill:var(--accent)}
+.d-fill{fill:var(--hairline);stroke:none}
+
+/* ---- dashboard mockup ---- */
+.ui{border:1px solid var(--hairline);display:flex;overflow:hidden;background:var(--card);
+  font-size:11px;line-height:1.45;color:var(--fg)}
+.ui-side{background:var(--ui-side);color:#C8D2E0;width:132px;flex:none;padding:12px 0;
+  display:flex;flex-direction:column;gap:2px}
+.ui-brand{display:flex;align-items:center;gap:7px;padding:2px 12px 12px;color:#fff;font-weight:500;font-size:12px}
+.ui-mark{width:15px;height:15px;border-radius:4px;background:var(--btn);flex:none;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700}
+.ui-nav{padding:3px 12px;color:#8A99AD;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.ui-nav.on{background:var(--ui-side-2);color:#fff}
+.ui-pill{background:var(--btn);color:#fff;border-radius:20px;padding:0 5px;font-size:9px}
+.ui-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.ui-top{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 12px;border-bottom:1px solid var(--hairline)}
+.ui-top b{font-size:12px;font-weight:500}
+.ui-search{border:1px solid var(--hairline);border-radius:4px;padding:3px 8px;color:var(--muted);
+  font-size:10px;flex:1;max-width:170px}
+.ui-tabs{display:flex;gap:14px;padding:8px 12px;border-bottom:1px solid var(--hairline);
+  font-size:10px;color:var(--muted);overflow-x:auto}
+.ui-tabs span.on{color:var(--fg);border-bottom:1.5px solid var(--btn);padding-bottom:3px}
+.ui-tblwrap{overflow-x:auto}
+table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
+.ui-tbl th{text-align:left;font-weight:400;color:var(--muted);padding:7px 10px;
+  border-bottom:1px solid var(--hairline);white-space:nowrap;font-size:9.5px;text-transform:uppercase;letter-spacing:.04em}
+.ui-tbl td{padding:7px 10px;border-bottom:1px solid var(--hairline);white-space:nowrap;color:var(--fg)}
+.ui-tbl td.num{font-variant-numeric:tabular-nums;text-align:right}
+.tag{display:inline-block;border-radius:20px;padding:1px 7px;font-size:9px;white-space:nowrap}
+.tag.wait{background:var(--flag-bg);color:var(--flag)}
+.tag.run{background:rgba(59,125,237,0.12);color:var(--btn)}
+.tag.ok{background:var(--pos-bg);color:var(--pos)}
+.tag.bad{background:var(--neg-bg);color:var(--neg)}
+.ui-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hairline)}
+.ui-stat{padding:10px 12px;border-right:1px solid var(--hairline)}
+.ui-stat:last-child{border-right:0}
+.ui-stat i{font-style:normal;display:block;color:var(--muted);font-size:9.5px;text-transform:uppercase;letter-spacing:.04em}
+.ui-stat b{display:block;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;margin:3px 0 2px}
+.ui-stat s{text-decoration:none;font-size:9.5px;color:var(--pos)}
+.ui-stat s.dn{color:var(--neg)}
+
+/* ---- reality cards ---- */
+.rcards{display:flex;flex-direction:column;gap:16px}
+@media (min-width:700px){.rcards{flex-direction:row;gap:16px}}
+.rcard{flex:1 1 0;min-width:0;border:1px solid var(--hairline);padding:20px;
+  display:flex;flex-direction:column;gap:12px}
+.rcard q{font-family:var(--serif);font-size:17px;line-height:26px;color:var(--fg);quotes:'\201C' '\201D'}
+.rcard ul{margin:0;padding-left:1.05em;color:var(--muted);font-size:14px}
+.rcard li{margin-bottom:.3em}
+.rcard li::marker{color:var(--hairline-2)}
+
+/* ---- before / after panels ---- */
+.ba{display:flex;flex-direction:column;gap:16px}
+@media (min-width:700px){.ba{flex-direction:row}}
+.ba>div{flex:1 1 0;min-width:0;padding:20px;display:flex;flex-direction:column;gap:14px}
+.ba .before{border:1px solid var(--neg);background:var(--neg-bg)}
+.ba .after{border:1px solid var(--pos);background:var(--pos-bg)}
+.ba h4.b{color:var(--neg)}
+.ba h4.a{color:var(--pos)}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:var(--fg)}
+.chain em{font-style:normal;color:var(--muted)}
+
+/* cursor */
+#cur{display:none}
+@media (hover:hover) and (pointer:fine){
+  body.cursor-on,body.cursor-on *{cursor:none!important}
+  body.cursor-on #cur{display:block}
+  #cur{position:fixed;top:0;left:0;width:13px;height:13px;border-radius:50%;
+    background:var(--accent);pointer-events:none;z-index:99;
+    transform:translate3d(-50px,-50px,0);transition:width .18s,height .18s,opacity .18s;will-change:transform}
+  body.cursor-on #cur.big{width:30px;height:30px;opacity:.55}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  body.cursor-on,body.cursor-on *{cursor:auto!important}
+  body.cursor-on #cur{display:none}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+
+<div id="cur"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/" data-cur="big">
+      <h4 class="nm">Hashim</h4>
+      <h4 class="rl">Product Owner + Engineer</h4>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="/" data-cur="big">Work</a>
+      <a href="#top" data-cur="big">About</a>
+      <a href="#top" data-cur="big">Resume</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobnav"><span></span></button>
+  </div>
+  <div class="mobnav" id="mobnav">
+    <a href="#top">Work</a>
+    <a href="#top">About</a>
+    <a href="#top">Resume</a>
+  </div>
+</header>
+
+<div class="shell"><div class="grid">
+
+  <aside class="aside">
+    <a class="back" href="/" data-cur="big">← Back</a>
+    <nav class="sectnav" aria-label="Sections"><ul>
+      <li><button data-to="overview">Overview</button></li>
+      <li><button data-to="problem">Problem</button></li>
+      <li><button data-to="mess">Making Sense of the Mess</button></li>
+      <li><button data-to="decision">The Decision</button></li>
+      <li><button data-to="compliance">Changing How We Shipped</button></li>
+      <li><button data-to="onboarding">Scaling Without Rebuilding</button></li>
+      <li><button data-to="final">What Shipped</button></li>
+      <li><button data-to="howiworked">How I Worked</button></li>
+      <li><button data-to="impact">Impact</button></li>
+      <li><button data-to="reflection">Reflection</button></li>
+    </ul></nav>
+  </aside>
+
+  <div class="col" id="top">
+
+    <!-- ============ HERO ============ -->
+    <div class="head">
+      <div class="head-type">
+        <h4>VictorFi &nbsp;·&nbsp; Product Owner &nbsp;·&nbsp; 2020–2025</h4>
+        <h1>Turning complex banking infrastructure into a product banks and fintechs could actually use.</h1>
+        <p>How I helped VictorFi turn complex payment infrastructure into a scalable product banks could trust, fintechs could integrate with, and engineers could ship.</p>
+      </div>
+
+      <figure>
+        <div class="ui">
+          <div class="ui-side">
+            <div class="ui-brand"><span class="ui-mark">V</span> VictorFi</div>
+            <div class="ui-nav">Home</div>
+            <div class="ui-nav on">Transactions</div>
+            <div class="ui-nav">Accounts</div>
+            <div class="ui-nav">Approvals <span class="ui-pill">12</span></div>
+            <div class="ui-nav">Beneficiaries</div>
+            <div class="ui-nav">Reports</div>
+            <div class="ui-nav">Developers</div>
+            <div class="ui-nav">Settings</div>
+          </div>
+          <div class="ui-main">
+            <div class="ui-top"><b>Transactions</b><span class="ui-search">Search transactions…</span><span style="color:var(--muted)">Acme Fintech ▾</span></div>
+            <div class="ui-tabs"><span class="on">All</span><span>Pending</span><span>Processing</span><span>Completed</span><span>Failed</span><span>Returned</span></div>
+            <div class="ui-tblwrap"><table class="ui-tbl">
+              <thead><tr><th>ID</th><th>Type</th><th style="text-align:right">Amount</th><th>Status</th><th>Counterparty</th><th>Date</th></tr></thead>
+              <tbody>
+                <tr><td>TXN-82101</td><td>ACH Payment</td><td class="num">$25,000.00</td><td><span class="tag wait">Pending approval</span></td><td>Checking ••••1234</td><td>May 14, 2025</td></tr>
+                <tr><td>TXN-82100</td><td>Wire Transfer</td><td class="num">$150,200.00</td><td><span class="tag run">Processing</span></td><td>First Bank ••••9876</td><td>May 14, 2025</td></tr>
+                <tr><td>TXN-82099</td><td>RTP Payment</td><td class="num">$12,500.00</td><td><span class="tag ok">Completed</span></td><td>Customer ••••4455</td><td>May 14, 2025</td></tr>
+                <tr><td>TXN-82098</td><td>ACH Payment</td><td class="num">$8,750.00</td><td><span class="tag bad">Failed</span></td><td>Vendor ••••3344</td><td>May 13, 2025</td></tr>
+                <tr><td>TXN-82097</td><td>Wire Transfer</td><td class="num">$75,000.00</td><td><span class="tag bad">Returned</span></td><td>Partner ••••6677</td><td>May 13, 2025</td></tr>
+              </tbody>
+            </table></div>
+            <div class="ui-stats">
+              <div class="ui-stat"><i>Today's volume</i><b>$3,246,730.00</b><s>+12.4% vs yesterday</s></div>
+              <div class="ui-stat"><i>Transactions</i><b>1,842</b><s>+8.7% vs yesterday</s></div>
+              <div class="ui-stat"><i>Success rate</i><b>98.6%</b><s class="dn">−0.2% vs yesterday</s></div>
+              <div class="ui-stat"><i>Processed</i><b>$80B+</b><s style="color:var(--muted)">total volume</s></div>
+            </div>
+          </div>
+        </div>
+        <figcaption>The operator view — one transaction list across ACH, wire and RTP, with state, counterparty and approval queue in a single place. Illustrative reconstruction; figures are not live.</figcaption>
+      </figure>
+
+      <div class="stats">
+        <div class="stat"><b>$6M</b><h4>Seed funding raised</h4></div>
+        <div class="stat"><b>$80B+</b><h4>Processed transaction volume</h4></div>
+        <div class="stat"><b>2025</b><h4>Acquired by Jack Henry</h4></div>
+      </div>
+      <p><em>Company outcomes during my tenure.</em></p>
+
+      <div class="meta">
+        <div class="meta-item"><h4>Role</h4><p>Product Owner</p></div>
+        <div class="meta-item"><h4>Timeline</h4><p>2020–2025</p></div>
+        <div class="meta-item"><h4>Team</h4><p>Founders<br>Engineering<br>Compliance<br>GTM</p></div>
+        <div class="meta-item"><h4>Focus</h4><p>Product Strategy<br>Fintech UX<br>Customer Discovery<br>Payment Infrastructure<br>AI-assisted Product Ops</p></div>
+      </div>
+    </div>
+
+    <!-- ============ OVERVIEW ============ -->
+    <section class="sect" id="overview">
+      <div class="sect-type">
+        <h4>Overview</h4>
+        <h2>I owned the product that sat between fintech ambition and banking reality.</h2>
+      </div>
+      <p>VictorFi was Payments-as-a-Service and Banking-as-a-Service infrastructure. It sat between fintech products and the banks and rails underneath them — ACH, wires, RTP, FedNow — giving customers one way to send, receive and manage money across all of them.</p>
+      <p>My job was not to expose payment APIs. It was to decide what the product <em>was</em>: which concepts were shared across every institution, which genuinely had to differ, and what the team should therefore build. Almost everything below follows from that one question.</p>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 700 300" role="img" aria-label="Fintechs sit above VictorFi, which sits above banks, which connect to ACH, wire, RTP and FedNow rails">
+          <rect class="d-node" x="250" y="16" width="200" height="42"/>
+          <text class="d-lbl" x="350" y="42" text-anchor="middle">FINTECHS</text>
+          <line class="d-line-a" x1="350" y1="58" x2="350" y2="92"/>
+          <rect class="d-node-a" x="250" y="92" width="200" height="42"/>
+          <text class="d-ttl" x="350" y="120" text-anchor="middle">VictorFi</text>
+          <line class="d-line" x1="350" y1="134" x2="350" y2="168"/>
+          <rect class="d-node" x="250" y="168" width="200" height="42"/>
+          <text class="d-lbl" x="350" y="194" text-anchor="middle">BANKS</text>
+          <line class="d-line" x1="350" y1="210" x2="350" y2="230"/>
+          <line class="d-line" x1="105" y1="230" x2="595" y2="230"/>
+          <line class="d-line" x1="105" y1="230" x2="105" y2="250"/>
+          <line class="d-line" x1="268" y1="230" x2="268" y2="250"/>
+          <line class="d-line" x1="432" y1="230" x2="432" y2="250"/>
+          <line class="d-line" x1="595" y1="230" x2="595" y2="250"/>
+          <rect class="d-node" x="40" y="250" width="130" height="36"/>
+          <text class="d-lbl" x="105" y="273" text-anchor="middle">ACH</text>
+          <rect class="d-node" x="203" y="250" width="130" height="36"/>
+          <text class="d-lbl" x="268" y="273" text-anchor="middle">WIRE</text>
+          <rect class="d-node" x="367" y="250" width="130" height="36"/>
+          <text class="d-lbl" x="432" y="273" text-anchor="middle">RTP</text>
+          <rect class="d-node" x="530" y="250" width="130" height="36"/>
+          <text class="d-lbl" x="595" y="273" text-anchor="middle">FEDNOW</text>
+        </svg>
+      </div>
+        <figcaption>The shape I was accountable for: one integration surface facing the fintech, one facing every rail behind it.</figcaption>
+      </figure>
+
+      <div class="sub"><h3>What I was accountable for</h3></div>
+      <div class="scroller" style="overflow-x:auto">
+      <table class="own">
+        <thead><tr><th>Area</th><th>What that meant in practice</th></tr></thead>
+        <tbody>
+          <tr><td>Product model</td><td>Defining the transaction, status, permission, audit and reconciliation models every institution would share</td></tr>
+          <tr><td>Customer discovery</td><td>Interviews and implementation calls with banks and fintechs; turning what they asked for into what they needed</td></tr>
+          <tr><td>Requirements</td><td>PRDs, acceptance criteria and edge-case definition detailed enough for engineering to build without a second conversation</td></tr>
+          <tr><td>Prioritisation</td><td>Deciding what shipped, what waited, and which customer requests were refused</td></tr>
+          <tr><td>Compliance</td><td>Translating regulatory and risk requirements into product behaviour, not late-stage patches</td></tr>
+          <tr><td>UX and flows</td><td>User flows, wireframes and prototypes for operator and admin surfaces</td></tr>
+          <tr><td>Delivery</td><td>Engineering refinement, scope calls, QA, UAT, release and customer enablement</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <!-- ============ PROBLEM ============ -->
+    <section class="sect" id="problem">
+      <div class="sect-type">
+        <h4>Problem</h4>
+        <h2>The problem I inherited wasn't payments. It was combinatorics.</h2>
+      </div>
+      <p>Banks wanted fintech growth. Fintechs wanted bank access. Connecting them was the painful part, because every integration arrived with its own rails, bank rules, onboarding requirements, compliance controls, approval structures, reconciliation processes, edge cases, failure states, permissions and audit requirements.</p>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 530" role="img" aria-label="Above: four fintechs each wiring separately to six banks and rails, twenty-four connections. Below: the same four fintechs connecting once to VictorFi, which connects to the six.">
+          <text class="d-lbl" x="0" y="12">WITHOUT VICTORFI — EVERY FINTECH WIRES EVERY RAIL</text>
+          <g class="d-line" opacity="0.75">
+            <line x1="150" y1="55" x2="610" y2="47"/><line x1="150" y1="55" x2="610" y2="85"/><line x1="150" y1="55" x2="610" y2="123"/><line x1="150" y1="55" x2="610" y2="161"/><line x1="150" y1="55" x2="610" y2="199"/><line x1="150" y1="55" x2="610" y2="237"/>
+            <line x1="150" y1="103" x2="610" y2="47"/><line x1="150" y1="103" x2="610" y2="85"/><line x1="150" y1="103" x2="610" y2="123"/><line x1="150" y1="103" x2="610" y2="161"/><line x1="150" y1="103" x2="610" y2="199"/><line x1="150" y1="103" x2="610" y2="237"/>
+            <line x1="150" y1="151" x2="610" y2="47"/><line x1="150" y1="151" x2="610" y2="85"/><line x1="150" y1="151" x2="610" y2="123"/><line x1="150" y1="151" x2="610" y2="161"/><line x1="150" y1="151" x2="610" y2="199"/><line x1="150" y1="151" x2="610" y2="237"/>
+            <line x1="150" y1="199" x2="610" y2="47"/><line x1="150" y1="199" x2="610" y2="85"/><line x1="150" y1="199" x2="610" y2="123"/><line x1="150" y1="199" x2="610" y2="161"/><line x1="150" y1="199" x2="610" y2="199"/><line x1="150" y1="199" x2="610" y2="237"/>
+          </g>
+          <g>
+            <rect class="d-node d-fill" x="10" y="40" width="140" height="30"/><text class="d-sm" x="80" y="60" text-anchor="middle">Payments app</text>
+            <rect class="d-node d-fill" x="10" y="88" width="140" height="30"/><text class="d-sm" x="80" y="108" text-anchor="middle">Payroll platform</text>
+            <rect class="d-node d-fill" x="10" y="136" width="140" height="30"/><text class="d-sm" x="80" y="156" text-anchor="middle">Marketplace</text>
+            <rect class="d-node d-fill" x="10" y="184" width="140" height="30"/><text class="d-sm" x="80" y="204" text-anchor="middle">Lending platform</text>
+          </g>
+          <g>
+            <rect class="d-node d-fill" x="610" y="34" width="140" height="26"/><text class="d-sm" x="680" y="51" text-anchor="middle">Bank A</text>
+            <rect class="d-node d-fill" x="610" y="72" width="140" height="26"/><text class="d-sm" x="680" y="89" text-anchor="middle">Bank B</text>
+            <rect class="d-node d-fill" x="610" y="110" width="140" height="26"/><text class="d-sm" x="680" y="127" text-anchor="middle">Bank C</text>
+            <rect class="d-node d-fill" x="610" y="148" width="140" height="26"/><text class="d-sm" x="680" y="165" text-anchor="middle">ACH network</text>
+            <rect class="d-node d-fill" x="610" y="186" width="140" height="26"/><text class="d-sm" x="680" y="203" text-anchor="middle">Wire network</text>
+            <rect class="d-node d-fill" x="610" y="224" width="140" height="26"/><text class="d-sm" x="680" y="241" text-anchor="middle">RTP / FedNow</text>
+          </g>
+          <text class="d-lbl" x="380" y="278" text-anchor="middle">24 INTEGRATIONS</text>
+          <line class="d-line" x1="0" y1="296" x2="760" y2="296"/>
+          <text class="d-lbl" x="0" y="326">WITH VICTORFI — ONE CONNECTION EACH</text>
+          <g class="d-line-a">
+            <line x1="150" y1="360" x2="300" y2="425"/><line x1="150" y1="402" x2="300" y2="425"/>
+            <line x1="150" y1="444" x2="300" y2="425"/><line x1="150" y1="486" x2="300" y2="425"/>
+          </g>
+          <g class="d-line">
+            <line x1="460" y1="425" x2="610" y2="358"/><line x1="460" y1="425" x2="610" y2="392"/><line x1="460" y1="425" x2="610" y2="426"/>
+            <line x1="460" y1="425" x2="610" y2="460"/><line x1="460" y1="425" x2="610" y2="494"/><line x1="460" y1="425" x2="610" y2="528"/>
+          </g>
+          <g>
+            <rect class="d-node d-fill" x="10" y="345" width="140" height="30"/><text class="d-sm" x="80" y="365" text-anchor="middle">Payments app</text>
+            <rect class="d-node d-fill" x="10" y="387" width="140" height="30"/><text class="d-sm" x="80" y="407" text-anchor="middle">Payroll platform</text>
+            <rect class="d-node d-fill" x="10" y="429" width="140" height="30"/><text class="d-sm" x="80" y="449" text-anchor="middle">Marketplace</text>
+            <rect class="d-node d-fill" x="10" y="471" width="140" height="30"/><text class="d-sm" x="80" y="491" text-anchor="middle">Lending platform</text>
+          </g>
+          <rect class="d-node-a" x="300" y="395" width="160" height="60"/>
+          <text class="d-ttl" x="380" y="420" text-anchor="middle">VictorFi</text>
+          <text class="d-lbl" x="380" y="440" text-anchor="middle">ONE CONNECTION</text>
+          <g>
+            <rect class="d-node d-fill" x="610" y="345" width="140" height="26"/><text class="d-sm" x="680" y="362" text-anchor="middle">Bank A</text>
+            <rect class="d-node d-fill" x="610" y="379" width="140" height="26"/><text class="d-sm" x="680" y="396" text-anchor="middle">Bank B</text>
+            <rect class="d-node d-fill" x="610" y="413" width="140" height="26"/><text class="d-sm" x="680" y="430" text-anchor="middle">Bank C</text>
+            <rect class="d-node d-fill" x="610" y="447" width="140" height="26"/><text class="d-sm" x="680" y="464" text-anchor="middle">ACH network</text>
+            <rect class="d-node d-fill" x="610" y="481" width="140" height="26"/><text class="d-sm" x="680" y="498" text-anchor="middle">Wire network</text>
+            <rect class="d-node d-fill" x="610" y="515" width="140" height="26"/><text class="d-sm" x="680" y="532" text-anchor="middle">RTP / FedNow</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>The case I had to make internally. Four customers and six rails is twenty-four integrations to build and maintain; routed through one platform it is ten.</figcaption>
+      </figure>
+
+      <p>This is the argument I had to make inside the company, and it is the one that shaped everything after it. The cost was not any single integration. It was that the cost <strong>multiplied</strong> — every new customer against every new rail — so growth and engineering load rose together. A sales win and an engineering crisis were the same event.</p>
+      <p>So the market did not have a payments problem. It had a <strong>complexity problem</strong>, and complexity is a product problem before it is an engineering one.</p>
+    </section>
+
+    <!-- ============ MESS ============ -->
+    <section class="sect" id="mess">
+      <div class="sect-type">
+        <h4>Making Sense of the Mess</h4>
+        <h2>My first job was to find the product hidden inside the complexity.</h2>
+      </div>
+      <p>To a customer, a payment is one instruction: <strong>send $50,000</strong>. To the platform it is twelve decisions. Every one of them needed a defined owner, a state, a failure path and an audit record — and writing those definitions was my work, not engineering's.</p>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 450" role="img" aria-label="One instruction, send fifty thousand dollars, fanning out into twelve separate decisions the platform must make">
+          <rect class="d-node-a" x="10" y="182" width="190" height="56"/>
+          <text class="d-ttl" x="105" y="206" text-anchor="middle">Send $50,000</text>
+          <text class="d-lbl" x="105" y="226" text-anchor="middle">TO VENDOR</text>
+          <line class="d-line-a" x1="200" y1="210" x2="280" y2="210"/>
+          <circle cx="280" cy="210" r="26" class="d-node-a"/>
+          <text class="d-ttl" x="280" y="216" text-anchor="middle" style="fill:var(--accent)">V</text>
+          <g class="d-line"><line x1="306" y1="210" x2="360" y2="18"/><line x1="306" y1="210" x2="360" y2="53"/><line x1="306" y1="210" x2="360" y2="88"/><line x1="306" y1="210" x2="360" y2="123"/><line x1="306" y1="210" x2="360" y2="158"/><line x1="306" y1="210" x2="360" y2="193"/><line x1="306" y1="210" x2="360" y2="228"/><line x1="306" y1="210" x2="360" y2="263"/><line x1="306" y1="210" x2="360" y2="298"/><line x1="306" y1="210" x2="360" y2="333"/><line x1="306" y1="210" x2="360" y2="368"/><line x1="306" y1="210" x2="360" y2="403"/></g>
+          <circle cx="360" cy="18" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="53" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="88" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="123" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="158" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="193" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="228" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="263" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="298" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="333" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="368" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/><circle cx="360" cy="403" r="2.5" class="d-fill" style="fill:var(--hairline-2)"/>
+          <text class="d-sm" x="372" y="22">Payment rail selection</text><text class="d-sm" x="372" y="57">Account validation</text><text class="d-sm" x="372" y="92">Permissions & roles</text><text class="d-sm" x="372" y="127">Approvals & limits</text><text class="d-sm" x="372" y="162">Compliance screening</text><text class="d-sm" x="372" y="197">Fraud & risk checks</text><text class="d-sm" x="372" y="232">Payment processing</text><text class="d-sm" x="372" y="267">Status updates</text><text class="d-sm" x="372" y="302">Exceptions & failures</text><text class="d-sm" x="372" y="337">Returns & reversals</text><text class="d-sm" x="372" y="372">Reconciliation</text><text class="d-sm" x="372" y="407">Audit trail</text>
+          <text class="d-lbl" x="105" y="262" text-anchor="middle">ONE INSTRUCTION</text>
+          <text class="d-lbl" x="500" y="440" text-anchor="middle">TWELVE DECISIONS</text>
+        </svg>
+        </div>
+        <figcaption>What the customer asks for, and what I had to specify. Twelve decisions sit under one instruction, and every one of them needed an owner, a state and an audit record.</figcaption>
+      </figure>
+
+      <p class="pull">My job was to turn this complexity into a product customers could understand without stripping away the controls banks depended on.</p>
+
+      <div class="sub">
+        <h3>Three constituencies wanted three different products.</h3>
+        <p>Discovery kept returning the same three positions, and they did not reconcile on their own. I could not average them — averaging would have produced a product that satisfied none. I had to find what was genuinely common underneath all three, and be willing to tell each of them what they were not getting.</p>
+      </div>
+
+      <div class="rcards">
+        <div class="rcard">
+          <h4>Fintechs wanted speed</h4>
+          <q>Give us one clean API and let us move money.</q>
+          <ul><li>Faster integrations</li><li>Simpler APIs</li><li>Fewer operational blockers</li><li>Clearer workflows</li><li>Faster onboarding</li></ul>
+          <p><strong>What I could not give them:</strong> fewer controls.</p>
+        </div>
+        <div class="rcard">
+          <h4>Banks wanted control</h4>
+          <q>We need approvals, limits, permissions and auditability.</q>
+          <ul><li>Approvals and permissions</li><li>Limits</li><li>Auditability</li><li>Compliance visibility</li><li>Operational oversight</li><li>Reconciliation</li></ul>
+          <p><strong>What I could not give them:</strong> a bespoke platform.</p>
+        </div>
+        <div class="rcard">
+          <h4>Engineering needed consistency</h4>
+          <q>We can't build a different product for every bank.</q>
+          <ul><li>Stable product models</li><li>Reusable workflows</li><li>Predictable requirements</li><li>Fewer bespoke implementations</li><li>Clear edge-case handling</li></ul>
+          <p><strong>What I could not give them:</strong> a frozen spec.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE DECISION ============ -->
+    <section class="sect" id="decision">
+      <div class="sect-type">
+        <h4>The Decision</h4>
+        <h2>Two obvious answers, and I rejected both.</h2>
+      </div>
+
+      <div class="sub">
+        <h3>Option A — build each bank exactly what it asks for.</h3>
+        <p>The easiest thing to say yes to, and the one commercial pressure pushes hardest toward. It wins the implementation in front of you.</p>
+      </div>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 265" role="img" aria-label="Bank A, B and C each running a separate bespoke workflow, with more banks implying more workflows">
+          <rect class="d-node d-fill" x="10" y="20" width="100" height="40"/><text class="d-sm" x="60" y="44" text-anchor="middle">Bank A</text><rect class="d-node" x="130" y="20" width="135" height="40"/><text class="d-sm" x="197" y="44" text-anchor="middle">Create payment</text><line class="d-line" x1="110" y1="40" x2="130" y2="40"/><rect class="d-node" x="285" y="20" width="135" height="40"/><text class="d-sm" x="352" y="44" text-anchor="middle">Bank A rules</text><line class="d-line" x1="265" y1="40" x2="285" y2="40"/><rect class="d-node" x="440" y="20" width="135" height="40"/><text class="d-sm" x="507" y="44" text-anchor="middle">Review</text><line class="d-line" x1="420" y1="40" x2="440" y2="40"/><rect class="d-node" x="595" y="20" width="135" height="40"/><text class="d-sm" x="662" y="44" text-anchor="middle">Send</text><line class="d-line" x1="575" y1="40" x2="595" y2="40"/><rect class="d-node d-fill" x="10" y="96" width="100" height="40"/><text class="d-sm" x="60" y="120" text-anchor="middle">Bank B</text><rect class="d-node" x="130" y="96" width="135" height="40"/><text class="d-sm" x="197" y="120" text-anchor="middle">Create payment</text><line class="d-line" x1="110" y1="116" x2="130" y2="116"/><rect class="d-node" x="285" y="96" width="135" height="40"/><text class="d-sm" x="352" y="120" text-anchor="middle">Bank B rules</text><line class="d-line" x1="265" y1="116" x2="285" y2="116"/><rect class="d-node" x="440" y="96" width="135" height="40"/><text class="d-sm" x="507" y="120" text-anchor="middle">Review</text><line class="d-line" x1="420" y1="116" x2="440" y2="116"/><rect class="d-node" x="595" y="96" width="135" height="40"/><text class="d-sm" x="662" y="120" text-anchor="middle">Send</text><line class="d-line" x1="575" y1="116" x2="595" y2="116"/><rect class="d-node d-fill" x="10" y="172" width="100" height="40"/><text class="d-sm" x="60" y="196" text-anchor="middle">Bank C</text><rect class="d-node" x="130" y="172" width="135" height="40"/><text class="d-sm" x="197" y="196" text-anchor="middle">Create payment</text><line class="d-line" x1="110" y1="192" x2="130" y2="192"/><rect class="d-node" x="285" y="172" width="135" height="40"/><text class="d-sm" x="352" y="196" text-anchor="middle">Bank C rules</text><line class="d-line" x1="265" y1="192" x2="285" y2="192"/><rect class="d-node" x="440" y="172" width="135" height="40"/><text class="d-sm" x="507" y="196" text-anchor="middle">Review</text><line class="d-line" x1="420" y1="192" x2="440" y2="192"/><rect class="d-node" x="595" y="172" width="135" height="40"/><text class="d-sm" x="662" y="196" text-anchor="middle">Send</text><line class="d-line" x1="575" y1="192" x2="595" y2="192"/>
+          <text class="d-lbl" x="380" y="250" text-anchor="middle" style="fill:var(--neg)">…AND ONE MORE FOR EVERY BANK AFTER THAT</text>
+        </svg>
+        </div>
+        <figcaption>Option A, which I rejected. Each new customer adds a workflow rather than a configuration, so the build and test surface grows with the sales pipeline.</figcaption>
+      </figure>
+      <p>I rejected it because the cost is deferred, not avoided. Every new customer introduces new logic, new approval structures, new workflows, more QA and more technical debt, and the product fragments into as many products as we have customers. The bill arrives two years later, on someone else's watch.</p>
+
+      <div class="sub">
+        <h3>Option B — force every bank into one rigid workflow.</h3>
+        <p>The opposite error, and the one engineering leans toward: cleaner architecture, simpler model, easier QA and documentation.</p>
+      </div>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 250" role="img" aria-label="Bank A, B and C funnelled into a single fixed workflow of create payment, review, approve and send">
+          <rect class="d-node d-fill" x="10" y="30" width="120" height="38"/><text class="d-sm" x="70" y="53" text-anchor="middle">Bank A</text>
+          <rect class="d-node d-fill" x="10" y="100" width="120" height="38"/><text class="d-sm" x="70" y="123" text-anchor="middle">Bank B</text>
+          <rect class="d-node d-fill" x="10" y="170" width="120" height="38"/><text class="d-sm" x="70" y="193" text-anchor="middle">Bank C</text>
+          <g class="d-line">
+            <line x1="130" y1="49" x2="175" y2="49"/><line x1="130" y1="119" x2="175" y2="119"/><line x1="130" y1="189" x2="175" y2="189"/>
+            <line x1="175" y1="49" x2="175" y2="189"/><line x1="175" y1="119" x2="215" y2="119"/>
+          </g>
+          <text class="d-lbl" x="380" y="16" text-anchor="middle">ONE FIXED WORKFLOW</text>
+          <g>
+            <rect class="d-node-a" x="215" y="99" width="120" height="40"/><text class="d-sm" x="275" y="123" text-anchor="middle">Create payment</text>
+            <line class="d-line" x1="335" y1="119" x2="360" y2="119"/>
+            <rect class="d-node-a" x="360" y="99" width="105" height="40"/><text class="d-sm" x="412" y="123" text-anchor="middle">Review</text>
+            <line class="d-line" x1="465" y1="119" x2="490" y2="119"/>
+            <rect class="d-node-a" x="490" y="99" width="105" height="40"/><text class="d-sm" x="542" y="123" text-anchor="middle">Approve</text>
+            <line class="d-line" x1="595" y1="119" x2="620" y2="119"/>
+            <rect class="d-node-a" x="620" y="99" width="105" height="40"/><text class="d-sm" x="672" y="123" text-anchor="middle">Send</text>
+          </g>
+          <text class="d-lbl" x="380" y="238" text-anchor="middle" style="fill:var(--neg)">BANKS WITH DIFFERENT APPROVAL HIERARCHIES CANNOT USE IT</text>
+        </svg>
+        </div>
+        <figcaption>Option B, which I also rejected. Clean to build, and unusable for any bank whose approval hierarchy differs from the template.</figcaption>
+      </figure>
+      <p>I rejected this one too. Banks genuinely differ in approval hierarchies, compliance requirements, limits, permissions and operational controls. A single fixed workflow is not a simplification of that reality, it is a denial of it, and the first serious institution to evaluate us would find the gap.</p>
+
+      <div class="sub">
+        <h3>The call: standardize the core, configure the edges.</h3>
+        <p>Rather than a bespoke product per institution, I identified the reusable product concepts sitting underneath the different implementations, and drew the line between what was shared and what was configurable. That line is the product decision. Everything downstream — engineering effort, onboarding time, QA surface, how fast sales could say yes — followed from where I put it.</p>
+      </div>
+
+      <div class="cols">
+        <div><h4>Shared core — one of each, forever</h4><ul class="plain">
+          <li>Transaction model</li><li>Payment states</li><li>Permissions framework</li>
+          <li>Audit model</li><li>Reconciliation model</li><li>User roles</li>
+          <li>Common operator workflows</li></ul></div>
+        <div><h4>Configurable — per institution</h4><ul class="plain">
+          <li>Approvals</li><li>Limits</li><li>Rules</li>
+          <li>Permissions</li><li>Compliance requirements</li><li>Operational controls</li></ul></div>
+      </div>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 300" role="img" aria-label="Fintechs connect through one API to a shared VictorFi core of transaction model, statuses, permissions, audit, reconciliation and monitoring, which reaches banks and rails through configured integrations">
+          <rect class="d-node d-fill" x="10" y="118" width="130" height="84"/>
+          <text class="d-lbl" x="75" y="146" text-anchor="middle">FINTECHS</text>
+          <text class="d-sm" x="75" y="172" text-anchor="middle">Any product</text>
+          <line class="d-line-a" x1="140" y1="160" x2="230" y2="160"/>
+          <text class="d-lbl" x="185" y="150" text-anchor="middle" style="fill:var(--accent)">ONE API</text>
+          <rect class="d-node-a" x="230" y="46" width="300" height="212"/>
+          <text class="d-lbl" x="380" y="70" text-anchor="middle" style="fill:var(--accent)">VICTORFI CORE — SHARED</text>
+          <text class="d-sm" x="380" y="92" text-anchor="middle">Transaction model</text><text class="d-sm" x="380" y="118" text-anchor="middle">Statuses & lifecycle</text><text class="d-sm" x="380" y="144" text-anchor="middle">Permissions framework</text><text class="d-sm" x="380" y="170" text-anchor="middle">Audit & compliance model</text><text class="d-sm" x="380" y="196" text-anchor="middle">Reconciliation engine</text><text class="d-sm" x="380" y="222" text-anchor="middle">Monitoring & alerts</text>
+          <g class="d-line"><line x1="530" y1="160" x2="600" y2="77"/><line x1="530" y1="160" x2="600" y2="123"/><line x1="530" y1="160" x2="600" y2="169"/><line x1="530" y1="160" x2="600" y2="215"/><line x1="530" y1="160" x2="600" y2="261"/></g>
+          <text class="d-lbl" x="565" y="150" text-anchor="middle">CONFIGURED</text>
+          <rect class="d-node d-fill" x="600" y="60" width="150" height="34"/><text class="d-sm" x="675" y="81" text-anchor="middle">Bank A · config</text><rect class="d-node d-fill" x="600" y="106" width="150" height="34"/><text class="d-sm" x="675" y="127" text-anchor="middle">Bank B · config</text><rect class="d-node d-fill" x="600" y="152" width="150" height="34"/><text class="d-sm" x="675" y="173" text-anchor="middle">Bank C · config</text><rect class="d-node d-fill" x="600" y="198" width="150" height="34"/><text class="d-sm" x="675" y="219" text-anchor="middle">ACH / Wire</text><rect class="d-node d-fill" x="600" y="244" width="150" height="34"/><text class="d-sm" x="675" y="265" text-anchor="middle">RTP / FedNow</text>
+        </svg>
+        </div>
+        <figcaption>The call I made. One transaction model, one permissions framework, one audit trail — with each institution's approvals, limits and controls applied as configuration.</figcaption>
+      </figure>
+
+      <p class="pull">Standardize what should be common. Configure what genuinely needs to differ.</p>
+      <p>This became one of the governing principles behind scaling the platform, and the sentence I used to refuse work. When a request arrived that would have meant new core logic for one customer, the question was no longer whether we could build it. It was whether it belonged in the core — and if it did not, it became configuration or it did not ship.</p>
+
+      <div class="sub">
+        <h3>A smaller decision, the same way: the transaction list.</h3>
+        <p>The operator view went through three explorations rather than straight to polished UI. The choice was between visibility and comprehension, and it mattered because two different users — an operations analyst and a fintech customer — were going to open the same screen.</p>
+      </div>
+      <div class="cols">
+        <div><h4>A — Dense operator table</h4>
+          <p>Maximum visibility, good for operations. High cognitive load and hard for less technical users.</p></div>
+        <div><h4>B — Simplified fintech view</h4>
+          <p>Easy to understand and cleaner. Hides too much operational detail; weak for investigation and support.</p></div>
+        <div><h4>C — Hybrid operator view <em style="color:var(--accent);font-style:normal">— chosen</em></h4>
+          <p>Clear transaction state, enough operational detail, filtering and drill-down. The better balance of clarity and control.</p></div>
+      </div>
+
+      </section>
+
+    <!-- ============ COMPLIANCE ============ -->
+    <section class="sect" id="compliance">
+      <div class="sect-type">
+        <h4>Changing How We Shipped</h4>
+        <h2>The highest-leverage thing I did was not a feature.</h2>
+      </div>
+      <p>Compliance was arriving as a checkpoint after build. When requirements surfaced that late, user flows were redesigned, engineering work was revisited, releases slowed, controls felt bolted on, and customers met friction that existed for no reason they could see.</p>
+      <p>I moved compliance into product definition. Not a review gate earlier in the same process — an actual participant in deciding what the product was, before a flow was drawn.</p>
+
+      <figure>
+        <div class="ba">
+          <div class="before">
+            <h4 class="b">Early approach</h4>
+            <div class="chain">Design <em>→</em> Build <em>→</em> Compliance review <em>→</em> <strong>Late rework</strong></div>
+            <ul class="plain">
+              <li>User flows redesigned after the fact</li>
+              <li>Engineering work revisited</li>
+              <li>Releases slowed</li>
+              <li>Controls felt bolted on</li>
+            </ul>
+          </div>
+          <div class="after">
+            <h4 class="a">What changed</h4>
+            <div class="chain">Discovery <em>→</em> <strong>Product + Compliance</strong> <em>→</em> Workflow design <em>→</em> Engineering <em>→</em> QA</div>
+            <ul class="plain">
+              <li>Aligned before anything is drawn</li>
+              <li>Controls built in, not patched on</li>
+              <li>Fewer surprises, faster ship</li>
+              <li>Permissions and audit are product behaviour</li>
+            </ul>
+          </div>
+        </div>
+        <figcaption>The change I pushed hardest for. Compliance moved from a checkpoint after build to a participant in product definition; the pipeline is the same length and the rework loop is gone.</figcaption>
+      </figure>
+
+      <p>That single change altered what the team built. Permissions, approvals, auditability and operational controls stopped being requirements imposed on a design and became part of the intended product experience from the start. It is the change I would point to first, because it improved every subsequent release rather than one feature.</p>
+      <p class="pull">Controls became product behavior, not late-stage patches.</p>
+
+      </section>
+
+    <!-- ============ ONBOARDING ============ -->
+    <section class="sect" id="onboarding">
+      <div class="sect-type">
+        <h4>Scaling Without Rebuilding</h4>
+        <h2>I made onboarding a configuration problem, not an engineering one.</h2>
+      </div>
+      <p>Every institution arrived with different internal processes, documentation, approval models, risk controls, permissions and operational ownership. If each of those required engineering, the core decision would have leaked away one exception at a time. So the test I applied to onboarding was simple: could a new institution go live without a single line of core code changing?</p>
+
+      <div class="cols">
+        <div><h4>Implementation-led</h4>
+          <p>Requirements gathered through implementation and account teams — the entry point, not the mechanism.</p></div>
+        <div><h4>Guided configuration</h4>
+          <p>Admins configure roles, approval rules, limits, permissions and operational controls themselves.</p></div>
+        <div><h4>Core product</h4>
+          <p>Ongoing management lives inside VictorFi once implementation is complete, with no bespoke surface to maintain.</p></div>
+      </div>
+
+      <p class="pull">Different institutions could have different requirements without creating different products.</p>
+
+      </section>
+
+    <!-- ============ WHAT SHIPPED ============ -->
+    <section class="sect" id="final">
+      <div class="sect-type">
+        <h4>What Shipped</h4>
+        <h2>One mental model, across rails that behave nothing alike.</h2>
+      </div>
+      <p>The goal was never to pretend ACH, wire and RTP are the same. It was to give a user one consistent way to think about a payment while the rail-specific complexity stayed underneath, where it belonged.</p>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 300" role="img" aria-label="Payment lifecycle across five stages: create, approve, process, complete, reconcile, with failed and returned branching out of complete and rejoining at reconciliation">
+          <circle cx="30" cy="40" r="14" class="d-node-a"/><text class="d-lbl" x="30" y="45" text-anchor="middle">1</text><text class="d-sm" x="54" y="45">Create</text><rect class="d-node d-fill" x="10" y="70" width="140" height="72"/><line class="d-line" x1="150" y1="106" x2="160" y2="106"/><circle cx="180" cy="40" r="14" class="d-node"/><text class="d-lbl" x="180" y="45" text-anchor="middle">2</text><text class="d-sm" x="204" y="45">Approve</text><rect class="d-node d-fill" x="160" y="70" width="140" height="72"/><line class="d-line" x1="300" y1="106" x2="310" y2="106"/><circle cx="330" cy="40" r="14" class="d-node"/><text class="d-lbl" x="330" y="45" text-anchor="middle">3</text><text class="d-sm" x="354" y="45">Process</text><rect class="d-node d-fill" x="310" y="70" width="140" height="72"/><line class="d-line" x1="450" y1="106" x2="460" y2="106"/><circle cx="480" cy="40" r="14" class="d-node"/><text class="d-lbl" x="480" y="45" text-anchor="middle">4</text><text class="d-sm" x="504" y="45">Complete</text><rect class="d-node d-fill" x="460" y="70" width="140" height="72"/><line class="d-line" x1="600" y1="106" x2="610" y2="106"/><circle cx="630" cy="40" r="14" class="d-node-a"/><text class="d-lbl" x="630" y="45" text-anchor="middle">5</text><text class="d-sm" x="654" y="45">Reconcile</text><rect class="d-node d-fill" x="610" y="70" width="140" height="72"/>
+          <line class="d-line" x1="530" y1="142" x2="480" y2="188"/>
+          <line class="d-line" x1="530" y1="142" x2="600" y2="188"/>
+          <rect class="d-node d-fill" x="400" y="188" width="150" height="34"/><text class="d-sm" x="475" y="209" text-anchor="middle">Failed</text>
+          <rect class="d-node d-fill" x="570" y="188" width="150" height="34"/><text class="d-sm" x="645" y="209" text-anchor="middle">Returned</text>
+          <g class="d-line">
+            <line x1="475" y1="222" x2="475" y2="252"/><line x1="645" y1="222" x2="645" y2="252"/>
+            <line x1="150" y1="252" x2="645" y2="252"/><line x1="150" y1="252" x2="150" y2="222"/>
+          </g>
+          <line class="d-line-a" x1="150" y1="222" x2="150" y2="142"/>
+          <text class="d-lbl" x="380" y="272" text-anchor="middle">EVERY OUTCOME RETURNS TO RECONCILIATION AND AUDIT</text>
+        </svg>
+        </div>
+        <figcaption>What shipped. Success, failure and return all terminate in the same reconciliation and audit trail, which is what made the platform defensible to a bank.</figcaption>
+      </figure>
+
+      <p>The detail I care most about is the bottom of that diagram. Success, failure and return all terminate in the same reconciliation and audit trail. That was a deliberate specification, not a convenience — it is the property that let a bank's risk function accept the platform, and it came out of the compliance decision two sections earlier.</p>
+
+      </section>
+
+    <!-- ============ HOW I WORKED ============ -->
+    <section class="sect" id="howiworked">
+      <div class="sect-type">
+        <h4>How I Worked</h4>
+        <h2>I sat where the ambiguity was.</h2>
+      </div>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 700 220" role="img" aria-label="Customers, banks and go-to-market feed into the product owner, who feeds into engineering, compliance, design and QA">
+          <rect class="d-node" x="180" y="14" width="340" height="40"/>
+          <text class="d-lbl" x="350" y="39" text-anchor="middle">CUSTOMERS · BANKS · GTM</text>
+          <line class="d-line" x1="350" y1="54" x2="350" y2="86"/>
+          <rect class="d-node-a" x="230" y="86" width="240" height="52"/>
+          <text class="d-ttl" x="350" y="110" text-anchor="middle">Hashim</text>
+          <text class="d-lbl" x="350" y="128" text-anchor="middle">PRODUCT OWNER</text>
+          <line class="d-line" x1="350" y1="138" x2="350" y2="170"/>
+          <rect class="d-node" x="130" y="170" width="440" height="40"/>
+          <text class="d-lbl" x="350" y="195" text-anchor="middle">ENGINEERING · COMPLIANCE · DESIGN · QA</text>
+        </svg>
+      </div>
+        <figcaption>Where I sat. Requirements arrived from three directions at once and left as one decision the team could build.</figcaption>
+      </figure>
+
+      <p>Requirements arrived from customers, banks and go-to-market simultaneously, in different vocabularies, often contradicting each other. They left as one decision engineering, compliance, design and QA could act on. That translation was the job — not producing screens.</p>
+
+      <div class="sub"><h3>The loop, and what I decided at each turn</h3></div>
+      <div class="scroller" style="overflow-x:auto">
+      <table class="own">
+        <thead><tr><th>Stage</th><th>What I produced, and what I decided</th></tr></thead>
+        <tbody>
+          <tr><td>Discover</td><td>Customer interviews, implementation calls, market research, workflow mapping — <strong>deciding which stated request was the real requirement</strong></td></tr>
+          <tr><td>Define</td><td>Product model, requirements, prioritisation, acceptance criteria — <strong>deciding what belonged in the core and what was configuration</strong></td></tr>
+          <tr><td>Design</td><td>User flows, wireframes, prototypes, interaction models — <strong>deciding which complexity the user sees</strong></td></tr>
+          <tr><td>Refine</td><td>Engineering review, technical constraints, edge cases — <strong>deciding what to cut when the constraint was real</strong></td></tr>
+          <tr><td>Ship</td><td>QA, UAT, release, customer enablement — <strong>deciding what was good enough to go live</strong></td></tr>
+          <tr><td>Learn</td><td>Customer feedback, implementation issues, usage signals — <strong>deciding what the next cycle inherits</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p class="pull">I stayed involved beyond handoff. Implementation, QA, technical constraints and customer feedback routinely changed the product.</p>
+
+      <div class="sub">
+        <h3>How the method evolved</h3>
+        <p>The loop stayed the same for five years. What changed was how much of it I could explore before the first conversation.</p>
+      </div>
+
+      <div class="ba">
+        <div class="before">
+          <h4 class="b">2020–2022 · Manual</h4>
+          <div class="chain">Research <em>→</em> Synthesize <em>→</em> Write PRDs <em>→</em> User flows <em>→</em> QA scenarios <em>→</em> Handoff</div>
+          <ul class="plain">
+            <li>Manual discovery synthesis</li><li>Manual requirements drafting</li>
+            <li>Edge cases surfaced mainly through reviews</li>
+            <li>QA scenarios manually created</li><li>Documentation manually structured</li>
+          </ul>
+        </div>
+        <div class="after">
+          <h4 class="a">2023–2025 · AI-assisted</h4>
+          <div class="chain">Research <em>→</em> AI synthesis <em>→</em> Edge cases <em>→</em> QA scenarios <em>→</em> Draft PRDs <em>→</em> <strong>Refine &amp; decide (human)</strong> <em>→</em> Handoff</div>
+          <ul class="plain">
+            <li>Conversation and research synthesis</li><li>Requirement interrogation</li>
+            <li>Edge-case generation</li><li>Acceptance criteria</li>
+            <li>QA scenario generation</li><li>Documentation and product exploration</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cols">
+        <div><h4>What AI helps with</h4><ul class="plain">
+          <li>Summarizing customer feedback</li><li>Drafting requirements and flows</li>
+          <li>Exploring edge cases</li><li>Generating QA scenarios</li><li>Comparing approaches</li></ul></div>
+        <div><h4>What still requires me</h4><ul class="plain">
+          <li>Product judgment and trade-offs</li><li>Compliance interpretation</li>
+          <li>Prioritization and sequencing</li><li>Customer empathy</li></ul></div>
+      </div>
+
+      <p class="pull">AI improved speed and exploration. It did not replace product judgment.</p>
+      <p>Compliance interpretation, prioritisation, customer judgment, risk decisions and final requirements stayed human-led. The real change was arriving at engineering, customer and compliance conversations with more scenarios already explored — which meant the conversations were about deciding, not discovering.</p>
+    </section>
+
+    <!-- ============ IMPACT ============ -->
+    <section class="sect" id="impact">
+      <div class="sect-type">
+        <h4>Impact</h4>
+        <h2>What the company achieved, and what I am accountable for.</h2>
+      </div>
+
+      <div class="statgrp">
+        <h4>Company outcomes during my tenure</h4>
+        <div class="stats">
+          <div class="stat"><b>$6M</b><h4>Seed funding raised</h4></div>
+          <div class="stat"><b>$80B+</b><h4>Processed transaction volume</h4></div>
+          <div class="stat"><b>2025</b><h4>Acquired by Jack Henry</h4></div>
+        </div>
+        <p>One of VictorFi's strategic customers ultimately became the acquirer. These are company results across five years and many people; I was one input into them.</p>
+      </div>
+
+      <div class="statgrp">
+        <h4>Outcomes attributable to the product decisions</h4>
+        <div class="stats">
+          <div class="stat gap"><b>— weeks</b><h4>Bank onboarding time, before → after the configurable model</h4></div>
+          <div class="stat gap"><b>— → —</b><h4>Bespoke implementations, before → after standardising the core</h4></div>
+          <div class="stat gap"><b>—</b><h4>Is the transaction model you defined still the one running today?</h4></div>
+        </div>
+        <p style="color:var(--flag)">These three are the difference between a page that says you were present and a page that says you were responsible. They are the numbers a reference check can confirm and the ones only you hold. Nothing invented has been put in their place.</p>
+      </div>
+
+      </section>
+
+    <!-- ============ REFLECTION ============ -->
+    <section class="sect" id="reflection">
+      <div class="sect-type">
+        <h4>Reflection</h4>
+        <h2>What I learned</h2>
+      </div>
+      <div class="sub">
+        <h3>The simplest fintech experiences hide enormous complexity.</h3>
+        <p>My job was not to remove the complexity. It was to decide which complexity customers needed to see and which belonged inside the platform — and to be able to defend that line to a fintech, a bank and an engineer in three different conversations on the same day.</p>
+      </div>
+      <div class="sub">
+        <h3>Product ownership in fintech is mostly about trade-offs.</h3>
+        <p>Speed, compliance, customer needs, technical scalability and operational reliability are permanently in tension. The job is to make those trade-offs deliberately rather than accidentally, and to write down why, so the decision survives the person who made it.</p>
+      </div>
+      <div class="sub">
+        <h3>The most valuable decisions were the ones that let us say no.</h3>
+        <p>Standardize the core, configure the edges was not only an architecture. It was a rule that let the whole company refuse the wrong work without arguing about it each time.</p>
+      </div>
+      <p class="pull">Enterprise fintech isn't about removing complexity. It's about placing complexity in the right layer so customers can move fast without sacrificing trust, visibility, or control.</p>
+    </section>
+
+  </div>
+  <div class="spacer"></div>
+</div></div>
+
+<footer>VictorFi · Product Owner · 2020–2025</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  var burger=document.getElementById('burger'), mob=document.getElementById('mobnav');
+  if(burger&&mob){
+    burger.addEventListener('click',function(){
+      var open=mob.classList.toggle('open');
+      burger.setAttribute('aria-expanded',open?'true':'false');
+      burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    });
+    mob.addEventListener('click',function(e){ if(e.target.tagName==='A'){
+      mob.classList.remove('open'); burger.setAttribute('aria-expanded','false'); } });
+  }
+
+  var btns = [].slice.call(document.querySelectorAll('.sectnav button'));
+  btns.forEach(function(b){
+    b.setAttribute('data-cur','big');
+    b.addEventListener('click', function(){
+      var t = document.getElementById(b.dataset.to);
+      if(t) t.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+    });
+  });
+  var sections = btns.map(function(b){ return document.getElementById(b.dataset.to); }).filter(Boolean);
+  function setCurrent(id){
+    btns.forEach(function(b){
+      if(b.dataset.to===id) b.setAttribute('aria-current','true');
+      else b.removeAttribute('aria-current');
+    });
+  }
+  setCurrent('overview');
+  if('IntersectionObserver' in window){
+    var seen = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      var best=null,bestV=0;
+      sections.forEach(function(s){ var v=seen[s.id]||0; if(v>bestV){bestV=v;best=s.id;} });
+      if(best) setCurrent(best);
+    }, {rootMargin:'-10% 0px -55% 0px', threshold:[0,0.25,0.5,0.75,1]});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(fine && !reduce){
+    document.body.classList.add('cursor-on');
+    var cur=document.getElementById('cur'), x=-50,y=-50,tick=false;
+    window.addEventListener('mousemove', function(e){
+      x=e.clientX; y=e.clientY;
+      if(!tick){ tick=true; requestAnimationFrame(function(){
+        cur.style.transform='translate3d('+(x-6.5)+'px,'+(y-6.5)+'px,0)'; tick=false; }); }
+    }, {passive:true});
+    document.addEventListener('mouseover', function(e){
+      var t = e.target.closest && e.target.closest('[data-cur="big"], a, button');
+      if(t) cur.classList.add('big'); else cur.classList.remove('big');
+    });
+    document.addEventListener('mouseleave', function(){ cur.style.opacity='0'; });
+    document.addEventListener('mouseenter', function(){ cur.style.opacity=''; });
+  }
+})();
+</script>
