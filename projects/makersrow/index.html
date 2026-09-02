@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>MakersRow — Hashim</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -280,6 +281,14 @@ table.own td:first-child{width:32%;color:var(--fg)}
   font-size:14.5px;color:var(--fg);align-items:baseline}
 .ac li::before{content:counter(ac,decimal-leading-zero);font-family:var(--mono);
   font-size:11.5px;color:var(--accent)}
+.cmp-wrap{overflow-x:auto}
+.cmp{width:100%;border-collapse:collapse;min-width:520px}
+.cmp th,.cmp td{text-align:left;padding:13px 20px 13px 0;border-bottom:1px solid var(--hairline);vertical-align:top}
+.cmp thead th{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.cmp thead th:last-child{color:var(--accent)}
+.cmp tbody th{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted);font-weight:400;white-space:nowrap}
+.cmp td{font-size:15px;color:var(--muted)}
+.cmp td:last-child{color:var(--fg)}
 .story{font-family:var(--serif);font-size:19px;line-height:29px;color:var(--fg);
   border-left:2px solid var(--accent);padding-left:20px;margin:0}
 
@@ -392,19 +401,15 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
   <aside class="aside">
     <a class="back" href="/" data-cur="big"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"></path></svg>Back</a>
     <nav class="sectnav" aria-label="Sections"><ul>
-      <li><button data-to="overview">Overview</button></li>
-      <li><button data-to="stuck">The Business Was Stuck</button></li>
-      <li><button data-to="forensics">Product Forensics</button></li>
-      <li><button data-to="problem">The Real Problem</button></li>
-      <li><button data-to="stakeholders">Competing Stakeholders</button></li>
-      <li><button data-to="decision">The Decision</button></li>
-      <li><button data-to="ai">Where AI Belonged</button></li>
-      <li><button data-to="matching">How Matching Worked</button></li>
-      <li><button data-to="readiness">A New Problem</button></li>
-      <li><button data-to="migration">Rebuilding Live</button></li>
-      <li><button data-to="delivery">Strategy to Delivery</button></li>
-      <li><button data-to="billing">The Billing Truth</button></li>
-      <li><button data-to="outcomes">Outcomes</button></li>
+      <li><button data-to="problem">The Problem</button></li>
+      <li><button data-to="discovery">Discovery</button></li>
+      <li><button data-to="realproblem">The Real Problem</button></li>
+      <li><button data-to="changed">What I Changed</button></li>
+      <li><button data-to="preai">How We Used To Ship</button></li>
+      <li><button data-to="postai">How We Ship Now</button></li>
+      <li><button data-to="beforeafter">Before And After</button></li>
+      <li><button data-to="results">Results</button></li>
+      <li><button data-to="learnings">What I&#8217;d Carry Forward</button></li>
       <li><button data-to="reflection">Reflection</button></li>
     </ul></nav>
   </aside>
@@ -414,501 +419,231 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
     <div class="head">
       <div class="head-type">
         <h4>MakersRow &nbsp;·&nbsp; Fractional Product Owner &nbsp;·&nbsp; 2022–2026</h4>
-        <h1>Rebuilding The Product Without Stopping The Business.</h1>
-        <p>How I reconstructed a decade of undocumented marketplace logic, moved the product from a directory to a sourcing workflow, and put AI only where it was allowed to be wrong.</p>
+        <h1>Turning Around A Failing Marketplace. 4&#215; MRR.</h1>
+        <p>A ten-year-old marketplace with collapsing project volume, four departments that each held a different piece of the truth, and a pricing model that charged the side with no reason to stay.</p>
       </div>
 
       <figure>
-        <div class="brief">
-          <div>
-            <h5>What the buyer types</h5>
-            <p class="quote">“I’m launching a 750ml stainless steel bottle. First run around 5,000 units. Matte black finish, food safe, ideally manufactured in the US.”</p>
-          </div>
-          <div>
-            <h5>What the factory receives</h5>
-            <dl>
-              <dt>Product</dt><dd>Insulated bottle</dd>
-              <dt>Material</dt><dd>Stainless steel</dd>
-              <dt>Capacity</dt><dd>750 ml</dd>
-              <dt>Quantity</dt><dd>5,000 units</dd>
-              <dt>Finish</dt><dd>Matte black</dd>
-              <dt>Compliance</dt><dd>Food-contact safe</dd>
-              <dt>Geography</dt><dd>United States preferred</dd>
-            </dl>
-            <div class="miss">
-              <span>Vacuum insulated?</span><span>Target unit cost?</span><span>Decoration method?</span>
-            </div>
-          </div>
+        <div class="dg">
+        <svg viewBox="0 0 595 215" role="img" aria-label="Monthly recurring revenue before the engagement was twenty-five thousand dollars; after, over one hundred thousand dollars — a fourfold increase.">
+          <text class="d-lbl" x="0" y="12">Monthly recurring revenue &#183; Before</text>
+          <rect class="u-off" x="0" y="24" width="149" height="56"/>
+          <text class="d-ttl" x="163" y="62" style="font-size:30px">$25K</text>
+
+          <text class="d-lbl" x="0" y="130">Monthly recurring revenue &#183; After</text>
+          <text class="d-lbl d-acc" x="595" y="130" text-anchor="end">4&#215;</text>
+          <rect class="u-on" x="0" y="142" width="595" height="56"/>
+          <text class="d-ttl d-on" x="22" y="180" style="font-size:30px">$100K+</text>
+        </svg>
         </div>
-        <figcaption>One sentence in, a manufacturable brief out — with the three things still missing named rather than guessed. Every field stays editable, and nothing unknown is invented.</figcaption>
+        <figcaption>Monthly recurring revenue at the start of the engagement and after the rebuild. Bars are drawn to scale against each other.</figcaption>
       </figure>
 
       <div class="stats">
-        <div class="stat"><b>137</b><h4>Business rules reconstructed · 39 were documented</h4></div>
-        <div class="stat"><b>3.4 days → 6.2 hrs</b><h4>Time to a qualified supplier</h4></div>
-        <div class="stat"><b>38% → 57%</b><h4>Factory response rate</h4></div>
+        <div class="stat"><b>$25K &#8594; $100K+</b><h4>Monthly recurring revenue</h4></div>
+        <div class="stat"><b>2&#8211;3 weeks &#8594; 1 day</b><h4>Feature cycle time</h4></div>
+        <div class="stat"><b>4&#8211;5&#215;</b><h4>Traffic, with bounce rate down</h4></div>
       </div>
     </div>
 
-    <section class="sect" id="overview">
-      <div class="sect-type"><h4>Overview</h4>
-        <h2>A thirteen-year-old marketplace connecting brands with US manufacturers.</h2></div>
-      <p>Both sides of the market were real and still trading. The product underneath them had accumulated a decade of patches, exceptions, one-off fixes and manual workarounds — and somewhere in that decade the company had stopped being able to change it safely.</p>
-      <p>I came in fractionally, as product owner. What I owned: reconstructing how the product actually worked, deciding what to build next, and getting it built against a marketplace that could not be switched off.</p>
-    </section>
-
-    <section class="sect" id="stuck">
-      <div class="sect-type"><h4>The Business Was Stuck</h4>
-        <h2>It didn't need more features. It had lost the ability to change itself.</h2></div>
-      <p>Small product changes required disproportionate engineering involvement, because nobody could predict what else they touched. Operations absorbed the gaps by hand. New buyers weren't reaching supplier conversations; factories complained that the enquiries they did get were too vague to answer.</p>
-      <p class="take">Every symptom looked like a feature request. None of them were.</p>
-    </section>
-
-    <section class="sect" id="forensics">
-      <div class="sect-type"><h4>Product Forensics</h4>
-        <h2>Before I could define the next product, I had to reconstruct the current one.</h2></div>
-      <p>I treated the first month as archaeology rather than design: stakeholder and customer interviews, support conversations read in bulk, operations shadowed through onboarding and verification, the highest-volume journeys traced with engineering, and the manual processes that lived entirely outside the product written down for the first time.</p>
-
-      <figure>
-        <div class="dg">
-        <svg class="units" viewBox="0 0 595 187" role="img" aria-label="One hundred and thirty-seven business rules reconstructed; only thirty-nine had previously been written down">
-          <rect class="u-on" x="0" y="0" width="20" height="20"/><rect class="u-on" x="25" y="0" width="20" height="20"/><rect class="u-on" x="50" y="0" width="20" height="20"/><rect class="u-on" x="75" y="0" width="20" height="20"/><rect class="u-on" x="100" y="0" width="20" height="20"/><rect class="u-on" x="125" y="0" width="20" height="20"/><rect class="u-on" x="150" y="0" width="20" height="20"/><rect class="u-on" x="175" y="0" width="20" height="20"/><rect class="u-on" x="200" y="0" width="20" height="20"/><rect class="u-on" x="225" y="0" width="20" height="20"/><rect class="u-on" x="250" y="0" width="20" height="20"/><rect class="u-on" x="275" y="0" width="20" height="20"/><rect class="u-on" x="300" y="0" width="20" height="20"/><rect class="u-on" x="325" y="0" width="20" height="20"/><rect class="u-on" x="350" y="0" width="20" height="20"/><rect class="u-on" x="375" y="0" width="20" height="20"/><rect class="u-on" x="400" y="0" width="20" height="20"/><rect class="u-on" x="425" y="0" width="20" height="20"/><rect class="u-on" x="450" y="0" width="20" height="20"/><rect class="u-on" x="475" y="0" width="20" height="20"/><rect class="u-on" x="500" y="0" width="20" height="20"/><rect class="u-on" x="525" y="0" width="20" height="20"/><rect class="u-on" x="550" y="0" width="20" height="20"/><rect class="u-on" x="575" y="0" width="20" height="20"/><rect class="u-on" x="0" y="25" width="20" height="20"/><rect class="u-on" x="25" y="25" width="20" height="20"/><rect class="u-on" x="50" y="25" width="20" height="20"/><rect class="u-on" x="75" y="25" width="20" height="20"/><rect class="u-on" x="100" y="25" width="20" height="20"/><rect class="u-on" x="125" y="25" width="20" height="20"/><rect class="u-on" x="150" y="25" width="20" height="20"/><rect class="u-on" x="175" y="25" width="20" height="20"/><rect class="u-on" x="200" y="25" width="20" height="20"/><rect class="u-on" x="225" y="25" width="20" height="20"/><rect class="u-on" x="250" y="25" width="20" height="20"/><rect class="u-on" x="275" y="25" width="20" height="20"/><rect class="u-on" x="300" y="25" width="20" height="20"/><rect class="u-on" x="325" y="25" width="20" height="20"/><rect class="u-on" x="350" y="25" width="20" height="20"/><rect class="u-off" x="375" y="25" width="20" height="20"/><rect class="u-off" x="400" y="25" width="20" height="20"/><rect class="u-off" x="425" y="25" width="20" height="20"/><rect class="u-off" x="450" y="25" width="20" height="20"/><rect class="u-off" x="475" y="25" width="20" height="20"/><rect class="u-off" x="500" y="25" width="20" height="20"/><rect class="u-off" x="525" y="25" width="20" height="20"/><rect class="u-off" x="550" y="25" width="20" height="20"/><rect class="u-off" x="575" y="25" width="20" height="20"/><rect class="u-off" x="0" y="50" width="20" height="20"/><rect class="u-off" x="25" y="50" width="20" height="20"/><rect class="u-off" x="50" y="50" width="20" height="20"/><rect class="u-off" x="75" y="50" width="20" height="20"/><rect class="u-off" x="100" y="50" width="20" height="20"/><rect class="u-off" x="125" y="50" width="20" height="20"/><rect class="u-off" x="150" y="50" width="20" height="20"/><rect class="u-off" x="175" y="50" width="20" height="20"/><rect class="u-off" x="200" y="50" width="20" height="20"/><rect class="u-off" x="225" y="50" width="20" height="20"/><rect class="u-off" x="250" y="50" width="20" height="20"/><rect class="u-off" x="275" y="50" width="20" height="20"/><rect class="u-off" x="300" y="50" width="20" height="20"/><rect class="u-off" x="325" y="50" width="20" height="20"/><rect class="u-off" x="350" y="50" width="20" height="20"/><rect class="u-off" x="375" y="50" width="20" height="20"/><rect class="u-off" x="400" y="50" width="20" height="20"/><rect class="u-off" x="425" y="50" width="20" height="20"/><rect class="u-off" x="450" y="50" width="20" height="20"/><rect class="u-off" x="475" y="50" width="20" height="20"/><rect class="u-off" x="500" y="50" width="20" height="20"/><rect class="u-off" x="525" y="50" width="20" height="20"/><rect class="u-off" x="550" y="50" width="20" height="20"/><rect class="u-off" x="575" y="50" width="20" height="20"/><rect class="u-off" x="0" y="75" width="20" height="20"/><rect class="u-off" x="25" y="75" width="20" height="20"/><rect class="u-off" x="50" y="75" width="20" height="20"/><rect class="u-off" x="75" y="75" width="20" height="20"/><rect class="u-off" x="100" y="75" width="20" height="20"/><rect class="u-off" x="125" y="75" width="20" height="20"/><rect class="u-off" x="150" y="75" width="20" height="20"/><rect class="u-off" x="175" y="75" width="20" height="20"/><rect class="u-off" x="200" y="75" width="20" height="20"/><rect class="u-off" x="225" y="75" width="20" height="20"/><rect class="u-off" x="250" y="75" width="20" height="20"/><rect class="u-off" x="275" y="75" width="20" height="20"/><rect class="u-off" x="300" y="75" width="20" height="20"/><rect class="u-off" x="325" y="75" width="20" height="20"/><rect class="u-off" x="350" y="75" width="20" height="20"/><rect class="u-off" x="375" y="75" width="20" height="20"/><rect class="u-off" x="400" y="75" width="20" height="20"/><rect class="u-off" x="425" y="75" width="20" height="20"/><rect class="u-off" x="450" y="75" width="20" height="20"/><rect class="u-off" x="475" y="75" width="20" height="20"/><rect class="u-off" x="500" y="75" width="20" height="20"/><rect class="u-off" x="525" y="75" width="20" height="20"/><rect class="u-off" x="550" y="75" width="20" height="20"/><rect class="u-off" x="575" y="75" width="20" height="20"/><rect class="u-off" x="0" y="100" width="20" height="20"/><rect class="u-off" x="25" y="100" width="20" height="20"/><rect class="u-off" x="50" y="100" width="20" height="20"/><rect class="u-off" x="75" y="100" width="20" height="20"/><rect class="u-off" x="100" y="100" width="20" height="20"/><rect class="u-off" x="125" y="100" width="20" height="20"/><rect class="u-off" x="150" y="100" width="20" height="20"/><rect class="u-off" x="175" y="100" width="20" height="20"/><rect class="u-off" x="200" y="100" width="20" height="20"/><rect class="u-off" x="225" y="100" width="20" height="20"/><rect class="u-off" x="250" y="100" width="20" height="20"/><rect class="u-off" x="275" y="100" width="20" height="20"/><rect class="u-off" x="300" y="100" width="20" height="20"/><rect class="u-off" x="325" y="100" width="20" height="20"/><rect class="u-off" x="350" y="100" width="20" height="20"/><rect class="u-off" x="375" y="100" width="20" height="20"/><rect class="u-off" x="400" y="100" width="20" height="20"/><rect class="u-off" x="425" y="100" width="20" height="20"/><rect class="u-off" x="450" y="100" width="20" height="20"/><rect class="u-off" x="475" y="100" width="20" height="20"/><rect class="u-off" x="500" y="100" width="20" height="20"/><rect class="u-off" x="525" y="100" width="20" height="20"/><rect class="u-off" x="550" y="100" width="20" height="20"/><rect class="u-off" x="575" y="100" width="20" height="20"/><rect class="u-off" x="0" y="125" width="20" height="20"/><rect class="u-off" x="25" y="125" width="20" height="20"/><rect class="u-off" x="50" y="125" width="20" height="20"/><rect class="u-off" x="75" y="125" width="20" height="20"/><rect class="u-off" x="100" y="125" width="20" height="20"/><rect class="u-off" x="125" y="125" width="20" height="20"/><rect class="u-off" x="150" y="125" width="20" height="20"/><rect class="u-off" x="175" y="125" width="20" height="20"/><rect class="u-off" x="200" y="125" width="20" height="20"/><rect class="u-off" x="225" y="125" width="20" height="20"/><rect class="u-off" x="250" y="125" width="20" height="20"/><rect class="u-off" x="275" y="125" width="20" height="20"/><rect class="u-off" x="300" y="125" width="20" height="20"/><rect class="u-off" x="325" y="125" width="20" height="20"/><rect class="u-off" x="350" y="125" width="20" height="20"/><rect class="u-off" x="375" y="125" width="20" height="20"/><rect class="u-off" x="400" y="125" width="20" height="20"/>
-          <text x="0" y="175">39 DOCUMENTED</text>
-          <text x="595" y="175" text-anchor="end">137 RECONSTRUCTED</text>
-        </svg>
-        </div>
-        <figcaption>Every square is a rule the marketplace actually ran on. The filled ones were the only rules anyone had written down.</figcaption>
-      </figure>
-
-      <div class="sub"><h3>What was hiding in there</h3></div>
-      <ul class="plain">
-        <li>Factory category labels looked like metadata. They also controlled search eligibility.</li>
-        <li>Certain subscriptions silently changed how suppliers were ranked.</li>
-        <li>Deleted supplier records couldn't actually disappear — historical buyer conversations depended on them.</li>
-        <li>Some onboarding questions existed to serve internal process, not the customer.</li>
-        <li>Changing one part of onboarding could break lead handling with no visible link between them.</li>
-      </ul>
-      <p class="take">The output was the first shared source of truth: users, jobs, journeys, rules, permissions, data, monetisation, exceptions.</p>
-    </section>
-
     <section class="sect" id="problem">
+      <div class="sect-type"><h4>The Problem</h4>
+        <h2>A ten-year-old marketplace losing revenue every year, and nobody could say why.</h2></div>
+      <p>MakersRow launched in 2014 and grew to roughly $9M ARR. From 2018 the line turned and never turned back &#8212; decline year on year, down to $25K MRR by the time I was brought in as product owner in 2022.</p>
+      <p>The company knew revenue was falling. That was the whole of what they knew. There was no account of <em>why</em>, because no single person or department held enough of the picture to build one.</p>
+      <p class="take">They didn&#8217;t have a revenue problem they could see. They had a revenue problem nobody could describe.</p>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 240" role="img" aria-label="Revenue rose from launch in 2014 to a peak around 2018, then declined every year until 2022.">
+<path class="d-fill" d="M60,192 C160,180 230,70 300,52 C400,80 480,150 560,172 C620,182 660,187 700,190 L700,200 L60,200 Z"/>
+<path class="d-line-a" d="M60,192 C160,180 230,70 300,52 C400,80 480,150 560,172 C620,182 660,187 700,190"/>
+<line class="d-line" x1="40" y1="200" x2="740" y2="200"/>
+<line class="d-line" x1="300" y1="60" x2="300" y2="200" stroke-dasharray="3 4"/>
+<circle class="d-node-a" cx="300" cy="52" r="4.5"/>
+<circle class="d-node-a" cx="700" cy="190" r="4.5"/>
+<text class="d-lbl" x="312" y="46">2018 &#183; peak &#8776; $9M ARR</text>
+<text class="d-lbl" x="60" y="220">2014 &#183; launch</text>
+<text class="d-lbl d-acc" x="740" y="220" text-anchor="end">2022 &#183; $25K MRR &#183; I join</text>
+</svg>
+        </div>
+        <figcaption>Revenue by year, from launch to the point I was brought in. The shape was known inside the company. The reason for it was not.</figcaption>
+      </figure>
+
+    </section>
+
+    <section class="sect" id="discovery">
+      <div class="sect-type"><h4>Discovery</h4>
+        <h2>Four departments, four partial truths, no shared source.</h2></div>
+      <p>Engineering, sales, marketing and operations each held a different section of the knowledge base. Marketing owned the pages, Google Analytics and Search Console. Sales was running independently &#8212; booking demos without a clear picture of the product, and promising features that did not exist. Both went to engineering with feature lists, and because of accumulated tech debt, every change took months.</p>
+      <p>My first job was not design. It was consolidation: pull what each department knew into one knowledge base, then give the CEO a single account of the business.</p>
+      <div class="sub"><h3>What that account said</h3></div>
+      <ul class="plain">
+        <li>Traffic falling steadily and bounce rate climbing, visible in Analytics and Search Console.</li>
+        <li>Churn high and still rising.</li>
+        <li>Several major SEO updates absorbed without response &#8212; each one a step down that was never recovered.</li>
+        <li>Stripe showing sustained cancellation pressure and complaint volume.</li>
+        <li>Reputation damage across Reddit, Quora and Twitter &#8212; the exact places a buyer researches before choosing a manufacturing partner.</li>
+        <li>A 2014 interface, essentially untouched.</li>
+      </ul>
+      <p class="take">Every symptom pointed at marketing. The cause was structural.</p>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 250" role="img" aria-label="Four departments each held part of the knowledge base; consolidation produced one shared source."><rect class="d-node" x="0" y="8" width="212" height="46"/><text class="d-sm" x="16" y="29" style="font-size:13px">Engineering</text><text class="d-lbl" x="16" y="45" style="font-size:10.5px">What the code did</text><path class="d-line-a" d="M212,31 C340,31 400,125 508,125"/><rect class="d-node" x="0" y="68" width="212" height="46"/><text class="d-sm" x="16" y="89" style="font-size:13px">Sales</text><text class="d-lbl" x="16" y="105" style="font-size:10.5px">What was promised</text><path class="d-line-a" d="M212,91 C340,91 400,125 508,125"/><rect class="d-node" x="0" y="128" width="212" height="46"/><text class="d-sm" x="16" y="149" style="font-size:13px">Marketing</text><text class="d-lbl" x="16" y="165" style="font-size:10.5px">Traffic and search</text><path class="d-line-a" d="M212,151 C340,151 400,125 508,125"/><rect class="d-node" x="0" y="188" width="212" height="46"/><text class="d-sm" x="16" y="209" style="font-size:13px">Operations</text><text class="d-lbl" x="16" y="225" style="font-size:10.5px">What broke daily</text><path class="d-line-a" d="M212,211 C340,211 400,125 508,125"/><rect class="d-node-a" x="508" y="92" width="252" height="66"/><text class="d-ttl d-on" x="634" y="130" text-anchor="middle">One knowledge base</text></svg>
+        </div>
+        <figcaption>Each department held a real part of the picture and none held enough of it to act. Consolidation came before any roadmap.</figcaption>
+      </figure>
+
+    </section>
+
+    <section class="sect" id="realproblem">
       <div class="sect-type"><h4>The Real Problem</h4>
-        <h2>The assumption was that buyers needed better search. They didn't.</h2></div>
-      <p>Many buyers didn't know what to search for. A founder arrives thinking <em>“I need someone to manufacture a premium stainless-steel bottle.”</em> A manufacturer needs material, capacity, tolerances, quantity, process, finish, certifications, packaging, target price, lead time and geography before they can even quote.</p>
-      <p>So buyers submitted incomplete briefs, factories deprioritised vague enquiries, and buyers read the silence as a bad marketplace. The directory wasn't failing. It was answering a question buyers couldn't yet ask.</p>
-
+        <h2>The marketplace was charging the side that had no reason to stay.</h2></div>
+      <p>MakersRow is two-sided. Buyers are brands who need something made &#8212; apparel, carpentry, hardware. Sellers are factories who want an additional channel. A marketplace only works when both sides are liquid.</p>
+      <p>Project volume was falling. Fewer projects meant factories extracted less value, so factories left, which made the platform worse for brands. Then in 2021 the owner raised prices across the board &#8212; on both sides at once.</p>
+      <p>The brand side was structurally broken. A brand posts a project, gets connected to a factory, and is done. There is no reason to keep paying $50&#8211;60 a month after that. The pricing model manufactured its own churn, and the price point suppressed the exact activity &#8212; posted projects &#8212; that the factory side depended on.</p>
+      <p class="pull">We were charging the demand side for the privilege of creating our supply side&#8217;s value.</p>
       <figure>
         <div class="dg">
-        <svg viewBox="0 0 760 250" role="img" aria-label="The old journey ran sign up, onboarding, directory, filters, profile, message. The new one runs describe, structure, review, match, conversation.">
-          <text class="d-lbl" x="0" y="14">DIRECTORY-FIRST — WHAT EXISTED</text>
-          <g>
-            <rect class="d-node" x="0" y="28" width="112" height="40"/><text class="d-sm" x="56" y="53" text-anchor="middle">Sign up</text>
-            <rect class="d-node" x="130" y="28" width="126" height="40"/><text class="d-sm" x="193" y="53" text-anchor="middle">Long onboarding</text>
-            <rect class="d-node" x="274" y="28" width="112" height="40"/><text class="d-sm" x="330" y="53" text-anchor="middle">Directory</text>
-            <rect class="d-node" x="404" y="28" width="100" height="40"/><text class="d-sm" x="454" y="53" text-anchor="middle">Filters</text>
-            <rect class="d-node" x="522" y="28" width="112" height="40"/><text class="d-sm" x="578" y="53" text-anchor="middle">Profile</text>
-            <rect class="d-node" x="652" y="28" width="100" height="40"/><text class="d-sm" x="702" y="53" text-anchor="middle">Message</text>
-          </g>
-          <g class="d-line">
-            <line x1="112" y1="48" x2="130" y2="48"/><line x1="256" y1="48" x2="274" y2="48"/>
-            <line x1="386" y1="48" x2="404" y2="48"/><line x1="504" y1="48" x2="522" y2="48"/>
-            <line x1="634" y1="48" x2="652" y2="48"/>
-          </g>
-          <text class="d-lbl" x="0" y="96" style="fill:var(--neg)">THE BUYER HAD TO ALREADY KNOW THE VOCABULARY</text>
-          <line class="d-line" x1="0" y1="118" x2="760" y2="118"/>
-          <text class="d-lbl" x="0" y="150">PROJECT-FIRST — WHAT REPLACED IT</text>
-          <g>
-            <rect class="d-node-a" x="0" y="164" width="150" height="44"/><text class="d-sm" x="75" y="191" text-anchor="middle">Describe it</text>
-            <rect class="d-node" x="168" y="164" width="150" height="44"/><text class="d-sm" x="243" y="191" text-anchor="middle">AI structures it</text>
-            <rect class="d-node" x="336" y="164" width="140" height="44"/><text class="d-sm" x="406" y="191" text-anchor="middle">Buyer edits</text>
-            <rect class="d-node" x="494" y="164" width="120" height="44"/><text class="d-sm" x="554" y="191" text-anchor="middle">Match</text>
-            <rect class="d-node-a" x="632" y="164" width="120" height="44"/><text class="d-sm" x="692" y="191" text-anchor="middle">Conversation</text>
-          </g>
-          <g class="d-line">
-            <line x1="150" y1="186" x2="168" y2="186"/><line x1="318" y1="186" x2="336" y2="186"/>
-            <line x1="476" y1="186" x2="494" y2="186"/><line x1="614" y1="186" x2="632" y2="186"/>
-          </g>
-          <text class="d-lbl" x="0" y="236" style="fill:var(--pos)">THE BUYER ONLY HAD TO KNOW WHAT THEY WERE MAKING</text>
-        </svg>
+        <svg viewBox="0 0 760 210" role="img" aria-label="A self-reinforcing loop: charging brands drove churn, which cut project volume, which drove factories away."><rect class="d-node" x="0" y="30" width="132" height="72"/><text class="d-sm" x="66" y="63.5" text-anchor="middle" style="font-size:12px">Brands charged</text><text class="d-sm" x="66" y="77.5" text-anchor="middle" style="font-size:12px">$50&#8211;60 a month</text><line class="d-line" x1="132" y1="66" x2="156" y2="66"/><rect class="d-node" x="156" y="30" width="132" height="72"/><text class="d-sm" x="222" y="63.5" text-anchor="middle" style="font-size:12px">Brands leave</text><text class="d-sm" x="222" y="77.5" text-anchor="middle" style="font-size:12px">after one project</text><line class="d-line" x1="288" y1="66" x2="312" y2="66"/><rect class="d-node" x="312" y="30" width="132" height="72"/><text class="d-sm" x="378" y="63.5" text-anchor="middle" style="font-size:12px">Fewer projects</text><text class="d-sm" x="378" y="77.5" text-anchor="middle" style="font-size:12px">posted</text><line class="d-line" x1="444" y1="66" x2="468" y2="66"/><rect class="d-node" x="468" y="30" width="132" height="72"/><text class="d-sm" x="534" y="63.5" text-anchor="middle" style="font-size:12px">Factories extract</text><text class="d-sm" x="534" y="77.5" text-anchor="middle" style="font-size:12px">less value</text><line class="d-line" x1="600" y1="66" x2="624" y2="66"/><rect class="d-node" x="624" y="30" width="132" height="72"/><text class="d-sm" x="690" y="63.5" text-anchor="middle" style="font-size:12px">Factories</text><text class="d-sm" x="690" y="77.5" text-anchor="middle" style="font-size:12px">leave</text><path class="d-line-a" d="M690,102 L690,164 L66,164 L66,120"/><polygon class="d-acc" points="66,106 60.5,117 71.5,117"/><text class="d-lbl d-acc" x="378" y="186" text-anchor="middle">and round again, every month</text></svg>
         </div>
-        <figcaption>The same two people at each end. What changed is who does the translation between them.</figcaption>
+        <figcaption>Nothing in this loop is a bug. Every step follows correctly from the one before it, which is why it ran for four years.</figcaption>
       </figure>
-
-      <p class="pull">The marketplace was built around searching a directory. The actual job was turning an idea into a manufacturable project.</p>
-    </section>
-
-    <section class="sect" id="stakeholders">
-      <div class="sect-type"><h4>Competing Stakeholders</h4>
-        <h2>Five groups, five different products.</h2></div>
-
-      <figure>
-        <div class="dg">
-        <svg viewBox="0 0 760 330" role="img" aria-label="Founder, sales, operations, engineering and customers each hold a partial account; all five route through the product owner into one shared product model">
-          <g>
-            <rect class="d-node" x="0" y="20" width="196" height="46"/>
-            <text class="d-lbl" x="98" y="40" text-anchor="middle">FOUNDER</text>
-            <text class="d-sm" x="98" y="58" text-anchor="middle">why the rules exist</text>
-            <rect class="d-node" x="0" y="80" width="196" height="46"/>
-            <text class="d-lbl" x="98" y="100" text-anchor="middle">SALES</text>
-            <text class="d-sm" x="98" y="118" text-anchor="middle">what was promised</text>
-            <rect class="d-node" x="0" y="140" width="196" height="46"/>
-            <text class="d-lbl" x="98" y="160" text-anchor="middle">OPERATIONS</text>
-            <text class="d-sm" x="98" y="178" text-anchor="middle">how it actually ran</text>
-            <rect class="d-node" x="0" y="200" width="196" height="46"/>
-            <text class="d-lbl" x="98" y="220" text-anchor="middle">ENGINEERING</text>
-            <text class="d-sm" x="98" y="238" text-anchor="middle">what the software does</text>
-            <rect class="d-node" x="0" y="260" width="196" height="46"/>
-            <text class="d-lbl" x="98" y="280" text-anchor="middle">CUSTOMERS</text>
-            <text class="d-sm" x="98" y="298" text-anchor="middle">where it fails them</text>
-          </g>
-          <g class="d-line">
-            <line x1="196" y1="43" x2="250" y2="43"/><line x1="196" y1="103" x2="250" y2="103"/>
-            <line x1="196" y1="163" x2="250" y2="163"/><line x1="196" y1="223" x2="250" y2="223"/>
-            <line x1="196" y1="283" x2="250" y2="283"/>
-            <line x1="250" y1="43" x2="250" y2="283"/>
-            <line x1="250" y1="163" x2="300" y2="163"/>
-          </g>
-          <rect class="d-node-a" x="300" y="132" width="184" height="62"/>
-          <text class="d-lbl d-on" x="392" y="158" text-anchor="middle">PRODUCT OWNER</text>
-          <text class="d-sm d-on" x="392" y="178" text-anchor="middle">me</text>
-          <line class="d-line-a" x1="484" y1="163" x2="540" y2="163"/>
-          <rect class="d-panel" x="540" y="126" width="220" height="74"/>
-          <text class="d-lbl" x="650" y="154" text-anchor="middle">ONE SHARED</text>
-          <text class="d-lbl" x="650" y="172" text-anchor="middle">PRODUCT MODEL</text>
-          <text class="d-sm" x="650" y="192" text-anchor="middle">built against, not argued about</text>
-        </svg>
-        </div>
-        <figcaption>Each group held a true but partial account. My job was to turn five legitimate positions into one model the team could actually ship against.</figcaption>
-      </figure>
-
-      <div class="cols">
-        <div><h4>Founder</h4><p>An autonomous AI agent that finds manufacturers for customers.</p></div>
-        <div><h4>Sales</h4><p>Enterprise accounts, team permissions, features that close larger deals.</p></div>
-        <div><h4>Operations</h4><p>Fewer low-quality enquiries and less manual lead cleanup.</p></div>
-      </div>
-      <div class="cols">
-        <div><h4>Engineering</h4><p>A full platform rewrite before anything new is added.</p></div>
-        <div><h4>Customers</h4><p>Relevant suppliers, and an actual reply.</p></div>
-        <div><h4>My job</h4><p>Turn five legitimate positions into one thing the team could ship.</p></div>
-      </div>
-    </section>
-
-    <section class="sect" id="decision">
-      <div class="sect-type"><h4>The Decision</h4>
-        <h2>One vertical slice, not four programmes.</h2></div>
-      <p>Every request was scored against customer impact, revenue, marketplace liquidity, effort, technical risk, operational burden, reversibility and strategic leverage. Four of the five asks lost — and the reasons matter more than the outcome.</p>
-      <div class="cols">
-        <div><h4>Not an autonomous agent</h4><p>Too broad to control, and it would have been reasoning over supplier data we already knew was unreliable.</p></div>
-        <div><h4>Not more filters</h4><p>Filters assume the buyer knows the vocabulary. That assumption was the problem.</p></div>
-        <div><h4>Not a rewrite first</h4><p>Twelve months of invisible work the business could not afford to wait through.</p></div>
-      </div>
-      <p class="pull">Brief → match → conversation. The marketplace's core transaction, and nothing else.</p>
-    </section>
-
-    <section class="sect" id="ai">
-      <div class="sect-type"><h4>Where AI Belonged</h4>
-        <h2>The important decision was what AI wasn't allowed to touch.</h2></div>
-      <p>Interpretation is a good use of a probabilistic system: reading a sentence, extracting a requirement, noticing an omission. Entitlement is not. Pricing, permissions, compliance and eligibility have to be predictable and auditable, and a model that is right most of the time is the wrong tool for a question that has to be right every time.</p>
-
-      <figure>
-        <div class="split">
-          <div>
-            <h4>AI decided</h4>
-            <ul>
-              <li>Reading a free-form description</li>
-              <li>Extracting manufacturing requirements</li>
-              <li>Naming what is missing</li>
-              <li>Asking only the relevant question</li>
-              <li>Enriching supplier profiles from unstructured text</li>
-              <li>Comparing a brief to a capability</li>
-              <li>Explaining a recommendation</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Software decided</h4>
-            <ul>
-              <li>Permissions</li>
-              <li>Subscription entitlements</li>
-              <li>Pricing and billing</li>
-              <li>Supplier eligibility</li>
-              <li>Compliance status</li>
-              <li>Messaging access</li>
-              <li>Verification</li>
-            </ul>
-          </div>
-        </div>
-        <figcaption>Interpretation and recommendation on the left. Anything that moves money, grants access or has to be auditable on the right — and nothing crosses.</figcaption>
-      </figure>
-
-      <p class="take">AI for interpretation and recommendation. Deterministic software for anything that moves money or grants access.</p>
-
-      <div class="sub"><h3>How we knew it was good enough to ship</h3>
-        <p>Plausible text is not a passing grade. The brief extractor had to clear product-level thresholds before it was allowed in front of a buyer.</p></div>
-
-      <div class="evalbox">
-        <h4>Evaluation — 200 historical sourcing briefs</h4>
-        <div class="evalgrid">
-          <div><b>≥ 95%</b><span>Critical-field extraction accuracy</span></div>
-          <div><b>Never inferred</b><span>Unknown values stay unknown</span></div>
-          <div><b>Confirm, don't submit</b><span>Low-confidence fields ask first</span></div>
-          <div><b>Always available</b><span>Manual brief creation as fallback</span></div>
-          <div><b>p95 &lt; 4s</b><span>Latency</span></div>
-          <div><b>&lt; $0.10</b><span>Cost per completed brief</span></div>
-        </div>
-        <p class="take">Match quality was reviewed by a human against historical supplier outcomes, not against how good the output sounded.</p>
-      </div>
-
-      <div class="sub"><h3>The first version of the interaction failed</h3>
-        <p>The logic was sound and the experience was not. Asking clarification questions in sequence meant some buyers faced ten or twelve of them before seeing anything useful. Completion fell.</p></div>
-
-      <figure>
-        <div class="dg">
-        <svg viewBox="0 0 760 250" role="img" aria-label="Version one asked a chain of clarification questions before producing a brief. Version two produced the best available brief immediately and highlighted only three missing fields.">
-          <text class="d-lbl" x="0" y="14" style="fill:var(--neg)">V1 — ASK FIRST</text>
-          <rect class="d-node" x="0" y="28" width="132" height="42"/><text class="d-sm" x="66" y="53" text-anchor="middle">Describe project</text>
-          <g class="d-line">
-            <line x1="132" y1="49" x2="152" y2="49"/><line x1="256" y1="49" x2="276" y2="49"/>
-            <line x1="380" y1="49" x2="400" y2="49"/><line x1="504" y1="49" x2="524" y2="49"/>
-            <line x1="628" y1="49" x2="648" y2="49"/>
-          </g>
-          <rect class="d-node" x="152" y="28" width="104" height="42"/><text class="d-sm" x="204" y="53" text-anchor="middle">Question 1</text>
-          <rect class="d-node" x="276" y="28" width="104" height="42"/><text class="d-sm" x="328" y="53" text-anchor="middle">Question 2</text>
-          <rect class="d-node" x="400" y="28" width="104" height="42"/><text class="d-sm" x="452" y="53" text-anchor="middle">Question 3</text>
-          <rect class="d-node" x="524" y="28" width="104" height="42"/><text class="d-sm" x="576" y="53" text-anchor="middle">…up to 12</text>
-          <rect class="d-node" x="648" y="28" width="112" height="42"/><text class="d-sm" x="704" y="53" text-anchor="middle">Brief</text>
-          <text class="d-lbl" x="0" y="96" style="fill:var(--neg)">NOTHING USEFUL UNTIL THE END. COMPLETION FELL.</text>
-          <line class="d-line" x1="0" y1="118" x2="760" y2="118"/>
-          <text class="d-lbl" x="0" y="150" style="fill:var(--pos)">V2 — ANSWER FIRST</text>
-          <rect class="d-node" x="0" y="164" width="150" height="46"/><text class="d-sm" x="75" y="192" text-anchor="middle">Describe project</text>
-          <line class="d-line-a" x1="150" y1="187" x2="176" y2="187"/>
-          <rect class="d-node-a" x="176" y="164" width="230" height="46"/>
-          <text class="d-sm d-on" x="291" y="192" text-anchor="middle">Best-available brief, immediately</text>
-          <line class="d-line" x1="406" y1="187" x2="432" y2="187"/>
-          <rect class="d-node" x="432" y="164" width="180" height="46"/><text class="d-sm" x="522" y="192" text-anchor="middle">3 missing fields shown</text>
-          <line class="d-line" x1="612" y1="187" x2="638" y2="187"/>
-          <rect class="d-node" x="638" y="164" width="122" height="46"/><text class="d-sm" x="699" y="192" text-anchor="middle">Edit &amp; confirm</text>
-          <text class="d-lbl" x="0" y="236" style="fill:var(--pos)">VISIBLE PROGRESS BEFORE ANY EFFORT IS ASKED FOR</text>
-        </svg>
-        </div>
-        <figcaption>Same information, opposite order. Version two gives the buyer something to react to before it asks them for anything.</figcaption>
-      </figure>
-
-      <p class="pull">AI should reduce work before it asks the user to do more work.</p>
 
     </section>
 
-    <section class="sect" id="matching">
-      <div class="sect-type"><h4>How Matching Worked</h4>
-        <h2>Four stages, and only one of them is a model.</h2></div>
-      <p>Letting a language model choose which factories to recommend would have been simpler to build and impossible to defend. Instead, eligibility is decided by rules, relevance is decided by comparison, and every recommendation arrives with its reason attached.</p>
-
-      <figure>
-        <div class="dg">
-        <svg viewBox="0 0 760 300" role="img" aria-label="Matching in four stages: hard filters remove ineligible suppliers, semantic comparison, ranking, then an explanation attached to each recommendation">
-          <g>
-            <rect class="d-node-a" x="70" y="22" width="620" height="44"/>
-            <text class="d-lbl" x="380" y="42" text-anchor="middle">1 · HARD FILTERS — DETERMINISTIC</text>
-            <text class="d-sm" x="380" y="60" text-anchor="middle">geography · MOQ · material · certifications · account status</text>
-            <rect class="d-node" x="140" y="84" width="480" height="44"/>
-            <text class="d-lbl" x="380" y="104" text-anchor="middle">2 · SEMANTIC MATCH — AI</text>
-            <text class="d-sm" x="380" y="122" text-anchor="middle">brief against capability, and against past work</text>
-            <rect class="d-node" x="210" y="146" width="340" height="44"/>
-            <text class="d-lbl" x="380" y="166" text-anchor="middle">3 · RANK</text>
-            <text class="d-sm" x="380" y="184" text-anchor="middle">fit · response behaviour · capacity</text>
-            <rect class="d-node" x="280" y="208" width="200" height="44"/>
-            <text class="d-lbl" x="380" y="228" text-anchor="middle">4 · EXPLAIN</text>
-            <text class="d-sm" x="380" y="246" text-anchor="middle">one reason per result</text>
-          </g>
-          <g class="d-line">
-            <line x1="380" y1="66" x2="380" y2="84"/><line x1="380" y1="128" x2="380" y2="146"/>
-            <line x1="380" y1="190" x2="380" y2="208"/>
-          </g>
-          <text class="d-lbl" x="380" y="286" text-anchor="middle">ELIMINATION IS DETERMINISTIC. ONLY THE ORDERING IS LEARNED.</text>
-        </svg>
-        </div>
-        <figcaption>The model never decides who is eligible — only who is most relevant among those who already are. That boundary is the whole design.</figcaption>
-      </figure>
-
+    <section class="sect" id="changed">
+      <div class="sect-type"><h4>What I Changed</h4>
+        <h2>Fix the economics first. Then the product.</h2></div>
       <div class="sub">
-        <h3>The supply side had to be fixed first</h3>
-        <p>Thousands of supplier profiles said things like <em>“we provide high-quality manufacturing services.”</em> That is not an input a matching system can use. An enrichment pipeline turned years of unstructured material — profile text, documents, websites, past projects, operations notes — into structured capability data, with a confidence score, and anything low-confidence routed to a human rather than published.</p>
+        <h3>Pricing</h3>
+        <p>I argued for minimal-to-no pricing for brands, reserving paid plans for genuinely exclusive options. Removing a revenue line in order to grow revenue was the hardest call to get agreed.</p>
       </div>
-      <p class="take">The visible feature was matching. The work that made it possible was on the supply side, where nobody was looking.</p>
-    </section>
-
-    <section class="sect" id="readiness">
-      <div class="sect-type"><h4>A New Problem</h4>
-        <h2>Matching improved, and factories started complaining.</h2></div>
-      <p>They were receiving more enquiries, and not all of them were worth answering. A project could be technically relevant and still be too early, too vague, or commercially unrealistic. We had solved supplier relevance and left lead readiness untouched.</p>
-
+      <div class="sub">
+        <h3>Friction</h3>
+        <p>Posting a project went to two or three clicks &#8212; a <em>post your first project</em> button straight on the landing page, with signup moved to after the project exists rather than before. Posted projects rose within a month or two.</p>
+      </div>
+      <div class="sub">
+        <h3>Win-back</h3>
+        <p>We contacted every factory that had left, with a promo offer and, more usefully, a conversation. We asked what had actually gone wrong and took the answers into the roadmap.</p>
+      </div>
+      <div class="sub">
+        <h3>The interface</h3>
+        <p>The 2014 UI was a live blocker for sales &#8212; they were demoing something they had to apologise for. Rebuilt with UI/UX designers against focus groups: the brands&#8217; experience first, factories second.</p>
+      </div>
+      <div class="sub">
+        <h3>Factory tiers</h3>
+        <p>One expensive plan became simple, medium and large, with real differentiation at the top &#8212; priority bidding and first pick on projects. A free trial let factories see the platform before committing. Conversion rose.</p>
+      </div>
+      <div class="sub">
+        <h3>Content</h3>
+        <p>We turned the site and the marketing around it into a knowledge source &#8212; how things get made, how to source, tips and tricks &#8212; so that arriving at MakersRow wasn&#8217;t purely a sales encounter.</p>
+      </div>
       <figure>
         <div class="dg">
-        <svg viewBox="0 0 760 300" role="img" aria-label="Supplier relevance on one axis and project readiness on the other; only the top-right quadrant is worth a factory's attention">
-          <line class="d-line" x1="120" y1="30" x2="120" y2="250"/>
-          <line class="d-line" x1="120" y1="250" x2="700" y2="250"/>
-          <text class="d-lbl" x="112" y="26" text-anchor="end">READY</text>
-          <text class="d-lbl" x="112" y="254" text-anchor="end">VAGUE</text>
-          <text class="d-lbl" x="128" y="272">IRRELEVANT</text>
-          <text class="d-lbl" x="700" y="272" text-anchor="end">RELEVANT</text>
-          <line class="d-line" x1="410" y1="30" x2="410" y2="250" stroke-dasharray="4 4"/>
-          <line class="d-line" x1="120" y1="140" x2="700" y2="140" stroke-dasharray="4 4"/>
-          <rect class="d-node-a" x="416" y="36" width="278" height="98"/>
-          <text class="d-lbl d-on" x="555" y="80" text-anchor="middle">WORTH A REPLY</text>
-          <text class="d-sm d-on" x="555" y="100" text-anchor="middle">relevant and ready</text>
-          <text class="d-sm" x="555" y="200" text-anchor="middle">what matching alone produced</text>
-          <text class="d-lbl" x="555" y="180" text-anchor="middle" style="fill:var(--neg)">RELEVANT BUT NOT READY</text>
-        </svg>
+        <svg viewBox="0 0 760 210" role="img" aria-label="Posting a project went from five steps behind a signup wall to three, with signup moved after the project exists."><text class="d-lbl" x="0" y="12">Before &#183; signup first</text><rect class="d-node" x="0" y="24" width="136" height="44"/><text class="d-sm" x="68" y="50.5" text-anchor="middle" style="font-size:12.5px">Land</text><line class="d-line" x1="136" y1="46" x2="156" y2="46"/><rect class="d-node" x="156" y="24" width="136" height="44"/><text class="d-sm" x="224" y="50.5" text-anchor="middle" style="font-size:12.5px">Sign up</text><line class="d-line" x1="292" y1="46" x2="312" y2="46"/><rect class="d-node" x="312" y="24" width="136" height="44"/><text class="d-sm" x="380" y="50.5" text-anchor="middle" style="font-size:12.5px">Verify email</text><line class="d-line" x1="448" y1="46" x2="468" y2="46"/><rect class="d-node" x="468" y="24" width="136" height="44"/><text class="d-sm" x="536" y="50.5" text-anchor="middle" style="font-size:12.5px">Fill long form</text><line class="d-line" x1="604" y1="46" x2="624" y2="46"/><rect class="d-node" x="624" y="24" width="136" height="44"/><text class="d-sm" x="692" y="50.5" text-anchor="middle" style="font-size:12.5px">Post</text><text class="d-lbl d-acc" x="0" y="112">After &#183; project first</text><rect class="d-node" x="0" y="124" width="136" height="44"/><text class="d-sm" x="68" y="150.5" text-anchor="middle" style="font-size:12.5px">Land</text><line class="d-line" x1="136" y1="146" x2="156" y2="146"/><rect class="d-node-a" x="156" y="124" width="136" height="44"/><text class="d-sm d-on" x="224" y="150.5" text-anchor="middle" style="font-size:12.5px">Post project</text><line class="d-line" x1="292" y1="146" x2="312" y2="146"/><rect class="d-node" x="312" y="124" width="136" height="44"/><text class="d-sm" x="380" y="150.5" text-anchor="middle" style="font-size:12.5px">Sign up</text></svg>
         </div>
-        <figcaption>Solving relevance moved every enquiry to the right-hand half. Factories were still declining the lower one, which is a different problem with the same symptom.</figcaption>
+        <figcaption>Signup moved to after the project exists. The form a brand fills in is the same; the number of reasons to abandon it is not.</figcaption>
       </figure>
 
-      <p>A readiness score — brief completeness, budget, quantity, timeline, buyer verification — let factories choose their own floor rather than receive everything. Buyers kept the freedom to explore; factories stopped paying for it.</p>
-      <p class="take">Getting the right supplier in front of a buyer isn't enough. The opportunity has to deserve their attention.</p>
     </section>
 
-    <section class="sect" id="migration">
-      <div class="sect-type"><h4>Rebuilding Live</h4>
-        <h2>Neither option on the table was acceptable.</h2></div>
-      <p>Patch the old platform indefinitely, or freeze product development for a year while engineering rebuilt it. I took neither, and worked with engineering on a strangler migration instead: the new system took the journey we were changing, the legacy platform kept everything we weren't, and the boundary moved a phase at a time.</p>
+    <section class="sect" id="preai">
+      <div class="sect-type"><h4>How We Used To Ship</h4>
+        <h2>Proposal, wireframe, design, build, review, release.</h2></div>
+      <p>A feature was proposed. Someone produced a wireframe. UI/UX turned it into a design. The design went to a meeting to be discussed. It went to development. It came back to a meeting to be discussed again. Then it shipped.</p>
+      <p>Two to three weeks was a fast cycle. Meetings were spent reacting to drawings of software rather than software. Sales and marketing sat behind a queue they could not influence, which is why they kept escalating feature lists that took months to land.</p>
+      <p class="take">The backlog wasn&#8217;t the bottleneck. The distance between deciding and seeing was.</p>
+    </section>
 
+    <section class="sect" id="postai">
+      <div class="sect-type"><h4>How We Ship Now</h4>
+        <h2>Build it before the meeting. Decide in the meeting. Ship after it.</h2></div>
+      <p>We rebuilt the platform to be AI-first in how it is developed, with the design system embedded rather than living beside the code. Changes that took two to three weeks now take a day at most.</p>
+      <p>The meeting changed shape as a result. We no longer present a design and ask what people think. We present the built feature. If it is agreed, it goes live immediately after the meeting and we watch the result the same day.</p>
+      <p>That made A/B testing cheap enough to be routine, which finally unblocked sales and marketing &#8212; they could run campaigns against a product that moved at their speed instead of a quarter behind it. Alongside it: follow-up and drip campaigns, and SDRs reaching out where the data showed friction.</p>
+      <div class="sub"><h3>Two AI features shipped into the product itself</h3></div>
+      <ul class="plain">
+        <li><strong>AI photo generation</strong>, to make posting a project faster and produce better listings.</li>
+        <li><strong>An AI chatbot</strong>, so a buyer can describe what they need in conversation and be routed to relevant factories without navigating the marketplace first.</li>
+      </ul>
+      <p class="take">The AI work that mattered most wasn&#8217;t a feature. It was the delivery cycle.</p>
       <figure>
         <div class="dg">
-        <svg viewBox="0 0 760 220" role="img" aria-label="A phased migration: the new system takes briefs, capabilities and matching first, while billing and history stay on the legacy platform, and later phases move messaging, subscriptions and admin">
-          <text class="d-lbl" x="0" y="14">PHASE 1</text>
-          <rect class="d-node-a" x="0" y="26" width="360" height="40"/>
-          <text class="d-sm d-on" x="180" y="51" text-anchor="middle">Briefs · capabilities · matching · discovery</text>
-          <rect class="d-node" x="368" y="26" width="392" height="40"/>
-          <text class="d-sm" x="564" y="51" text-anchor="middle">Accounts · billing · history · subscriptions</text>
-          <text class="d-lbl" x="0" y="106">PHASE 2</text>
-          <rect class="d-node-a" x="0" y="118" width="560" height="40"/>
-          <text class="d-sm d-on" x="280" y="143" text-anchor="middle">+ messaging · verification · admin workflows</text>
-          <rect class="d-node" x="568" y="118" width="192" height="40"/>
-          <text class="d-sm" x="664" y="143" text-anchor="middle">Remaining legacy</text>
-          <text class="d-lbl" x="0" y="196" style="fill:var(--pos)">THE MARKETPLACE KEPT TRADING THROUGHOUT</text>
-          <text class="d-lbl" x="760" y="196" text-anchor="end">NEW · LEGACY</text>
-        </svg>
+        <svg viewBox="0 0 760 250" role="img" aria-label="The delivery cycle collapsed from a seven-stage two-to-three week loop to a three-stage single day."><text class="d-lbl" x="0" y="14">Before &#183; 2&#8211;3 weeks</text><rect class="d-node" x="0" y="26" width="91" height="42"/><text class="d-sm" x="45.5" y="51.5" text-anchor="middle" style="font-size:11px">Proposal</text><line class="d-line" x1="91" y1="47" x2="111" y2="47"/><rect class="d-node" x="111" y="26" width="91" height="42"/><text class="d-sm" x="156.5" y="51.5" text-anchor="middle" style="font-size:11px">Wireframe</text><line class="d-line" x1="202" y1="47" x2="222" y2="47"/><rect class="d-node" x="222" y="26" width="91" height="42"/><text class="d-sm" x="267.5" y="51.5" text-anchor="middle" style="font-size:11px">Design</text><line class="d-line" x1="313" y1="47" x2="333" y2="47"/><rect class="d-node" x="333" y="26" width="91" height="42"/><text class="d-sm" x="378.5" y="51.5" text-anchor="middle" style="font-size:11px">Review</text><line class="d-line" x1="424" y1="47" x2="444" y2="47"/><rect class="d-node" x="444" y="26" width="91" height="42"/><text class="d-sm" x="489.5" y="51.5" text-anchor="middle" style="font-size:11px">Build</text><line class="d-line" x1="535" y1="47" x2="555" y2="47"/><rect class="d-node" x="555" y="26" width="91" height="42"/><text class="d-sm" x="600.5" y="51.5" text-anchor="middle" style="font-size:11px">Review</text><line class="d-line" x1="646" y1="47" x2="666" y2="47"/><rect class="d-node" x="666" y="26" width="91" height="42"/><text class="d-sm" x="711.5" y="51.5" text-anchor="middle" style="font-size:11px">Ship</text><text class="d-lbl d-acc" x="0" y="110">After &#183; 1 day</text><rect class="d-node" x="0" y="122" width="91" height="42"/><text class="d-sm" x="45.5" y="147.5" text-anchor="middle" style="font-size:11px">Build</text><line class="d-line" x1="91" y1="143" x2="111" y2="143"/><rect class="d-node" x="111" y="122" width="91" height="42"/><text class="d-sm" x="156.5" y="147.5" text-anchor="middle" style="font-size:11px">Meeting</text><line class="d-line" x1="202" y1="143" x2="222" y2="143"/><rect class="d-node-a" x="222" y="122" width="91" height="42"/><text class="d-sm d-on" x="267.5" y="147.5" text-anchor="middle" style="font-size:11px">Live</text><text class="d-lbl" x="0" y="198">Cycle length, to scale</text><rect class="u-off" x="0" y="208" width="757" height="8"/><rect class="u-on" x="0" y="224" width="50" height="8"/></svg>
         </div>
-        <figcaption>A twelve-month rewrite would have meant twelve months without product. Each phase shipped against a live marketplace instead.</figcaption>
+        <figcaption>Same work, same people. The bar at the bottom is the two cycles drawn against each other at true scale.</figcaption>
       </figure>
 
-      <p class="take">This wasn't a redesign. It was a live-platform replacement with the shop still open.</p>
     </section>
 
-    <section class="sect" id="delivery">
-      <div class="sect-type"><h4>From Strategy to Delivery</h4>
-        <h2>A product decision only counts once someone can build and test it.</h2></div>
-      <p>The reframe was the interesting part. Getting it into a sprint was the part that determined whether any of it happened.</p>
-
-      <figure>
-        <div class="dg">
-        <svg viewBox="0 0 760 210" role="img" aria-label="A customer problem becomes a product principle, an epic, a user story, acceptance criteria, then engineering, QA and release">
-          <g>
-            <rect class="d-node-a" x="0" y="26" width="168" height="46"/>
-            <text class="d-sm d-on" x="84" y="54" text-anchor="middle">Customer problem</text>
-            <rect class="d-node" x="196" y="26" width="168" height="46"/>
-            <text class="d-sm" x="280" y="54" text-anchor="middle">Product principle</text>
-            <rect class="d-node" x="392" y="26" width="168" height="46"/>
-            <text class="d-sm" x="476" y="54" text-anchor="middle">Epic</text>
-            <rect class="d-node" x="588" y="26" width="172" height="46"/>
-            <text class="d-sm" x="674" y="54" text-anchor="middle">User story</text>
-          </g>
-          <g class="d-line">
-            <line x1="168" y1="49" x2="196" y2="49"/><line x1="364" y1="49" x2="392" y2="49"/>
-            <line x1="560" y1="49" x2="588" y2="49"/>
-            <line x1="674" y1="72" x2="674" y2="94"/><line x1="86" y1="94" x2="674" y2="94"/>
-            <line x1="86" y1="94" x2="86" y2="116"/>
-          </g>
-          <g>
-            <rect class="d-node-a" x="0" y="116" width="172" height="46"/>
-            <text class="d-sm d-on" x="86" y="144" text-anchor="middle">Acceptance criteria</text>
-            <rect class="d-node" x="200" y="116" width="168" height="46"/>
-            <text class="d-sm" x="284" y="144" text-anchor="middle">Engineering</text>
-            <rect class="d-node" x="396" y="116" width="164" height="46"/>
-            <text class="d-sm" x="478" y="144" text-anchor="middle">QA</text>
-            <rect class="d-node" x="588" y="116" width="172" height="46"/>
-            <text class="d-sm" x="674" y="144" text-anchor="middle">Release</text>
-          </g>
-          <g class="d-line">
-            <line x1="172" y1="139" x2="200" y2="139"/><line x1="368" y1="139" x2="396" y2="139"/>
-            <line x1="560" y1="139" x2="588" y2="139"/>
-          </g>
-          <text class="d-lbl" x="380" y="196" text-anchor="middle">THE TWO ACCENTED STEPS ARE THE ONES I OWNED OUTRIGHT</text>
-        </svg>
-        </div>
-        <figcaption>The chain every decision on this page travelled. Most product work dies between the second box and the fifth.</figcaption>
-      </figure>
-
-      <div class="sub"><h3>Worked example — AI-assisted brief creation</h3></div>
-      <p class="story">As a buyer who may not understand manufacturing terminology, I want to describe my product naturally, so that MakersRow can turn my idea into a supplier-ready brief.</p>
-
-      <div class="sub"><h4>Acceptance criteria</h4></div>
-      <ol class="ac">
-        <li>Known requirements are extracted from free-form input.</li>
-        <li>Unknown values are never invented.</li>
-        <li>Critical missing fields trigger clarification.</li>
-        <li>AI-generated fields remain editable.</li>
-        <li>Low-confidence fields are flagged.</li>
-        <li>The buyer can continue without accepting any AI suggestion.</li>
-        <li>The original input remains accessible.</li>
-        <li>AI failure never blocks manual brief creation.</li>
-        <li>Structured output maps to the same schema supplier matching reads.</li>
-        <li>The buyer reviews the complete brief before it is submitted.</li>
-      </ol>
-      <p class="take">Half of those criteria exist to make the feature degrade safely. That ratio is the difference between shipping AI and demoing it.</p>
+    <section class="sect" id="beforeafter">
+      <div class="sect-type"><h4>Before And After</h4>
+        <h2>What the business looked like on either side of the rebuild.</h2></div>
+      <div class="cmp-wrap">
+      <table class="cmp">
+        <thead><tr><th scope="col"></th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">MRR</th><td>$25K, declining year on year</td><td>$100K+ per month, growing</td></tr>
+          <tr><th scope="row">Feature cycle</th><td>2&#8211;3 weeks</td><td>1 day</td></tr>
+          <tr><th scope="row">Brand pricing</th><td>$50&#8211;60/mo, churn by design</td><td>Minimal to none</td></tr>
+          <tr><th scope="row">Posting a project</th><td>Signup wall, then a form</td><td>2&#8211;3 clicks, signup after</td></tr>
+          <tr><th scope="row">Factory plans</th><td>One expensive tier</td><td>Three tiers, free trial, priority bidding</td></tr>
+          <tr><th scope="row">Product decisions</th><td>Reviewed as designs</td><td>Reviewed as working software</td></tr>
+          <tr><th scope="row">Knowledge</th><td>Split across four departments</td><td>One shared base</td></tr>
+          <tr><th scope="row">Traffic</th><td>Falling, high bounce</td><td>4&#8211;5&#215;, bounce down</td></tr>
+        </tbody>
+      </table>
+      </div>
     </section>
 
-    <section class="sect" id="billing">
-      <div class="sect-type"><h4>The Billing Truth</h4>
-        <h2>The same problem, one layer down: the company could not tell who was paying it.</h2></div>
-      <p>The application reported <strong>908 active subscriptions</strong>. Stripe showed <strong>282 customers</strong> who actually moved money in 2026.</p>
-
-      <figure>
-        <div class="dg">
-        <svg class="units" viewBox="0 0 673 273" role="img" aria-label="The application reported 908 active subscriptions; only 282 customers actually paid in 2026">
-          <rect class="u-on" x="0" y="0" width="10" height="10"/><rect class="u-on" x="13" y="0" width="10" height="10"/><rect class="u-on" x="26" y="0" width="10" height="10"/><rect class="u-on" x="39" y="0" width="10" height="10"/><rect class="u-on" x="52" y="0" width="10" height="10"/><rect class="u-on" x="65" y="0" width="10" height="10"/><rect class="u-on" x="78" y="0" width="10" height="10"/><rect class="u-on" x="91" y="0" width="10" height="10"/><rect class="u-on" x="104" y="0" width="10" height="10"/><rect class="u-on" x="117" y="0" width="10" height="10"/><rect class="u-on" x="130" y="0" width="10" height="10"/><rect class="u-on" x="143" y="0" width="10" height="10"/><rect class="u-on" x="156" y="0" width="10" height="10"/><rect class="u-on" x="169" y="0" width="10" height="10"/><rect class="u-on" x="182" y="0" width="10" height="10"/><rect class="u-on" x="195" y="0" width="10" height="10"/><rect class="u-on" x="208" y="0" width="10" height="10"/><rect class="u-on" x="221" y="0" width="10" height="10"/><rect class="u-on" x="234" y="0" width="10" height="10"/><rect class="u-on" x="247" y="0" width="10" height="10"/><rect class="u-on" x="260" y="0" width="10" height="10"/><rect class="u-on" x="273" y="0" width="10" height="10"/><rect class="u-on" x="286" y="0" width="10" height="10"/><rect class="u-on" x="299" y="0" width="10" height="10"/><rect class="u-on" x="312" y="0" width="10" height="10"/><rect class="u-on" x="325" y="0" width="10" height="10"/><rect class="u-on" x="338" y="0" width="10" height="10"/><rect class="u-on" x="351" y="0" width="10" height="10"/><rect class="u-on" x="364" y="0" width="10" height="10"/><rect class="u-on" x="377" y="0" width="10" height="10"/><rect class="u-on" x="390" y="0" width="10" height="10"/><rect class="u-on" x="403" y="0" width="10" height="10"/><rect class="u-on" x="416" y="0" width="10" height="10"/><rect class="u-on" x="429" y="0" width="10" height="10"/><rect class="u-on" x="442" y="0" width="10" height="10"/><rect class="u-on" x="455" y="0" width="10" height="10"/><rect class="u-on" x="468" y="0" width="10" height="10"/><rect class="u-on" x="481" y="0" width="10" height="10"/><rect class="u-on" x="494" y="0" width="10" height="10"/><rect class="u-on" x="507" y="0" width="10" height="10"/><rect class="u-on" x="520" y="0" width="10" height="10"/><rect class="u-on" x="533" y="0" width="10" height="10"/><rect class="u-on" x="546" y="0" width="10" height="10"/><rect class="u-on" x="559" y="0" width="10" height="10"/><rect class="u-on" x="572" y="0" width="10" height="10"/><rect class="u-on" x="585" y="0" width="10" height="10"/><rect class="u-on" x="598" y="0" width="10" height="10"/><rect class="u-on" x="611" y="0" width="10" height="10"/><rect class="u-on" x="624" y="0" width="10" height="10"/><rect class="u-on" x="637" y="0" width="10" height="10"/><rect class="u-on" x="650" y="0" width="10" height="10"/><rect class="u-on" x="663" y="0" width="10" height="10"/><rect class="u-on" x="0" y="13" width="10" height="10"/><rect class="u-on" x="13" y="13" width="10" height="10"/><rect class="u-on" x="26" y="13" width="10" height="10"/><rect class="u-on" x="39" y="13" width="10" height="10"/><rect class="u-on" x="52" y="13" width="10" height="10"/><rect class="u-on" x="65" y="13" width="10" height="10"/><rect class="u-on" x="78" y="13" width="10" height="10"/><rect class="u-on" x="91" y="13" width="10" height="10"/><rect class="u-on" x="104" y="13" width="10" height="10"/><rect class="u-on" x="117" y="13" width="10" height="10"/><rect class="u-on" x="130" y="13" width="10" height="10"/><rect class="u-on" x="143" y="13" width="10" height="10"/><rect class="u-on" x="156" y="13" width="10" height="10"/><rect class="u-on" x="169" y="13" width="10" height="10"/><rect class="u-on" x="182" y="13" width="10" height="10"/><rect class="u-on" x="195" y="13" width="10" height="10"/><rect class="u-on" x="208" y="13" width="10" height="10"/><rect class="u-on" x="221" y="13" width="10" height="10"/><rect class="u-on" x="234" y="13" width="10" height="10"/><rect class="u-on" x="247" y="13" width="10" height="10"/><rect class="u-on" x="260" y="13" width="10" height="10"/><rect class="u-on" x="273" y="13" width="10" height="10"/><rect class="u-on" x="286" y="13" width="10" height="10"/><rect class="u-on" x="299" y="13" width="10" height="10"/><rect class="u-on" x="312" y="13" width="10" height="10"/><rect class="u-on" x="325" y="13" width="10" height="10"/><rect class="u-on" x="338" y="13" width="10" height="10"/><rect class="u-on" x="351" y="13" width="10" height="10"/><rect class="u-on" x="364" y="13" width="10" height="10"/><rect class="u-on" x="377" y="13" width="10" height="10"/><rect class="u-on" x="390" y="13" width="10" height="10"/><rect class="u-on" x="403" y="13" width="10" height="10"/><rect class="u-on" x="416" y="13" width="10" height="10"/><rect class="u-on" x="429" y="13" width="10" height="10"/><rect class="u-on" x="442" y="13" width="10" height="10"/><rect class="u-on" x="455" y="13" width="10" height="10"/><rect class="u-on" x="468" y="13" width="10" height="10"/><rect class="u-on" x="481" y="13" width="10" height="10"/><rect class="u-on" x="494" y="13" width="10" height="10"/><rect class="u-on" x="507" y="13" width="10" height="10"/><rect class="u-on" x="520" y="13" width="10" height="10"/><rect class="u-on" x="533" y="13" width="10" height="10"/><rect class="u-on" x="546" y="13" width="10" height="10"/><rect class="u-on" x="559" y="13" width="10" height="10"/><rect class="u-on" x="572" y="13" width="10" height="10"/><rect class="u-on" x="585" y="13" width="10" height="10"/><rect class="u-on" x="598" y="13" width="10" height="10"/><rect class="u-on" x="611" y="13" width="10" height="10"/><rect class="u-on" x="624" y="13" width="10" height="10"/><rect class="u-on" x="637" y="13" width="10" height="10"/><rect class="u-on" x="650" y="13" width="10" height="10"/><rect class="u-on" x="663" y="13" width="10" height="10"/><rect class="u-on" x="0" y="26" width="10" height="10"/><rect class="u-on" x="13" y="26" width="10" height="10"/><rect class="u-on" x="26" y="26" width="10" height="10"/><rect class="u-on" x="39" y="26" width="10" height="10"/><rect class="u-on" x="52" y="26" width="10" height="10"/><rect class="u-on" x="65" y="26" width="10" height="10"/><rect class="u-on" x="78" y="26" width="10" height="10"/><rect class="u-on" x="91" y="26" width="10" height="10"/><rect class="u-on" x="104" y="26" width="10" height="10"/><rect class="u-on" x="117" y="26" width="10" height="10"/><rect class="u-on" x="130" y="26" width="10" height="10"/><rect class="u-on" x="143" y="26" width="10" height="10"/><rect class="u-on" x="156" y="26" width="10" height="10"/><rect class="u-on" x="169" y="26" width="10" height="10"/><rect class="u-on" x="182" y="26" width="10" height="10"/><rect class="u-on" x="195" y="26" width="10" height="10"/><rect class="u-on" x="208" y="26" width="10" height="10"/><rect class="u-on" x="221" y="26" width="10" height="10"/><rect class="u-on" x="234" y="26" width="10" height="10"/><rect class="u-on" x="247" y="26" width="10" height="10"/><rect class="u-on" x="260" y="26" width="10" height="10"/><rect class="u-on" x="273" y="26" width="10" height="10"/><rect class="u-on" x="286" y="26" width="10" height="10"/><rect class="u-on" x="299" y="26" width="10" height="10"/><rect class="u-on" x="312" y="26" width="10" height="10"/><rect class="u-on" x="325" y="26" width="10" height="10"/><rect class="u-on" x="338" y="26" width="10" height="10"/><rect class="u-on" x="351" y="26" width="10" height="10"/><rect class="u-on" x="364" y="26" width="10" height="10"/><rect class="u-on" x="377" y="26" width="10" height="10"/><rect class="u-on" x="390" y="26" width="10" height="10"/><rect class="u-on" x="403" y="26" width="10" height="10"/><rect class="u-on" x="416" y="26" width="10" height="10"/><rect class="u-on" x="429" y="26" width="10" height="10"/><rect class="u-on" x="442" y="26" width="10" height="10"/><rect class="u-on" x="455" y="26" width="10" height="10"/><rect class="u-on" x="468" y="26" width="10" height="10"/><rect class="u-on" x="481" y="26" width="10" height="10"/><rect class="u-on" x="494" y="26" width="10" height="10"/><rect class="u-on" x="507" y="26" width="10" height="10"/><rect class="u-on" x="520" y="26" width="10" height="10"/><rect class="u-on" x="533" y="26" width="10" height="10"/><rect class="u-on" x="546" y="26" width="10" height="10"/><rect class="u-on" x="559" y="26" width="10" height="10"/><rect class="u-on" x="572" y="26" width="10" height="10"/><rect class="u-on" x="585" y="26" width="10" height="10"/><rect class="u-on" x="598" y="26" width="10" height="10"/><rect class="u-on" x="611" y="26" width="10" height="10"/><rect class="u-on" x="624" y="26" width="10" height="10"/><rect class="u-on" x="637" y="26" width="10" height="10"/><rect class="u-on" x="650" y="26" width="10" height="10"/><rect class="u-on" x="663" y="26" width="10" height="10"/><rect class="u-on" x="0" y="39" width="10" height="10"/><rect class="u-on" x="13" y="39" width="10" height="10"/><rect class="u-on" x="26" y="39" width="10" height="10"/><rect class="u-on" x="39" y="39" width="10" height="10"/><rect class="u-on" x="52" y="39" width="10" height="10"/><rect class="u-on" x="65" y="39" width="10" height="10"/><rect class="u-on" x="78" y="39" width="10" height="10"/><rect class="u-on" x="91" y="39" width="10" height="10"/><rect class="u-on" x="104" y="39" width="10" height="10"/><rect class="u-on" x="117" y="39" width="10" height="10"/><rect class="u-on" x="130" y="39" width="10" height="10"/><rect class="u-on" x="143" y="39" width="10" height="10"/><rect class="u-on" x="156" y="39" width="10" height="10"/><rect class="u-on" x="169" y="39" width="10" height="10"/><rect class="u-on" x="182" y="39" width="10" height="10"/><rect class="u-on" x="195" y="39" width="10" height="10"/><rect class="u-on" x="208" y="39" width="10" height="10"/><rect class="u-on" x="221" y="39" width="10" height="10"/><rect class="u-on" x="234" y="39" width="10" height="10"/><rect class="u-on" x="247" y="39" width="10" height="10"/><rect class="u-on" x="260" y="39" width="10" height="10"/><rect class="u-on" x="273" y="39" width="10" height="10"/><rect class="u-on" x="286" y="39" width="10" height="10"/><rect class="u-on" x="299" y="39" width="10" height="10"/><rect class="u-on" x="312" y="39" width="10" height="10"/><rect class="u-on" x="325" y="39" width="10" height="10"/><rect class="u-on" x="338" y="39" width="10" height="10"/><rect class="u-on" x="351" y="39" width="10" height="10"/><rect class="u-on" x="364" y="39" width="10" height="10"/><rect class="u-on" x="377" y="39" width="10" height="10"/><rect class="u-on" x="390" y="39" width="10" height="10"/><rect class="u-on" x="403" y="39" width="10" height="10"/><rect class="u-on" x="416" y="39" width="10" height="10"/><rect class="u-on" x="429" y="39" width="10" height="10"/><rect class="u-on" x="442" y="39" width="10" height="10"/><rect class="u-on" x="455" y="39" width="10" height="10"/><rect class="u-on" x="468" y="39" width="10" height="10"/><rect class="u-on" x="481" y="39" width="10" height="10"/><rect class="u-on" x="494" y="39" width="10" height="10"/><rect class="u-on" x="507" y="39" width="10" height="10"/><rect class="u-on" x="520" y="39" width="10" height="10"/><rect class="u-on" x="533" y="39" width="10" height="10"/><rect class="u-on" x="546" y="39" width="10" height="10"/><rect class="u-on" x="559" y="39" width="10" height="10"/><rect class="u-on" x="572" y="39" width="10" height="10"/><rect class="u-on" x="585" y="39" width="10" height="10"/><rect class="u-on" x="598" y="39" width="10" height="10"/><rect class="u-on" x="611" y="39" width="10" height="10"/><rect class="u-on" x="624" y="39" width="10" height="10"/><rect class="u-on" x="637" y="39" width="10" height="10"/><rect class="u-on" x="650" y="39" width="10" height="10"/><rect class="u-on" x="663" y="39" width="10" height="10"/><rect class="u-on" x="0" y="52" width="10" height="10"/><rect class="u-on" x="13" y="52" width="10" height="10"/><rect class="u-on" x="26" y="52" width="10" height="10"/><rect class="u-on" x="39" y="52" width="10" height="10"/><rect class="u-on" x="52" y="52" width="10" height="10"/><rect class="u-on" x="65" y="52" width="10" height="10"/><rect class="u-on" x="78" y="52" width="10" height="10"/><rect class="u-on" x="91" y="52" width="10" height="10"/><rect class="u-on" x="104" y="52" width="10" height="10"/><rect class="u-on" x="117" y="52" width="10" height="10"/><rect class="u-on" x="130" y="52" width="10" height="10"/><rect class="u-on" x="143" y="52" width="10" height="10"/><rect class="u-on" x="156" y="52" width="10" height="10"/><rect class="u-on" x="169" y="52" width="10" height="10"/><rect class="u-on" x="182" y="52" width="10" height="10"/><rect class="u-on" x="195" y="52" width="10" height="10"/><rect class="u-on" x="208" y="52" width="10" height="10"/><rect class="u-on" x="221" y="52" width="10" height="10"/><rect class="u-on" x="234" y="52" width="10" height="10"/><rect class="u-on" x="247" y="52" width="10" height="10"/><rect class="u-on" x="260" y="52" width="10" height="10"/><rect class="u-on" x="273" y="52" width="10" height="10"/><rect class="u-on" x="286" y="52" width="10" height="10"/><rect class="u-on" x="299" y="52" width="10" height="10"/><rect class="u-on" x="312" y="52" width="10" height="10"/><rect class="u-on" x="325" y="52" width="10" height="10"/><rect class="u-on" x="338" y="52" width="10" height="10"/><rect class="u-on" x="351" y="52" width="10" height="10"/><rect class="u-on" x="364" y="52" width="10" height="10"/><rect class="u-on" x="377" y="52" width="10" height="10"/><rect class="u-on" x="390" y="52" width="10" height="10"/><rect class="u-on" x="403" y="52" width="10" height="10"/><rect class="u-on" x="416" y="52" width="10" height="10"/><rect class="u-on" x="429" y="52" width="10" height="10"/><rect class="u-on" x="442" y="52" width="10" height="10"/><rect class="u-on" x="455" y="52" width="10" height="10"/><rect class="u-on" x="468" y="52" width="10" height="10"/><rect class="u-on" x="481" y="52" width="10" height="10"/><rect class="u-on" x="494" y="52" width="10" height="10"/><rect class="u-on" x="507" y="52" width="10" height="10"/><rect class="u-on" x="520" y="52" width="10" height="10"/><rect class="u-on" x="533" y="52" width="10" height="10"/><rect class="u-on" x="546" y="52" width="10" height="10"/><rect class="u-on" x="559" y="52" width="10" height="10"/><rect class="u-on" x="572" y="52" width="10" height="10"/><rect class="u-on" x="585" y="52" width="10" height="10"/><rect class="u-on" x="598" y="52" width="10" height="10"/><rect class="u-on" x="611" y="52" width="10" height="10"/><rect class="u-on" x="624" y="52" width="10" height="10"/><rect class="u-on" x="637" y="52" width="10" height="10"/><rect class="u-on" x="650" y="52" width="10" height="10"/><rect class="u-on" x="663" y="52" width="10" height="10"/><rect class="u-on" x="0" y="65" width="10" height="10"/><rect class="u-on" x="13" y="65" width="10" height="10"/><rect class="u-on" x="26" y="65" width="10" height="10"/><rect class="u-on" x="39" y="65" width="10" height="10"/><rect class="u-on" x="52" y="65" width="10" height="10"/><rect class="u-on" x="65" y="65" width="10" height="10"/><rect class="u-on" x="78" y="65" width="10" height="10"/><rect class="u-on" x="91" y="65" width="10" height="10"/><rect class="u-on" x="104" y="65" width="10" height="10"/><rect class="u-on" x="117" y="65" width="10" height="10"/><rect class="u-on" x="130" y="65" width="10" height="10"/><rect class="u-on" x="143" y="65" width="10" height="10"/><rect class="u-on" x="156" y="65" width="10" height="10"/><rect class="u-on" x="169" y="65" width="10" height="10"/><rect class="u-on" x="182" y="65" width="10" height="10"/><rect class="u-on" x="195" y="65" width="10" height="10"/><rect class="u-on" x="208" y="65" width="10" height="10"/><rect class="u-on" x="221" y="65" width="10" height="10"/><rect class="u-on" x="234" y="65" width="10" height="10"/><rect class="u-on" x="247" y="65" width="10" height="10"/><rect class="u-on" x="260" y="65" width="10" height="10"/><rect class="u-on" x="273" y="65" width="10" height="10"/><rect class="u-off" x="286" y="65" width="10" height="10"/><rect class="u-off" x="299" y="65" width="10" height="10"/><rect class="u-off" x="312" y="65" width="10" height="10"/><rect class="u-off" x="325" y="65" width="10" height="10"/><rect class="u-off" x="338" y="65" width="10" height="10"/><rect class="u-off" x="351" y="65" width="10" height="10"/><rect class="u-off" x="364" y="65" width="10" height="10"/><rect class="u-off" x="377" y="65" width="10" height="10"/><rect class="u-off" x="390" y="65" width="10" height="10"/><rect class="u-off" x="403" y="65" width="10" height="10"/><rect class="u-off" x="416" y="65" width="10" height="10"/><rect class="u-off" x="429" y="65" width="10" height="10"/><rect class="u-off" x="442" y="65" width="10" height="10"/><rect class="u-off" x="455" y="65" width="10" height="10"/><rect class="u-off" x="468" y="65" width="10" height="10"/><rect class="u-off" x="481" y="65" width="10" height="10"/><rect class="u-off" x="494" y="65" width="10" height="10"/><rect class="u-off" x="507" y="65" width="10" height="10"/><rect class="u-off" x="520" y="65" width="10" height="10"/><rect class="u-off" x="533" y="65" width="10" height="10"/><rect class="u-off" x="546" y="65" width="10" height="10"/><rect class="u-off" x="559" y="65" width="10" height="10"/><rect class="u-off" x="572" y="65" width="10" height="10"/><rect class="u-off" x="585" y="65" width="10" height="10"/><rect class="u-off" x="598" y="65" width="10" height="10"/><rect class="u-off" x="611" y="65" width="10" height="10"/><rect class="u-off" x="624" y="65" width="10" height="10"/><rect class="u-off" x="637" y="65" width="10" height="10"/><rect class="u-off" x="650" y="65" width="10" height="10"/><rect class="u-off" x="663" y="65" width="10" height="10"/><rect class="u-off" x="0" y="78" width="10" height="10"/><rect class="u-off" x="13" y="78" width="10" height="10"/><rect class="u-off" x="26" y="78" width="10" height="10"/><rect class="u-off" x="39" y="78" width="10" height="10"/><rect class="u-off" x="52" y="78" width="10" height="10"/><rect class="u-off" x="65" y="78" width="10" height="10"/><rect class="u-off" x="78" y="78" width="10" height="10"/><rect class="u-off" x="91" y="78" width="10" height="10"/><rect class="u-off" x="104" y="78" width="10" height="10"/><rect class="u-off" x="117" y="78" width="10" height="10"/><rect class="u-off" x="130" y="78" width="10" height="10"/><rect class="u-off" x="143" y="78" width="10" height="10"/><rect class="u-off" x="156" y="78" width="10" height="10"/><rect class="u-off" x="169" y="78" width="10" height="10"/><rect class="u-off" x="182" y="78" width="10" height="10"/><rect class="u-off" x="195" y="78" width="10" height="10"/><rect class="u-off" x="208" y="78" width="10" height="10"/><rect class="u-off" x="221" y="78" width="10" height="10"/><rect class="u-off" x="234" y="78" width="10" height="10"/><rect class="u-off" x="247" y="78" width="10" height="10"/><rect class="u-off" x="260" y="78" width="10" height="10"/><rect class="u-off" x="273" y="78" width="10" height="10"/><rect class="u-off" x="286" y="78" width="10" height="10"/><rect class="u-off" x="299" y="78" width="10" height="10"/><rect class="u-off" x="312" y="78" width="10" height="10"/><rect class="u-off" x="325" y="78" width="10" height="10"/><rect class="u-off" x="338" y="78" width="10" height="10"/><rect class="u-off" x="351" y="78" width="10" height="10"/><rect class="u-off" x="364" y="78" width="10" height="10"/><rect class="u-off" x="377" y="78" width="10" height="10"/><rect class="u-off" x="390" y="78" width="10" height="10"/><rect class="u-off" x="403" y="78" width="10" height="10"/><rect class="u-off" x="416" y="78" width="10" height="10"/><rect class="u-off" x="429" y="78" width="10" height="10"/><rect class="u-off" x="442" y="78" width="10" height="10"/><rect class="u-off" x="455" y="78" width="10" height="10"/><rect class="u-off" x="468" y="78" width="10" height="10"/><rect class="u-off" x="481" y="78" width="10" height="10"/><rect class="u-off" x="494" y="78" width="10" height="10"/><rect class="u-off" x="507" y="78" width="10" height="10"/><rect class="u-off" x="520" y="78" width="10" height="10"/><rect class="u-off" x="533" y="78" width="10" height="10"/><rect class="u-off" x="546" y="78" width="10" height="10"/><rect class="u-off" x="559" y="78" width="10" height="10"/><rect class="u-off" x="572" y="78" width="10" height="10"/><rect class="u-off" x="585" y="78" width="10" height="10"/><rect class="u-off" x="598" y="78" width="10" height="10"/><rect class="u-off" x="611" y="78" width="10" height="10"/><rect class="u-off" x="624" y="78" width="10" height="10"/><rect class="u-off" x="637" y="78" width="10" height="10"/><rect class="u-off" x="650" y="78" width="10" height="10"/><rect class="u-off" x="663" y="78" width="10" height="10"/><rect class="u-off" x="0" y="91" width="10" height="10"/><rect class="u-off" x="13" y="91" width="10" height="10"/><rect class="u-off" x="26" y="91" width="10" height="10"/><rect class="u-off" x="39" y="91" width="10" height="10"/><rect class="u-off" x="52" y="91" width="10" height="10"/><rect class="u-off" x="65" y="91" width="10" height="10"/><rect class="u-off" x="78" y="91" width="10" height="10"/><rect class="u-off" x="91" y="91" width="10" height="10"/><rect class="u-off" x="104" y="91" width="10" height="10"/><rect class="u-off" x="117" y="91" width="10" height="10"/><rect class="u-off" x="130" y="91" width="10" height="10"/><rect class="u-off" x="143" y="91" width="10" height="10"/><rect class="u-off" x="156" y="91" width="10" height="10"/><rect class="u-off" x="169" y="91" width="10" height="10"/><rect class="u-off" x="182" y="91" width="10" height="10"/><rect class="u-off" x="195" y="91" width="10" height="10"/><rect class="u-off" x="208" y="91" width="10" height="10"/><rect class="u-off" x="221" y="91" width="10" height="10"/><rect class="u-off" x="234" y="91" width="10" height="10"/><rect class="u-off" x="247" y="91" width="10" height="10"/><rect class="u-off" x="260" y="91" width="10" height="10"/><rect class="u-off" x="273" y="91" width="10" height="10"/><rect class="u-off" x="286" y="91" width="10" height="10"/><rect class="u-off" x="299" y="91" width="10" height="10"/><rect class="u-off" x="312" y="91" width="10" height="10"/><rect class="u-off" x="325" y="91" width="10" height="10"/><rect class="u-off" x="338" y="91" width="10" height="10"/><rect class="u-off" x="351" y="91" width="10" height="10"/><rect class="u-off" x="364" y="91" width="10" height="10"/><rect class="u-off" x="377" y="91" width="10" height="10"/><rect class="u-off" x="390" y="91" width="10" height="10"/><rect class="u-off" x="403" y="91" width="10" height="10"/><rect class="u-off" x="416" y="91" width="10" height="10"/><rect class="u-off" x="429" y="91" width="10" height="10"/><rect class="u-off" x="442" y="91" width="10" height="10"/><rect class="u-off" x="455" y="91" width="10" height="10"/><rect class="u-off" x="468" y="91" width="10" height="10"/><rect class="u-off" x="481" y="91" width="10" height="10"/><rect class="u-off" x="494" y="91" width="10" height="10"/><rect class="u-off" x="507" y="91" width="10" height="10"/><rect class="u-off" x="520" y="91" width="10" height="10"/><rect class="u-off" x="533" y="91" width="10" height="10"/><rect class="u-off" x="546" y="91" width="10" height="10"/><rect class="u-off" x="559" y="91" width="10" height="10"/><rect class="u-off" x="572" y="91" width="10" height="10"/><rect class="u-off" x="585" y="91" width="10" height="10"/><rect class="u-off" x="598" y="91" width="10" height="10"/><rect class="u-off" x="611" y="91" width="10" height="10"/><rect class="u-off" x="624" y="91" width="10" height="10"/><rect class="u-off" x="637" y="91" width="10" height="10"/><rect class="u-off" x="650" y="91" width="10" height="10"/><rect class="u-off" x="663" y="91" width="10" height="10"/><rect class="u-off" x="0" y="104" width="10" height="10"/><rect class="u-off" x="13" y="104" width="10" height="10"/><rect class="u-off" x="26" y="104" width="10" height="10"/><rect class="u-off" x="39" y="104" width="10" height="10"/><rect class="u-off" x="52" y="104" width="10" height="10"/><rect class="u-off" x="65" y="104" width="10" height="10"/><rect class="u-off" x="78" y="104" width="10" height="10"/><rect class="u-off" x="91" y="104" width="10" height="10"/><rect class="u-off" x="104" y="104" width="10" height="10"/><rect class="u-off" x="117" y="104" width="10" height="10"/><rect class="u-off" x="130" y="104" width="10" height="10"/><rect class="u-off" x="143" y="104" width="10" height="10"/><rect class="u-off" x="156" y="104" width="10" height="10"/><rect class="u-off" x="169" y="104" width="10" height="10"/><rect class="u-off" x="182" y="104" width="10" height="10"/><rect class="u-off" x="195" y="104" width="10" height="10"/><rect class="u-off" x="208" y="104" width="10" height="10"/><rect class="u-off" x="221" y="104" width="10" height="10"/><rect class="u-off" x="234" y="104" width="10" height="10"/><rect class="u-off" x="247" y="104" width="10" height="10"/><rect class="u-off" x="260" y="104" width="10" height="10"/><rect class="u-off" x="273" y="104" width="10" height="10"/><rect class="u-off" x="286" y="104" width="10" height="10"/><rect class="u-off" x="299" y="104" width="10" height="10"/><rect class="u-off" x="312" y="104" width="10" height="10"/><rect class="u-off" x="325" y="104" width="10" height="10"/><rect class="u-off" x="338" y="104" width="10" height="10"/><rect class="u-off" x="351" y="104" width="10" height="10"/><rect class="u-off" x="364" y="104" width="10" height="10"/><rect class="u-off" x="377" y="104" width="10" height="10"/><rect class="u-off" x="390" y="104" width="10" height="10"/><rect class="u-off" x="403" y="104" width="10" height="10"/><rect class="u-off" x="416" y="104" width="10" height="10"/><rect class="u-off" x="429" y="104" width="10" height="10"/><rect class="u-off" x="442" y="104" width="10" height="10"/><rect class="u-off" x="455" y="104" width="10" height="10"/><rect class="u-off" x="468" y="104" width="10" height="10"/><rect class="u-off" x="481" y="104" width="10" height="10"/><rect class="u-off" x="494" y="104" width="10" height="10"/><rect class="u-off" x="507" y="104" width="10" height="10"/><rect class="u-off" x="520" y="104" width="10" height="10"/><rect class="u-off" x="533" y="104" width="10" height="10"/><rect class="u-off" x="546" y="104" width="10" height="10"/><rect class="u-off" x="559" y="104" width="10" height="10"/><rect class="u-off" x="572" y="104" width="10" height="10"/><rect class="u-off" x="585" y="104" width="10" height="10"/><rect class="u-off" x="598" y="104" width="10" height="10"/><rect class="u-off" x="611" y="104" width="10" height="10"/><rect class="u-off" x="624" y="104" width="10" height="10"/><rect class="u-off" x="637" y="104" width="10" height="10"/><rect class="u-off" x="650" y="104" width="10" height="10"/><rect class="u-off" x="663" y="104" width="10" height="10"/><rect class="u-off" x="0" y="117" width="10" height="10"/><rect class="u-off" x="13" y="117" width="10" height="10"/><rect class="u-off" x="26" y="117" width="10" height="10"/><rect class="u-off" x="39" y="117" width="10" height="10"/><rect class="u-off" x="52" y="117" width="10" height="10"/><rect class="u-off" x="65" y="117" width="10" height="10"/><rect class="u-off" x="78" y="117" width="10" height="10"/><rect class="u-off" x="91" y="117" width="10" height="10"/><rect class="u-off" x="104" y="117" width="10" height="10"/><rect class="u-off" x="117" y="117" width="10" height="10"/><rect class="u-off" x="130" y="117" width="10" height="10"/><rect class="u-off" x="143" y="117" width="10" height="10"/><rect class="u-off" x="156" y="117" width="10" height="10"/><rect class="u-off" x="169" y="117" width="10" height="10"/><rect class="u-off" x="182" y="117" width="10" height="10"/><rect class="u-off" x="195" y="117" width="10" height="10"/><rect class="u-off" x="208" y="117" width="10" height="10"/><rect class="u-off" x="221" y="117" width="10" height="10"/><rect class="u-off" x="234" y="117" width="10" height="10"/><rect class="u-off" x="247" y="117" width="10" height="10"/><rect class="u-off" x="260" y="117" width="10" height="10"/><rect class="u-off" x="273" y="117" width="10" height="10"/><rect class="u-off" x="286" y="117" width="10" height="10"/><rect class="u-off" x="299" y="117" width="10" height="10"/><rect class="u-off" x="312" y="117" width="10" height="10"/><rect class="u-off" x="325" y="117" width="10" height="10"/><rect class="u-off" x="338" y="117" width="10" height="10"/><rect class="u-off" x="351" y="117" width="10" height="10"/><rect class="u-off" x="364" y="117" width="10" height="10"/><rect class="u-off" x="377" y="117" width="10" height="10"/><rect class="u-off" x="390" y="117" width="10" height="10"/><rect class="u-off" x="403" y="117" width="10" height="10"/><rect class="u-off" x="416" y="117" width="10" height="10"/><rect class="u-off" x="429" y="117" width="10" height="10"/><rect class="u-off" x="442" y="117" width="10" height="10"/><rect class="u-off" x="455" y="117" width="10" height="10"/><rect class="u-off" x="468" y="117" width="10" height="10"/><rect class="u-off" x="481" y="117" width="10" height="10"/><rect class="u-off" x="494" y="117" width="10" height="10"/><rect class="u-off" x="507" y="117" width="10" height="10"/><rect class="u-off" x="520" y="117" width="10" height="10"/><rect class="u-off" x="533" y="117" width="10" height="10"/><rect class="u-off" x="546" y="117" width="10" height="10"/><rect class="u-off" x="559" y="117" width="10" height="10"/><rect class="u-off" x="572" y="117" width="10" height="10"/><rect class="u-off" x="585" y="117" width="10" height="10"/><rect class="u-off" x="598" y="117" width="10" height="10"/><rect class="u-off" x="611" y="117" width="10" height="10"/><rect class="u-off" x="624" y="117" width="10" height="10"/><rect class="u-off" x="637" y="117" width="10" height="10"/><rect class="u-off" x="650" y="117" width="10" height="10"/><rect class="u-off" x="663" y="117" width="10" height="10"/><rect class="u-off" x="0" y="130" width="10" height="10"/><rect class="u-off" x="13" y="130" width="10" height="10"/><rect class="u-off" x="26" y="130" width="10" height="10"/><rect class="u-off" x="39" y="130" width="10" height="10"/><rect class="u-off" x="52" y="130" width="10" height="10"/><rect class="u-off" x="65" y="130" width="10" height="10"/><rect class="u-off" x="78" y="130" width="10" height="10"/><rect class="u-off" x="91" y="130" width="10" height="10"/><rect class="u-off" x="104" y="130" width="10" height="10"/><rect class="u-off" x="117" y="130" width="10" height="10"/><rect class="u-off" x="130" y="130" width="10" height="10"/><rect class="u-off" x="143" y="130" width="10" height="10"/><rect class="u-off" x="156" y="130" width="10" height="10"/><rect class="u-off" x="169" y="130" width="10" height="10"/><rect class="u-off" x="182" y="130" width="10" height="10"/><rect class="u-off" x="195" y="130" width="10" height="10"/><rect class="u-off" x="208" y="130" width="10" height="10"/><rect class="u-off" x="221" y="130" width="10" height="10"/><rect class="u-off" x="234" y="130" width="10" height="10"/><rect class="u-off" x="247" y="130" width="10" height="10"/><rect class="u-off" x="260" y="130" width="10" height="10"/><rect class="u-off" x="273" y="130" width="10" height="10"/><rect class="u-off" x="286" y="130" width="10" height="10"/><rect class="u-off" x="299" y="130" width="10" height="10"/><rect class="u-off" x="312" y="130" width="10" height="10"/><rect class="u-off" x="325" y="130" width="10" height="10"/><rect class="u-off" x="338" y="130" width="10" height="10"/><rect class="u-off" x="351" y="130" width="10" height="10"/><rect class="u-off" x="364" y="130" width="10" height="10"/><rect class="u-off" x="377" y="130" width="10" height="10"/><rect class="u-off" x="390" y="130" width="10" height="10"/><rect class="u-off" x="403" y="130" width="10" height="10"/><rect class="u-off" x="416" y="130" width="10" height="10"/><rect class="u-off" x="429" y="130" width="10" height="10"/><rect class="u-off" x="442" y="130" width="10" height="10"/><rect class="u-off" x="455" y="130" width="10" height="10"/><rect class="u-off" x="468" y="130" width="10" height="10"/><rect class="u-off" x="481" y="130" width="10" height="10"/><rect class="u-off" x="494" y="130" width="10" height="10"/><rect class="u-off" x="507" y="130" width="10" height="10"/><rect class="u-off" x="520" y="130" width="10" height="10"/><rect class="u-off" x="533" y="130" width="10" height="10"/><rect class="u-off" x="546" y="130" width="10" height="10"/><rect class="u-off" x="559" y="130" width="10" height="10"/><rect class="u-off" x="572" y="130" width="10" height="10"/><rect class="u-off" x="585" y="130" width="10" height="10"/><rect class="u-off" x="598" y="130" width="10" height="10"/><rect class="u-off" x="611" y="130" width="10" height="10"/><rect class="u-off" x="624" y="130" width="10" height="10"/><rect class="u-off" x="637" y="130" width="10" height="10"/><rect class="u-off" x="650" y="130" width="10" height="10"/><rect class="u-off" x="663" y="130" width="10" height="10"/><rect class="u-off" x="0" y="143" width="10" height="10"/><rect class="u-off" x="13" y="143" width="10" height="10"/><rect class="u-off" x="26" y="143" width="10" height="10"/><rect class="u-off" x="39" y="143" width="10" height="10"/><rect class="u-off" x="52" y="143" width="10" height="10"/><rect class="u-off" x="65" y="143" width="10" height="10"/><rect class="u-off" x="78" y="143" width="10" height="10"/><rect class="u-off" x="91" y="143" width="10" height="10"/><rect class="u-off" x="104" y="143" width="10" height="10"/><rect class="u-off" x="117" y="143" width="10" height="10"/><rect class="u-off" x="130" y="143" width="10" height="10"/><rect class="u-off" x="143" y="143" width="10" height="10"/><rect class="u-off" x="156" y="143" width="10" height="10"/><rect class="u-off" x="169" y="143" width="10" height="10"/><rect class="u-off" x="182" y="143" width="10" height="10"/><rect class="u-off" x="195" y="143" width="10" height="10"/><rect class="u-off" x="208" y="143" width="10" height="10"/><rect class="u-off" x="221" y="143" width="10" height="10"/><rect class="u-off" x="234" y="143" width="10" height="10"/><rect class="u-off" x="247" y="143" width="10" height="10"/><rect class="u-off" x="260" y="143" width="10" height="10"/><rect class="u-off" x="273" y="143" width="10" height="10"/><rect class="u-off" x="286" y="143" width="10" height="10"/><rect class="u-off" x="299" y="143" width="10" height="10"/><rect class="u-off" x="312" y="143" width="10" height="10"/><rect class="u-off" x="325" y="143" width="10" height="10"/><rect class="u-off" x="338" y="143" width="10" height="10"/><rect class="u-off" x="351" y="143" width="10" height="10"/><rect class="u-off" x="364" y="143" width="10" height="10"/><rect class="u-off" x="377" y="143" width="10" height="10"/><rect class="u-off" x="390" y="143" width="10" height="10"/><rect class="u-off" x="403" y="143" width="10" height="10"/><rect class="u-off" x="416" y="143" width="10" height="10"/><rect class="u-off" x="429" y="143" width="10" height="10"/><rect class="u-off" x="442" y="143" width="10" height="10"/><rect class="u-off" x="455" y="143" width="10" height="10"/><rect class="u-off" x="468" y="143" width="10" height="10"/><rect class="u-off" x="481" y="143" width="10" height="10"/><rect class="u-off" x="494" y="143" width="10" height="10"/><rect class="u-off" x="507" y="143" width="10" height="10"/><rect class="u-off" x="520" y="143" width="10" height="10"/><rect class="u-off" x="533" y="143" width="10" height="10"/><rect class="u-off" x="546" y="143" width="10" height="10"/><rect class="u-off" x="559" y="143" width="10" height="10"/><rect class="u-off" x="572" y="143" width="10" height="10"/><rect class="u-off" x="585" y="143" width="10" height="10"/><rect class="u-off" x="598" y="143" width="10" height="10"/><rect class="u-off" x="611" y="143" width="10" height="10"/><rect class="u-off" x="624" y="143" width="10" height="10"/><rect class="u-off" x="637" y="143" width="10" height="10"/><rect class="u-off" x="650" y="143" width="10" height="10"/><rect class="u-off" x="663" y="143" width="10" height="10"/><rect class="u-off" x="0" y="156" width="10" height="10"/><rect class="u-off" x="13" y="156" width="10" height="10"/><rect class="u-off" x="26" y="156" width="10" height="10"/><rect class="u-off" x="39" y="156" width="10" height="10"/><rect class="u-off" x="52" y="156" width="10" height="10"/><rect class="u-off" x="65" y="156" width="10" height="10"/><rect class="u-off" x="78" y="156" width="10" height="10"/><rect class="u-off" x="91" y="156" width="10" height="10"/><rect class="u-off" x="104" y="156" width="10" height="10"/><rect class="u-off" x="117" y="156" width="10" height="10"/><rect class="u-off" x="130" y="156" width="10" height="10"/><rect class="u-off" x="143" y="156" width="10" height="10"/><rect class="u-off" x="156" y="156" width="10" height="10"/><rect class="u-off" x="169" y="156" width="10" height="10"/><rect class="u-off" x="182" y="156" width="10" height="10"/><rect class="u-off" x="195" y="156" width="10" height="10"/><rect class="u-off" x="208" y="156" width="10" height="10"/><rect class="u-off" x="221" y="156" width="10" height="10"/><rect class="u-off" x="234" y="156" width="10" height="10"/><rect class="u-off" x="247" y="156" width="10" height="10"/><rect class="u-off" x="260" y="156" width="10" height="10"/><rect class="u-off" x="273" y="156" width="10" height="10"/><rect class="u-off" x="286" y="156" width="10" height="10"/><rect class="u-off" x="299" y="156" width="10" height="10"/><rect class="u-off" x="312" y="156" width="10" height="10"/><rect class="u-off" x="325" y="156" width="10" height="10"/><rect class="u-off" x="338" y="156" width="10" height="10"/><rect class="u-off" x="351" y="156" width="10" height="10"/><rect class="u-off" x="364" y="156" width="10" height="10"/><rect class="u-off" x="377" y="156" width="10" height="10"/><rect class="u-off" x="390" y="156" width="10" height="10"/><rect class="u-off" x="403" y="156" width="10" height="10"/><rect class="u-off" x="416" y="156" width="10" height="10"/><rect class="u-off" x="429" y="156" width="10" height="10"/><rect class="u-off" x="442" y="156" width="10" height="10"/><rect class="u-off" x="455" y="156" width="10" height="10"/><rect class="u-off" x="468" y="156" width="10" height="10"/><rect class="u-off" x="481" y="156" width="10" height="10"/><rect class="u-off" x="494" y="156" width="10" height="10"/><rect class="u-off" x="507" y="156" width="10" height="10"/><rect class="u-off" x="520" y="156" width="10" height="10"/><rect class="u-off" x="533" y="156" width="10" height="10"/><rect class="u-off" x="546" y="156" width="10" height="10"/><rect class="u-off" x="559" y="156" width="10" height="10"/><rect class="u-off" x="572" y="156" width="10" height="10"/><rect class="u-off" x="585" y="156" width="10" height="10"/><rect class="u-off" x="598" y="156" width="10" height="10"/><rect class="u-off" x="611" y="156" width="10" height="10"/><rect class="u-off" x="624" y="156" width="10" height="10"/><rect class="u-off" x="637" y="156" width="10" height="10"/><rect class="u-off" x="650" y="156" width="10" height="10"/><rect class="u-off" x="663" y="156" width="10" height="10"/><rect class="u-off" x="0" y="169" width="10" height="10"/><rect class="u-off" x="13" y="169" width="10" height="10"/><rect class="u-off" x="26" y="169" width="10" height="10"/><rect class="u-off" x="39" y="169" width="10" height="10"/><rect class="u-off" x="52" y="169" width="10" height="10"/><rect class="u-off" x="65" y="169" width="10" height="10"/><rect class="u-off" x="78" y="169" width="10" height="10"/><rect class="u-off" x="91" y="169" width="10" height="10"/><rect class="u-off" x="104" y="169" width="10" height="10"/><rect class="u-off" x="117" y="169" width="10" height="10"/><rect class="u-off" x="130" y="169" width="10" height="10"/><rect class="u-off" x="143" y="169" width="10" height="10"/><rect class="u-off" x="156" y="169" width="10" height="10"/><rect class="u-off" x="169" y="169" width="10" height="10"/><rect class="u-off" x="182" y="169" width="10" height="10"/><rect class="u-off" x="195" y="169" width="10" height="10"/><rect class="u-off" x="208" y="169" width="10" height="10"/><rect class="u-off" x="221" y="169" width="10" height="10"/><rect class="u-off" x="234" y="169" width="10" height="10"/><rect class="u-off" x="247" y="169" width="10" height="10"/><rect class="u-off" x="260" y="169" width="10" height="10"/><rect class="u-off" x="273" y="169" width="10" height="10"/><rect class="u-off" x="286" y="169" width="10" height="10"/><rect class="u-off" x="299" y="169" width="10" height="10"/><rect class="u-off" x="312" y="169" width="10" height="10"/><rect class="u-off" x="325" y="169" width="10" height="10"/><rect class="u-off" x="338" y="169" width="10" height="10"/><rect class="u-off" x="351" y="169" width="10" height="10"/><rect class="u-off" x="364" y="169" width="10" height="10"/><rect class="u-off" x="377" y="169" width="10" height="10"/><rect class="u-off" x="390" y="169" width="10" height="10"/><rect class="u-off" x="403" y="169" width="10" height="10"/><rect class="u-off" x="416" y="169" width="10" height="10"/><rect class="u-off" x="429" y="169" width="10" height="10"/><rect class="u-off" x="442" y="169" width="10" height="10"/><rect class="u-off" x="455" y="169" width="10" height="10"/><rect class="u-off" x="468" y="169" width="10" height="10"/><rect class="u-off" x="481" y="169" width="10" height="10"/><rect class="u-off" x="494" y="169" width="10" height="10"/><rect class="u-off" x="507" y="169" width="10" height="10"/><rect class="u-off" x="520" y="169" width="10" height="10"/><rect class="u-off" x="533" y="169" width="10" height="10"/><rect class="u-off" x="546" y="169" width="10" height="10"/><rect class="u-off" x="559" y="169" width="10" height="10"/><rect class="u-off" x="572" y="169" width="10" height="10"/><rect class="u-off" x="585" y="169" width="10" height="10"/><rect class="u-off" x="598" y="169" width="10" height="10"/><rect class="u-off" x="611" y="169" width="10" height="10"/><rect class="u-off" x="624" y="169" width="10" height="10"/><rect class="u-off" x="637" y="169" width="10" height="10"/><rect class="u-off" x="650" y="169" width="10" height="10"/><rect class="u-off" x="663" y="169" width="10" height="10"/><rect class="u-off" x="0" y="182" width="10" height="10"/><rect class="u-off" x="13" y="182" width="10" height="10"/><rect class="u-off" x="26" y="182" width="10" height="10"/><rect class="u-off" x="39" y="182" width="10" height="10"/><rect class="u-off" x="52" y="182" width="10" height="10"/><rect class="u-off" x="65" y="182" width="10" height="10"/><rect class="u-off" x="78" y="182" width="10" height="10"/><rect class="u-off" x="91" y="182" width="10" height="10"/><rect class="u-off" x="104" y="182" width="10" height="10"/><rect class="u-off" x="117" y="182" width="10" height="10"/><rect class="u-off" x="130" y="182" width="10" height="10"/><rect class="u-off" x="143" y="182" width="10" height="10"/><rect class="u-off" x="156" y="182" width="10" height="10"/><rect class="u-off" x="169" y="182" width="10" height="10"/><rect class="u-off" x="182" y="182" width="10" height="10"/><rect class="u-off" x="195" y="182" width="10" height="10"/><rect class="u-off" x="208" y="182" width="10" height="10"/><rect class="u-off" x="221" y="182" width="10" height="10"/><rect class="u-off" x="234" y="182" width="10" height="10"/><rect class="u-off" x="247" y="182" width="10" height="10"/><rect class="u-off" x="260" y="182" width="10" height="10"/><rect class="u-off" x="273" y="182" width="10" height="10"/><rect class="u-off" x="286" y="182" width="10" height="10"/><rect class="u-off" x="299" y="182" width="10" height="10"/><rect class="u-off" x="312" y="182" width="10" height="10"/><rect class="u-off" x="325" y="182" width="10" height="10"/><rect class="u-off" x="338" y="182" width="10" height="10"/><rect class="u-off" x="351" y="182" width="10" height="10"/><rect class="u-off" x="364" y="182" width="10" height="10"/><rect class="u-off" x="377" y="182" width="10" height="10"/><rect class="u-off" x="390" y="182" width="10" height="10"/><rect class="u-off" x="403" y="182" width="10" height="10"/><rect class="u-off" x="416" y="182" width="10" height="10"/><rect class="u-off" x="429" y="182" width="10" height="10"/><rect class="u-off" x="442" y="182" width="10" height="10"/><rect class="u-off" x="455" y="182" width="10" height="10"/><rect class="u-off" x="468" y="182" width="10" height="10"/><rect class="u-off" x="481" y="182" width="10" height="10"/><rect class="u-off" x="494" y="182" width="10" height="10"/><rect class="u-off" x="507" y="182" width="10" height="10"/><rect class="u-off" x="520" y="182" width="10" height="10"/><rect class="u-off" x="533" y="182" width="10" height="10"/><rect class="u-off" x="546" y="182" width="10" height="10"/><rect class="u-off" x="559" y="182" width="10" height="10"/><rect class="u-off" x="572" y="182" width="10" height="10"/><rect class="u-off" x="585" y="182" width="10" height="10"/><rect class="u-off" x="598" y="182" width="10" height="10"/><rect class="u-off" x="611" y="182" width="10" height="10"/><rect class="u-off" x="624" y="182" width="10" height="10"/><rect class="u-off" x="637" y="182" width="10" height="10"/><rect class="u-off" x="650" y="182" width="10" height="10"/><rect class="u-off" x="663" y="182" width="10" height="10"/><rect class="u-off" x="0" y="195" width="10" height="10"/><rect class="u-off" x="13" y="195" width="10" height="10"/><rect class="u-off" x="26" y="195" width="10" height="10"/><rect class="u-off" x="39" y="195" width="10" height="10"/><rect class="u-off" x="52" y="195" width="10" height="10"/><rect class="u-off" x="65" y="195" width="10" height="10"/><rect class="u-off" x="78" y="195" width="10" height="10"/><rect class="u-off" x="91" y="195" width="10" height="10"/><rect class="u-off" x="104" y="195" width="10" height="10"/><rect class="u-off" x="117" y="195" width="10" height="10"/><rect class="u-off" x="130" y="195" width="10" height="10"/><rect class="u-off" x="143" y="195" width="10" height="10"/><rect class="u-off" x="156" y="195" width="10" height="10"/><rect class="u-off" x="169" y="195" width="10" height="10"/><rect class="u-off" x="182" y="195" width="10" height="10"/><rect class="u-off" x="195" y="195" width="10" height="10"/><rect class="u-off" x="208" y="195" width="10" height="10"/><rect class="u-off" x="221" y="195" width="10" height="10"/><rect class="u-off" x="234" y="195" width="10" height="10"/><rect class="u-off" x="247" y="195" width="10" height="10"/><rect class="u-off" x="260" y="195" width="10" height="10"/><rect class="u-off" x="273" y="195" width="10" height="10"/><rect class="u-off" x="286" y="195" width="10" height="10"/><rect class="u-off" x="299" y="195" width="10" height="10"/><rect class="u-off" x="312" y="195" width="10" height="10"/><rect class="u-off" x="325" y="195" width="10" height="10"/><rect class="u-off" x="338" y="195" width="10" height="10"/><rect class="u-off" x="351" y="195" width="10" height="10"/><rect class="u-off" x="364" y="195" width="10" height="10"/><rect class="u-off" x="377" y="195" width="10" height="10"/><rect class="u-off" x="390" y="195" width="10" height="10"/><rect class="u-off" x="403" y="195" width="10" height="10"/><rect class="u-off" x="416" y="195" width="10" height="10"/><rect class="u-off" x="429" y="195" width="10" height="10"/><rect class="u-off" x="442" y="195" width="10" height="10"/><rect class="u-off" x="455" y="195" width="10" height="10"/><rect class="u-off" x="468" y="195" width="10" height="10"/><rect class="u-off" x="481" y="195" width="10" height="10"/><rect class="u-off" x="494" y="195" width="10" height="10"/><rect class="u-off" x="507" y="195" width="10" height="10"/><rect class="u-off" x="520" y="195" width="10" height="10"/><rect class="u-off" x="533" y="195" width="10" height="10"/><rect class="u-off" x="546" y="195" width="10" height="10"/><rect class="u-off" x="559" y="195" width="10" height="10"/><rect class="u-off" x="572" y="195" width="10" height="10"/><rect class="u-off" x="585" y="195" width="10" height="10"/><rect class="u-off" x="598" y="195" width="10" height="10"/><rect class="u-off" x="611" y="195" width="10" height="10"/><rect class="u-off" x="624" y="195" width="10" height="10"/><rect class="u-off" x="637" y="195" width="10" height="10"/><rect class="u-off" x="650" y="195" width="10" height="10"/><rect class="u-off" x="663" y="195" width="10" height="10"/><rect class="u-off" x="0" y="208" width="10" height="10"/><rect class="u-off" x="13" y="208" width="10" height="10"/><rect class="u-off" x="26" y="208" width="10" height="10"/><rect class="u-off" x="39" y="208" width="10" height="10"/><rect class="u-off" x="52" y="208" width="10" height="10"/><rect class="u-off" x="65" y="208" width="10" height="10"/><rect class="u-off" x="78" y="208" width="10" height="10"/><rect class="u-off" x="91" y="208" width="10" height="10"/><rect class="u-off" x="104" y="208" width="10" height="10"/><rect class="u-off" x="117" y="208" width="10" height="10"/><rect class="u-off" x="130" y="208" width="10" height="10"/><rect class="u-off" x="143" y="208" width="10" height="10"/><rect class="u-off" x="156" y="208" width="10" height="10"/><rect class="u-off" x="169" y="208" width="10" height="10"/><rect class="u-off" x="182" y="208" width="10" height="10"/><rect class="u-off" x="195" y="208" width="10" height="10"/><rect class="u-off" x="208" y="208" width="10" height="10"/><rect class="u-off" x="221" y="208" width="10" height="10"/><rect class="u-off" x="234" y="208" width="10" height="10"/><rect class="u-off" x="247" y="208" width="10" height="10"/><rect class="u-off" x="260" y="208" width="10" height="10"/><rect class="u-off" x="273" y="208" width="10" height="10"/><rect class="u-off" x="286" y="208" width="10" height="10"/><rect class="u-off" x="299" y="208" width="10" height="10"/><rect class="u-off" x="312" y="208" width="10" height="10"/><rect class="u-off" x="325" y="208" width="10" height="10"/><rect class="u-off" x="338" y="208" width="10" height="10"/><rect class="u-off" x="351" y="208" width="10" height="10"/><rect class="u-off" x="364" y="208" width="10" height="10"/><rect class="u-off" x="377" y="208" width="10" height="10"/><rect class="u-off" x="390" y="208" width="10" height="10"/><rect class="u-off" x="403" y="208" width="10" height="10"/><rect class="u-off" x="416" y="208" width="10" height="10"/><rect class="u-off" x="429" y="208" width="10" height="10"/><rect class="u-off" x="442" y="208" width="10" height="10"/><rect class="u-off" x="455" y="208" width="10" height="10"/><rect class="u-off" x="468" y="208" width="10" height="10"/><rect class="u-off" x="481" y="208" width="10" height="10"/><rect class="u-off" x="494" y="208" width="10" height="10"/><rect class="u-off" x="507" y="208" width="10" height="10"/><rect class="u-off" x="520" y="208" width="10" height="10"/><rect class="u-off" x="533" y="208" width="10" height="10"/><rect class="u-off" x="546" y="208" width="10" height="10"/><rect class="u-off" x="559" y="208" width="10" height="10"/><rect class="u-off" x="572" y="208" width="10" height="10"/><rect class="u-off" x="585" y="208" width="10" height="10"/><rect class="u-off" x="598" y="208" width="10" height="10"/><rect class="u-off" x="611" y="208" width="10" height="10"/><rect class="u-off" x="624" y="208" width="10" height="10"/><rect class="u-off" x="637" y="208" width="10" height="10"/><rect class="u-off" x="650" y="208" width="10" height="10"/><rect class="u-off" x="663" y="208" width="10" height="10"/><rect class="u-off" x="0" y="221" width="10" height="10"/><rect class="u-off" x="13" y="221" width="10" height="10"/><rect class="u-off" x="26" y="221" width="10" height="10"/><rect class="u-off" x="39" y="221" width="10" height="10"/><rect class="u-off" x="52" y="221" width="10" height="10"/><rect class="u-off" x="65" y="221" width="10" height="10"/><rect class="u-off" x="78" y="221" width="10" height="10"/><rect class="u-off" x="91" y="221" width="10" height="10"/><rect class="u-off" x="104" y="221" width="10" height="10"/><rect class="u-off" x="117" y="221" width="10" height="10"/><rect class="u-off" x="130" y="221" width="10" height="10"/><rect class="u-off" x="143" y="221" width="10" height="10"/><rect class="u-off" x="156" y="221" width="10" height="10"/><rect class="u-off" x="169" y="221" width="10" height="10"/><rect class="u-off" x="182" y="221" width="10" height="10"/><rect class="u-off" x="195" y="221" width="10" height="10"/><rect class="u-off" x="208" y="221" width="10" height="10"/><rect class="u-off" x="221" y="221" width="10" height="10"/><rect class="u-off" x="234" y="221" width="10" height="10"/><rect class="u-off" x="247" y="221" width="10" height="10"/><rect class="u-off" x="260" y="221" width="10" height="10"/><rect class="u-off" x="273" y="221" width="10" height="10"/><rect class="u-off" x="286" y="221" width="10" height="10"/><rect class="u-off" x="299" y="221" width="10" height="10"/>
-          <text x="0" y="261">282 ACTUALLY PAID</text>
-          <text x="673" y="261" text-anchor="end">908 REPORTED ACTIVE</text>
-        </svg>
-        </div>
-        <figcaption>Each square is a subscription the application called active. The filled ones took money in 2026. Everything unfilled is a number the business was running on.</figcaption>
-      </figure>
-
-      <p>Reconciling application state against Stripe showed that the product's definition of “active subscriber” had drifted away from commercial reality — and every dashboard, report and entitlement check in the business was reading the drifted number.</p>
-      <p class="take">It is the same failure as the 137 rules, expressed in dollars: no single source of truth, and no way to know which answer was the real one.</p>
-    </section>
-
-    <section class="sect" id="outcomes">
-      <div class="sect-type"><h4>Outcomes</h4>
+    <section class="sect" id="results">
+      <div class="sect-type"><h4>Results</h4>
         <h2>What changed.</h2></div>
       <div class="stats">
-        <div class="stat"><b>54% → 81%</b><h4>Buyer onboarding completion</h4></div>
-        <div class="stat"><b>14 min → 5 min</b><h4>Time to create a supplier-ready brief</h4></div>
-        <div class="stat"><b>3.4 days → 6.2 hrs</b><h4>Time to a qualified match</h4></div>
+        <div class="stat"><b>$25K &#8594; $100K+</b><h4>Monthly recurring revenue, and still growing</h4></div>
+        <div class="stat"><b>4&#8211;5&#215;</b><h4>Traffic, with bounce rate down</h4></div>
+        <div class="stat"><b>2&#8211;3 weeks &#8594; 1 day</b><h4>Feature cycle time</h4></div>
       </div>
-      <div class="stats">
-        <div class="stat"><b>21% → 39%</b><h4>Buyers reaching a qualified supplier</h4></div>
-        <div class="stat"><b>38% → 57%</b><h4>Factory response rate</h4></div>
-        <div class="stat"><b>18 days → 6 days</b><h4>Average product release lead time</h4></div>
+      <ul class="plain">
+        <li><strong>Posted projects rose</strong> within one to two months of removing brand pricing and the signup wall.</li>
+        <li><strong>Factory conversion rose</strong> off tiering and the free trial.</li>
+        <li><strong>Churned factories recovered</strong> through direct outreach and a promo path back.</li>
+        <li><strong>Continuous A/B testing became viable</strong>, because a test no longer cost three weeks.</li>
+      </ul>
+      <p>The cycle time is the one I care about most. Revenue and traffic measure the outcome; the cycle measures whether the organisation got its ability to change back &#8212; and that outlasts any single thing on this page.</p>
+    </section>
+
+    <section class="sect" id="learnings">
+      <div class="sect-type"><h4>What I&#8217;d Carry Forward</h4>
+        <h2>Five things I would do the same way again.</h2></div>
+      <div class="sub">
+        <h3>Diagnose the organisation before the product.</h3>
+        <p>The knowledge was never missing. It was distributed in a way that made it unusable, and no roadmap built on a partial picture would have survived contact.</p>
       </div>
-      <p>The last of those is the one I care about most. Onboarding and match rates measure the feature; release lead time measures whether the organisation got its ability to change back — and that outlasts any single feature on this page.</p>
+      <div class="sub">
+        <h3>In a marketplace, price the side that stays.</h3>
+        <p>Charging the transient side looks like revenue and behaves like churn. Brands were never going to renew, so every dollar taken from them cost us the project volume the factories were paying for.</p>
+      </div>
+      <div class="sub">
+        <h3>Removing revenue is a product decision.</h3>
+        <p>The hardest thing to get agreement on was taking money off the table in order to restore liquidity. It reads as a loss on every report until the other side of the market recovers.</p>
+      </div>
+      <div class="sub">
+        <h3>Delivery speed is a product feature.</h3>
+        <p>Nothing else we shipped mattered as much as collapsing the cycle from three weeks to a day, because it changed what everyone else in the business was able to attempt.</p>
+      </div>
+      <div class="sub">
+        <h3>Sales was a symptom, not a stakeholder problem.</h3>
+        <p>The over-promising stopped when there was a product worth demoing and a cycle short enough to answer requests honestly.</p>
+      </div>
     </section>
 
     <section class="sect" id="reflection">
       <div class="sect-type"><h4>Reflection</h4>
-        <h2>What I learned</h2></div>
-      <div class="sub">
-        <h3>A decade of undocumented decisions is a product, not a mess.</h3>
-        <p>Every strange rule existed because something once required it. Reconstructing the reasons was more valuable than removing the rules, because it told us which ones we were allowed to change.</p>
-      </div>
-      <div class="sub">
-        <h3>Solving one side of a marketplace creates a problem on the other.</h3>
-        <p>Better matching produced worse leads. That isn't a bug in the matching — it's what happens when you optimise one half of a two-sided system and measure only that half.</p>
-      </div>
-      <div class="sub">
-        <h3>The number a business reports about itself is a product decision.</h3>
-        <p>908 versus 282 wasn't a data-quality issue. It was a schema that made the wrong answer the easy one to read, and it had been shaping decisions for years.</p>
-      </div>
-      <p class="pull">MakersRow didn't need an AI feature. It needed its product rebuilt so that AI could be useful.</p>
+        <h2>What the turnaround actually was.</h2></div>
+      <p>MakersRow was not failing because it lacked features. It was failing because a decade of tech debt had made it unable to change itself, and because its pricing model quietly worked against the liquidity the marketplace ran on.</p>
+      <p>The sequence mattered more than any single change: consolidate what the company already knew, fix the economics, rebuild the product those economics implied, and then rebuild the way the product got built &#8212; so the business could keep moving without waiting on engineering.</p>
+      <p class="pull">The marketplace didn&#8217;t need to charge more. It needed to be able to change.</p>
     </section>
 
   </div>
@@ -948,7 +683,7 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
       else b.removeAttribute('aria-current');
     });
   }
-  setCurrent('overview');
+  setCurrent('problem');
   if('IntersectionObserver' in window){
     var seen = {};
     var io = new IntersectionObserver(function(entries){
