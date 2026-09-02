@@ -1,0 +1,715 @@
+<meta charset="utf-8">
+<title>Daftarkhwan — Hashim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<style>
+:root{
+  --ground:#FAFCFD;
+  --fg:#32404F;
+  --muted:rgba(50,64,79,0.584);
+  --hairline:rgba(50,64,79,0.10);
+  --hairline-2:rgba(50,64,79,0.20);
+  --accent:#E65F2E;
+  --navy:#22407C;
+  --card:#FFFFFF;
+  --field:#EDF2FB;
+  --btn:#3B7DED;
+  --flag:#A8340B;
+  --flag-bg:rgba(230,95,46,0.07);
+  --flag-edge:rgba(230,95,46,0.32);
+  --panel:#EFF1F4;
+  --pos:#2E7D5B;
+  --pos-bg:rgba(46,125,91,0.08);
+  --neg:#B3402A;
+  --neg-bg:rgba(179,64,42,0.07);
+  --ui-side:#1B2434;
+  --ui-side-2:#2A3547;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Geist','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#12161C; --fg:#DCE3EA; --muted:rgba(220,227,234,0.60);
+    --hairline:rgba(220,227,234,0.12); --hairline-2:rgba(220,227,234,0.24);
+    --accent:#F4784C; --navy:#1D3568; --card:#1B222B; --field:#232C38; --btn:#4B86EE;
+    --flag:#F4A183; --flag-bg:rgba(244,120,76,0.09); --flag-edge:rgba(244,120,76,0.34);
+    --panel:#1A1F27;
+    --panel:#1A1F27;
+  --pos:#6FD3A5; --pos-bg:rgba(111,211,165,0.10);
+    --neg:#F08A6E; --neg-bg:rgba(240,138,110,0.10);
+    --ui-side:#0C1119; --ui-side-2:#1A2434;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#12161C; --fg:#DCE3EA; --muted:rgba(220,227,234,0.60);
+  --hairline:rgba(220,227,234,0.12); --hairline-2:rgba(220,227,234,0.24);
+  --accent:#F4784C; --navy:#1D3568; --card:#1B222B; --field:#232C38; --btn:#4B86EE;
+  --flag:#F4A183; --flag-bg:rgba(244,120,76,0.09); --flag-edge:rgba(244,120,76,0.34);
+  --pos:#6FD3A5; --pos-bg:rgba(111,211,165,0.10);
+  --neg:#F08A6E; --neg-bg:rgba(240,138,110,0.10);
+  --ui-side:#0C1119; --ui-side-2:#1A2434;
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--fg);font-family:var(--sans);
+  font-size:15px;line-height:22.5px;margin:0;-webkit-font-smoothing:antialiased}
+
+.shell{padding:0 24px}
+.grid{max-width:1800px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:0}
+@media (min-width:768px){.grid{grid-template-columns:1fr auto 1fr;gap:32px}}
+.aside{padding:48px 0 0}
+@media (min-width:768px){.aside{position:sticky;top:0;height:fit-content;padding:48px 0;min-width:270px}}
+.col{width:100%;padding:48px 0;display:flex;flex-direction:column;gap:48px}
+@media (min-width:768px){.col{max-width:768px;gap:96px}}
+
+.spacer{display:none}
+@media (min-width:768px){.spacer{display:block;padding:48px 24px}}
+
+.back{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:15px;line-height:22.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 200ms cubic-bezier(.4,0,.2,1)}
+.back svg{width:18px;height:18px;fill:currentColor;flex-shrink:0;transition:fill 200ms cubic-bezier(.4,0,.2,1)}
+.back:hover,.back:focus-visible{color:var(--fg)}
+.sectnav{margin-top:32px;display:none}
+@media (min-width:768px){.sectnav{display:block}}
+.sectnav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.sectnav button{background:none;border:0;padding:0;margin:0;text-align:left;
+  font-family:var(--sans);font-size:16px;line-height:24px;color:var(--muted);
+  cursor:pointer;transition:color .25s}
+.sectnav button:hover{color:var(--fg)}
+.sectnav button[aria-current="true"]{color:var(--fg)}
+
+.head{display:flex;flex-direction:column;gap:32px}
+.head-type{display:flex;flex-direction:column;gap:16px}
+h4,.label{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:400;
+  text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--serif);font-weight:400;
+  font-size:clamp(30px,4.4vw,52px);line-height:1.08;letter-spacing:-0.02em;
+  color:var(--fg);margin:0;text-wrap:balance}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(25px,3.4vw,32px);
+  line-height:1.2;letter-spacing:-0.02em;color:var(--fg);margin:0;text-wrap:balance}
+h3{font-family:var(--serif);font-weight:400;font-size:21.2px;line-height:31.8px;
+  letter-spacing:-0.02em;color:var(--fg);margin:0}
+p{margin:0;color:var(--muted)}
+p+p{margin-top:1em}
+strong{font-weight:500;color:var(--fg)}
+a{color:var(--fg)}
+ul.plain{margin:0;padding-left:1.1em;color:var(--muted)}
+ul.plain li{margin-bottom:.35em}
+ul.plain li::marker{color:var(--hairline-2)}
+
+.meta{display:flex;flex-direction:column;gap:24px}
+@media (min-width:768px){.meta{flex-direction:row;gap:48px}}
+.meta-item{display:flex;flex-direction:column;gap:8px;flex:1 1 0;min-width:0}
+
+.sect{display:flex;flex-direction:column;gap:32px;scroll-margin-top:24px}
+.sect-type{display:flex;flex-direction:column;gap:16px}
+.sub{display:flex;flex-direction:column;gap:16px}
+
+/* columns */
+.cols{display:flex;flex-direction:column;gap:32px}
+@media (min-width:640px){.cols{flex-direction:row;gap:32px}}
+.cols>*{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:16px}
+
+/* pull quote */
+.pull{font-family:var(--serif);font-size:21.2px;line-height:31.8px;letter-spacing:-0.02em;
+  color:var(--fg);border-left:2px solid var(--accent);padding-left:20px;margin:0}
+
+/* media */
+.media{width:100%;aspect-ratio:16/9;border:1px solid var(--hairline);overflow:hidden;position:relative}
+.hero{background:var(--navy);display:flex;align-items:center;justify-content:center}
+.hero::before{content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
+  mix-blend-mode:overlay;opacity:.55;pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 45%,rgba(255,255,255,0.07),transparent 62%)}
+.paycard{position:relative;z-index:2;background:var(--card);width:min(64%,420px);
+  border-radius:8px;padding:26px;box-shadow:0 18px 44px rgba(10,22,52,.30);
+  display:flex;flex-direction:column;gap:14px}
+.pc-label{font-size:13px;color:var(--fg);opacity:.85}
+.pc-field{background:var(--field);border-radius:6px;padding:11px 13px;display:flex;
+  align-items:center;justify-content:space-between;gap:10px;font-size:14px;color:var(--fg)}
+.pc-amt{font-family:var(--mono);font-size:15px;color:var(--fg)}
+.pc-btn{background:var(--btn);color:#fff;border-radius:6px;padding:12px;text-align:center;
+  font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:9px}
+.pc-dot{width:15px;height:15px;border-radius:50%;border:2.2px solid #fff;flex:none;position:relative}
+.pc-dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#fff}
+
+/* diagrams */
+.dg{width:100%;background:var(--panel);border:0;padding:clamp(22px,3.6vw,44px);overflow-x:auto}
+.dg svg{display:block;width:100%;height:auto;min-width:420px}
+.d-node{fill:var(--card);stroke:none}
+.d-fill{fill:var(--card);stroke:none}
+.d-node-a{fill:var(--accent);stroke:none}
+.d-panel{fill:none;stroke:var(--accent);stroke-width:1.4}
+.d-line{fill:none;stroke:var(--hairline-2);stroke-width:1}
+.d-line-a{fill:none;stroke:var(--accent);stroke-width:1.6}
+.d-lbl{font-family:var(--mono);font-size:11.5px;fill:var(--muted);text-transform:uppercase}
+.d-ttl{font-family:var(--serif);font-size:16px;fill:var(--fg)}
+.d-sm{font-family:var(--sans);font-size:12.5px;fill:var(--fg)}
+.d-on{fill:#fff}
+.d-acc{fill:var(--accent)}
+
+/* slot */
+.slot{border:1px dashed var(--flag-edge);background:var(--flag-bg);display:flex;
+  align-items:center;justify-content:center;text-align:center;padding:24px}
+.slot span{font-family:var(--mono);font-size:15px;line-height:22.5px;
+  text-transform:uppercase;color:var(--flag);max-width:38ch}
+
+/* stats */
+.stats{display:flex;flex-direction:column;gap:24px}
+@media (min-width:640px){.stats{flex-direction:row;gap:48px}}
+.stat{display:flex;flex-direction:column;gap:8px;flex:1 1 0}
+.stat b{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.4vw,32px);
+  line-height:38.4px;letter-spacing:-0.02em;color:var(--fg);font-variant-numeric:tabular-nums}
+
+/* internal */
+.internal{border-top:1px solid var(--hairline);padding-top:32px;display:flex;flex-direction:column;gap:24px}
+.internal ol,.internal ul{margin:0;padding-left:1.15em;color:var(--muted)}
+.internal li{margin-bottom:.5em}
+.internal li::marker{color:var(--accent)}
+.internal code{font-family:var(--mono);font-size:13.5px;color:var(--fg)}
+
+footer{width:100%;display:flex;align-items:center;justify-content:center;padding:20px 24px;
+  border-top:1px solid var(--hairline);font-family:var(--mono);font-size:15px;
+  line-height:22.5px;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- top nav (scrolls away; the left rail sticks on its own) ---------- */
+.topbar{
+  display:flex;justify-content:center;align-items:center;
+  padding:20px 24px;gap:24px;position:relative;
+  background:var(--ground);border-bottom:1px solid var(--hairline);
+  min-height:32px;z-index:50;
+}
+@media (min-width:1024px){.topbar{height:64px}}
+.topbar-in{max-width:1800px;width:100%;display:flex;align-items:center;gap:24px;position:relative}
+.brand{display:flex;flex-direction:column;gap:0;text-decoration:none;flex:1;min-width:0}
+@media (min-width:640px){.brand{flex-direction:row;align-items:center;gap:16px}}
+.brand .nm{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:500;
+  text-transform:uppercase;color:var(--fg);margin:0;white-space:nowrap}
+.brand .rl{font-family:var(--mono);font-size:15px;line-height:22.5px;font-weight:400;
+  text-transform:uppercase;color:var(--muted);margin:0;white-space:nowrap}
+.topnav{display:none;gap:32px;align-items:center;justify-content:flex-end}
+@media (min-width:768px){.topnav{display:flex}}
+.topnav a{font-family:var(--mono);font-size:15px;line-height:22.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s}
+.topnav a:hover,.topnav a:focus-visible{color:var(--accent)}
+.burger{display:flex;align-items:center;justify-content:center;background:none;border:0;
+  padding:0;color:var(--fg);cursor:pointer;width:24px;height:24px;margin-left:auto}
+@media (min-width:768px){.burger{display:none}}
+.burger span{display:block;width:20px;height:1.5px;background:currentColor;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:1.5px;background:currentColor}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.mobnav{position:absolute;left:0;right:0;top:100%;z-index:60;padding:24px;
+  border-bottom:1px solid var(--hairline);background:var(--ground);
+  display:flex;flex-direction:column;gap:12px;
+  transition:opacity .3s ease-in-out,transform .3s ease-in-out;
+  opacity:0;transform:translateY(-8px);pointer-events:none}
+.mobnav.open{opacity:1;transform:none;pointer-events:auto}
+@media (min-width:768px){.mobnav{display:none}}
+.mobnav a{font-family:var(--mono);font-size:15px;line-height:22.5px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none}
+
+/* owned-ledger */
+table.own{width:100%;border-collapse:collapse;font-size:14.5px}
+table.own th{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-align:left;font-weight:400;border-bottom:1px solid var(--fg);padding:0 16px 8px 0}
+table.own td{border-bottom:1px solid var(--hairline);padding:10px 16px 10px 0;vertical-align:top;color:var(--muted)}
+table.own td:first-child{width:32%;color:var(--fg)}
+.statgrp{display:flex;flex-direction:column;gap:16px}
+.stat.gap b{color:var(--flag)}
+
+/* light takeaway — the 3 thesis lines keep .pull */
+.take{font-family:var(--serif);font-size:17px;line-height:26px;color:var(--fg);
+  border-left:1px solid var(--hairline-2);padding-left:18px;margin:0}
+.who{display:flex;flex-direction:column;gap:20px}
+@media (min-width:700px){.who{flex-direction:row;gap:20px}}
+.who>div{flex:1 1 0;min-width:0;border-top:1.5px solid var(--fg);padding-top:14px;
+  display:flex;flex-direction:column;gap:10px}
+.who q{font-family:var(--serif);font-size:17px;line-height:26px;color:var(--fg);quotes:'\201C' '\201D'}
+.conflict{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--hairline)}
+.conflict>div{display:grid;grid-template-columns:1fr;gap:2px 24px;
+  padding:14px 0;border-bottom:1px solid var(--hairline)}
+@media (min-width:560px){.conflict>div{grid-template-columns:150px 1fr}}
+.conflict dt{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.conflict dd{margin:0;color:var(--fg);font-size:15px}
+.conflict .mine dt{color:var(--accent)}
+.wrong{display:flex;flex-direction:column;gap:24px}
+.wrong>div{border-left:2px solid var(--hairline-2);padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.wrong h3{font-size:19px;line-height:28px}
+.chg{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
+
+/* brief mockup */
+.brief{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hairline);
+  border:1px solid var(--hairline);font-size:14px}
+@media (min-width:620px){.brief{grid-template-columns:1fr 1fr}}
+.brief>div{background:var(--card);padding:clamp(24px,3.4vw,38px)}
+.brief h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 12px;font-weight:400}
+.brief .quote{font-family:var(--serif);font-size:clamp(17px,2.1vw,22px);line-height:1.45;color:var(--fg)}
+.brief dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px}
+.brief dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.brief dd{margin:0;color:var(--fg);font-size:15px}
+.miss{margin-top:16px;padding-top:14px;border-top:1px solid var(--hairline);
+  display:flex;flex-wrap:wrap;gap:6px}
+.miss span{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;
+  border:1px dashed var(--flag-edge);color:var(--flag);padding:4px 8px}
+
+/* split panels */
+.split{display:flex;flex-direction:column;gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+@media (min-width:700px){.split{flex-direction:row}}
+.split>div{flex:1 1 0;min-width:0;background:var(--card);padding:22px;display:flex;flex-direction:column;gap:12px}
+.split h4{margin:0}
+.split ul{margin:0;padding-left:1.05em;color:var(--muted);font-size:14px}
+.split li{margin-bottom:.3em}
+.split li::marker{color:var(--hairline-2)}
+
+/* unit grid */
+.units text{font-family:var(--mono);font-size:11.5px;fill:var(--muted)}
+.u-on{fill:var(--accent)}
+.u-off{fill:var(--hairline-2)}
+
+/* evaluation box + acceptance criteria */
+.evalbox{border:1px solid var(--fg);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:18px}
+.evalgrid{display:grid;grid-template-columns:1fr;gap:16px 32px}
+@media (min-width:620px){.evalgrid{grid-template-columns:1fr 1fr}}
+.evalgrid>div{display:flex;flex-direction:column;gap:4px}
+.evalgrid b{font-family:var(--mono);font-size:15px;color:var(--fg);font-weight:400;font-variant-numeric:tabular-nums}
+.evalgrid span{font-size:14px;color:var(--muted)}
+.ac{margin:0;padding:0;list-style:none;counter-reset:ac;display:flex;flex-direction:column;gap:9px}
+.ac li{counter-increment:ac;display:grid;grid-template-columns:28px 1fr;gap:12px;
+  font-size:14.5px;color:var(--fg);align-items:baseline}
+.ac li::before{content:counter(ac,decimal-leading-zero);font-family:var(--mono);
+  font-size:11.5px;color:var(--accent)}
+.cmp-wrap{overflow-x:auto}
+.cmp{width:100%;border-collapse:collapse;min-width:520px}
+.cmp th,.cmp td{text-align:left;padding:13px 20px 13px 0;border-bottom:1px solid var(--hairline);vertical-align:top}
+.cmp thead th{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.cmp thead th:last-child{color:var(--accent)}
+.cmp tbody th{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted);font-weight:400;white-space:nowrap}
+.cmp td{font-size:15px;color:var(--muted)}
+.cmp td:last-child{color:var(--fg)}
+.story{font-family:var(--serif);font-size:19px;line-height:29px;color:var(--fg);
+  border-left:2px solid var(--accent);padding-left:20px;margin:0}
+
+/* figures */
+figure{margin:0;display:flex;flex-direction:column;gap:12px}
+figcaption{font-family:var(--mono);font-size:15px;line-height:22.5px;color:var(--muted)}
+.d-pos{fill:none;stroke:var(--pos);stroke-width:1.4}
+.d-neg{fill:none;stroke:var(--neg);stroke-width:1.4}
+.t-pos{fill:var(--pos)}
+.t-neg{fill:var(--neg)}
+.t-acc{fill:var(--accent)}
+.d-fill{fill:var(--hairline);stroke:none}
+
+/* ---- dashboard mockup ---- */
+.ui{border:1px solid var(--hairline);display:flex;overflow:hidden;background:var(--card);
+  font-size:11px;line-height:1.45;color:var(--fg)}
+.ui-side{background:var(--ui-side);color:#C8D2E0;width:132px;flex:none;padding:12px 0;
+  display:flex;flex-direction:column;gap:2px}
+.ui-brand{display:flex;align-items:center;gap:7px;padding:2px 12px 12px;color:#fff;font-weight:500;font-size:12px}
+.ui-mark{width:15px;height:15px;border-radius:4px;background:var(--btn);flex:none;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700}
+.ui-nav{padding:3px 12px;color:#8A99AD;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.ui-nav.on{background:var(--ui-side-2);color:#fff}
+.ui-pill{background:var(--btn);color:#fff;border-radius:20px;padding:0 5px;font-size:9px}
+.ui-main{flex:1;min-width:0;display:flex;flex-direction:column}
+.ui-top{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:10px 12px;border-bottom:1px solid var(--hairline)}
+.ui-top b{font-size:12px;font-weight:500}
+.ui-search{border:1px solid var(--hairline);border-radius:4px;padding:3px 8px;color:var(--muted);
+  font-size:10px;flex:1;max-width:170px}
+.ui-tabs{display:flex;gap:14px;padding:8px 12px;border-bottom:1px solid var(--hairline);
+  font-size:10px;color:var(--muted);overflow-x:auto}
+.ui-tabs span.on{color:var(--fg);border-bottom:1.5px solid var(--btn);padding-bottom:3px}
+.ui-tblwrap{overflow-x:auto}
+table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
+.ui-tbl th{text-align:left;font-weight:400;color:var(--muted);padding:7px 10px;
+  border-bottom:1px solid var(--hairline);white-space:nowrap;font-size:9.5px;text-transform:uppercase;letter-spacing:.04em}
+.ui-tbl td{padding:7px 10px;border-bottom:1px solid var(--hairline);white-space:nowrap;color:var(--fg)}
+.ui-tbl td.num{font-variant-numeric:tabular-nums;text-align:right}
+.tag{display:inline-block;border-radius:20px;padding:1px 7px;font-size:9px;white-space:nowrap}
+.tag.wait{background:var(--flag-bg);color:var(--flag)}
+.tag.run{background:rgba(59,125,237,0.12);color:var(--btn)}
+.tag.ok{background:var(--pos-bg);color:var(--pos)}
+.tag.bad{background:var(--neg-bg);color:var(--neg)}
+.ui-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hairline)}
+.ui-stat{padding:10px 12px;border-right:1px solid var(--hairline)}
+.ui-stat:last-child{border-right:0}
+.ui-stat i{font-style:normal;display:block;color:var(--muted);font-size:9.5px;text-transform:uppercase;letter-spacing:.04em}
+.ui-stat b{display:block;font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;margin:3px 0 2px}
+.ui-stat s{text-decoration:none;font-size:9.5px;color:var(--pos)}
+.ui-stat s.dn{color:var(--neg)}
+
+/* ---- reality cards ---- */
+.rcards{display:flex;flex-direction:column;gap:16px}
+@media (min-width:700px){.rcards{flex-direction:row;gap:16px}}
+.rcard{flex:1 1 0;min-width:0;border:1px solid var(--hairline);padding:20px;
+  display:flex;flex-direction:column;gap:12px}
+.rcard q{font-family:var(--serif);font-size:17px;line-height:26px;color:var(--fg);quotes:'\201C' '\201D'}
+.rcard ul{margin:0;padding-left:1.05em;color:var(--muted);font-size:14px}
+.rcard li{margin-bottom:.3em}
+.rcard li::marker{color:var(--hairline-2)}
+
+/* ---- before / after panels ---- */
+.ba{display:flex;flex-direction:column;gap:16px}
+@media (min-width:700px){.ba{flex-direction:row}}
+.ba>div{flex:1 1 0;min-width:0;padding:20px;display:flex;flex-direction:column;gap:14px}
+.ba .before{border:1px solid var(--neg);background:var(--neg-bg)}
+.ba .after{border:1px solid var(--pos);background:var(--pos-bg)}
+.ba h4.b{color:var(--neg)}
+.ba h4.a{color:var(--pos)}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13px;color:var(--fg)}
+.chain em{font-style:normal;color:var(--muted)}
+
+/* cursor */
+#cur{display:none}
+@media (hover:hover) and (pointer:fine){
+  body.cursor-on,body.cursor-on *{cursor:none!important}
+  body.cursor-on #cur{display:block}
+  #cur{position:fixed;top:0;left:0;width:13px;height:13px;border-radius:50%;
+    background:var(--accent);pointer-events:none;z-index:99;
+    transform:translate3d(-50px,-50px,0);transition:width .18s,height .18s,opacity .18s;will-change:transform}
+  body.cursor-on #cur.big{width:30px;height:30px;opacity:.55}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  body.cursor-on,body.cursor-on *{cursor:auto!important}
+  body.cursor-on #cur{display:none}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+
+<div id="cur"></div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="/" data-cur="big">
+      <h4 class="nm">Hashim</h4>
+      <h4 class="rl">Product Owner + Engineer</h4>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="/" data-cur="big">Work</a><a href="/#about" data-cur="big">About</a><a href="/#resume" data-cur="big">Resume</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobnav"><span></span></button>
+  </div>
+  <div class="mobnav" id="mobnav"><a href="/">Work</a><a href="/#about">About</a><a href="/#resume">Resume</a></div>
+</header>
+
+<div class="shell"><div class="grid">
+
+  <aside class="aside">
+    <a class="back" href="/" data-cur="big"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"></path></svg>Back</a>
+    <nav class="sectnav" aria-label="Sections"><ul>
+      <li><button data-to="problem">The Problem</button></li>
+      <li><button data-to="discovery">Discovery</button></li>
+      <li><button data-to="shipped">What Shipped First</button></li>
+      <li><button data-to="broke">Where It Broke</button></li>
+      <li><button data-to="asset">Let The Asset Decide</button></li>
+      <li><button data-to="blocker">The Blocker System</button></li>
+      <li><button data-to="ai">Where AI Belonged</button></li>
+      <li><button data-to="beforeafter">Before And After</button></li>
+      <li><button data-to="results">Results</button></li>
+      <li><button data-to="learnings">What I&#8217;d Carry Forward</button></li>
+      <li><button data-to="reflection">Reflection</button></li>
+    </ul></nav>
+  </aside>
+
+  <div class="col" id="top">
+
+    <div class="head">
+      <div class="head-type">
+        <h4>Daftarkhwan &nbsp;&#183;&nbsp; Product Owner &nbsp;&#183;&nbsp; 2026</h4>
+        <h1>Fifteen Group Chats. Ten Thousand Assets. One System.</h1>
+        <p>A coworking operator running fifteen buildings on WhatsApp &#8212; and a ticketing system that only started working once it stopped asking people what was urgent.</p>
+      </div>
+
+      <figure>
+        <div class="brief">
+          <div>
+            <h5>What the member sends</h5>
+            <p class="quote">&#8220;The AC in Room A has been making a noise since this morning and it isn&#8217;t cooling.&#8221;</p>
+            <div class="miss"><span>Photo attached</span><span>Asset: AC-034 &#183; Room A</span></div>
+          </div>
+          <div>
+            <h5>What the system derives</h5>
+            <dl>
+              <dt>Title</dt><dd>AC-034 not cooling, abnormal noise</dd>
+              <dt>Asset</dt><dd>AC-034 &#183; Room A &#183; Branch 07</dd>
+              <dt>Category</dt><dd>HVAC</dd>
+              <dt>Priority</dt><dd>P2 &#8212; from the asset, not the reporter</dd>
+              <dt>Department</dt><dd>HVAC team &#8212; by routing rule</dd>
+              <dt>Assignee</dt><dd>On-shift HVAC technician, Branch 07</dd>
+              <dt>SLA</dt><dd>Clock starts on submission</dd>
+            </dl>
+          </div>
+        </div>
+        <figcaption>The reporter picks a room and an asset and describes the fault. Everything below that line is derived. No member was ever asked how urgent their own problem was.</figcaption>
+      </figure>
+
+      <div class="stats">
+        <div class="stat"><b>15 &#8594; 1</b><h4>Branch group chats replaced by one queue</h4></div>
+        <div class="stat"><b>10,000+</b><h4>Moving assets under maintenance</h4></div>
+        <div class="stat"><b>5,000+</b><h4>Members affected by every unlogged fault</h4></div>
+      </div>
+    </div>
+
+    <section class="sect" id="problem">
+      <div class="sect-type"><h4>The Problem</h4>
+        <h2>Fifteen buildings coordinated entirely through group chat.</h2></div>
+      <p>Daftarkhwan runs coworking space across Pakistan: roughly fifteen branches, each a full building hosting three to four hundred members, and more than five thousand active members in total. Its own team is around a hundred people &#8212; community managers, operations managers, and a facilities wing with its own head and senior staff.</p>
+      <p>Coordination happened in WhatsApp. A group per branch, separate groups for operations, fourteen or fifteen threads that a manager was expected to hold in their head at once. Underneath them sat well over ten thousand moving assets &#8212; air conditioners, chairs, internet links, generators, UPS units, lighting &#8212; any of which could be failing at any moment.</p>
+      <p>Some branches ran this well. Some did not. Nobody could tell you which, because the record of what had broken and who had fixed it was scattered across chat threads, a captain&#8217;s book and a few Google Sheets.</p>
+      <p class="take">The information existed. It was just never in the same place twice.</p>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 250" role="img" aria-label="Fifteen overlapping group chats, replaced by one ordered queue."><rect class="d-node" x="6" y="10" width="142" height="38" rx="7"/><text class="d-sm" x="18" y="33.5" style="font-size:11.5px">Branch 04</text><circle class="d-node-a" cx="139" cy="19" r="4.5"/><rect class="d-node" x="170" y="4" width="126" height="34" rx="7"/><rect class="u-off" x="182" y="14" width="69" height="4" rx="2"/><rect class="u-off" x="182" y="24" width="42" height="4" rx="2"/><circle class="d-node-a" cx="287" cy="13" r="4.5"/><rect class="d-node" x="316" y="16" width="150" height="40" rx="7"/><text class="d-sm" x="328" y="40.5" style="font-size:11.5px">Ops &#183; escalations</text><circle class="d-node-a" cx="457" cy="25" r="4.5"/><rect class="d-node" x="486" y="6" width="120" height="34" rx="7"/><rect class="u-off" x="498" y="16" width="66" height="4" rx="2"/><rect class="u-off" x="498" y="26" width="40" height="4" rx="2"/><circle class="d-node-a" cx="597" cy="15" r="4.5"/><rect class="d-node" x="624" y="20" width="132" height="36" rx="7"/><text class="d-sm" x="636" y="42.5" style="font-size:11.5px">Branch 11</text><circle class="d-node-a" cx="747" cy="29" r="4.5"/><rect class="d-node" x="40" y="60" width="132" height="36" rx="7"/><rect class="u-off" x="52" y="70" width="72" height="4" rx="2"/><rect class="u-off" x="52" y="80" width="44" height="4" rx="2"/><circle class="d-node-a" cx="163" cy="69" r="4.5"/><rect class="d-node" x="196" y="54" width="148" height="40" rx="7"/><text class="d-sm" x="208" y="78.5" style="font-size:11.5px">Branch 07</text><circle class="d-node-a" cx="335" cy="63" r="4.5"/><rect class="d-node" x="366" y="66" width="118" height="34" rx="7"/><rect class="u-off" x="378" y="76" width="64" height="4" rx="2"/><rect class="u-off" x="378" y="86" width="40" height="4" rx="2"/><circle class="d-node-a" cx="475" cy="75" r="4.5"/><rect class="d-node" x="500" y="58" width="140" height="38" rx="7"/><text class="d-sm" x="512" y="81.5" style="font-size:11.5px">Facilities</text><circle class="d-node-a" cx="631" cy="67" r="4.5"/><rect class="d-node" x="658" y="72" width="98" height="32" rx="7"/><rect class="u-off" x="670" y="82" width="53" height="4" rx="2"/><rect class="u-off" x="670" y="92" width="33" height="4" rx="2"/><circle class="d-node-a" cx="747" cy="81" r="4.5"/><rect class="d-node" x="0" y="110" width="126" height="36" rx="7"/><text class="d-sm" x="12" y="132.5" style="font-size:11.5px">Branch 02</text><circle class="d-node-a" cx="117" cy="119" r="4.5"/><rect class="d-node" x="148" y="116" width="144" height="38" rx="7"/><rect class="u-off" x="160" y="126" width="79" height="4" rx="2"/><rect class="u-off" x="160" y="136" width="48" height="4" rx="2"/><circle class="d-node-a" cx="283" cy="125" r="4.5"/><rect class="d-node" x="312" y="106" width="120" height="34" rx="7"/><rect class="u-off" x="324" y="116" width="66" height="4" rx="2"/><rect class="u-off" x="324" y="126" width="40" height="4" rx="2"/><circle class="d-node-a" cx="423" cy="115" r="4.5"/><rect class="d-node" x="452" y="118" width="152" height="40" rx="7"/><text class="d-sm" x="464" y="142.5" style="font-size:11.5px">Branch 13</text><circle class="d-node-a" cx="595" cy="127" r="4.5"/><rect class="d-node" x="624" y="110" width="130" height="36" rx="7"/><rect class="u-off" x="636" y="120" width="71" height="4" rx="2"/><rect class="u-off" x="636" y="130" width="44" height="4" rx="2"/><circle class="d-node-a" cx="745" cy="119" r="4.5"/><text class="d-lbl" x="0" y="188">Fifteen threads, none of them aware of each other</text><rect class="u-on" x="0" y="204" width="756" height="34" rx="4"/><text class="d-sm d-on" x="18" y="226" style="font-size:13px">One queue &#183; every building &#183; every asset</text></svg>
+        </div>
+        <figcaption>Fourteen branch threads plus an operations thread, none of them aware of each other. The unread badge was the entire prioritisation system.</figcaption>
+      </figure>
+
+    </section>
+
+    <section class="sect" id="discovery">
+      <div class="sect-type"><h4>Discovery</h4>
+        <h2>Every fix was reactive, and reactive fixes cost more.</h2></div>
+      <p>Because faults were reported conversationally, nothing accumulated. A generator that had been patched four times looked exactly like a generator being patched for the first time. Servicing slipped, small faults were left until they became failures, and the failures were expensive.</p>
+      <p>The cost did not stop at maintenance. A member whose room is too hot, whose internet drops, whose lift is out, experiences that as the product. Unresolved faults fed directly into churn, and churn into revenue.</p>
+      <div class="sub"><h3>What operations actually needed to see</h3></div>
+      <ul class="plain">
+        <li>Everything in one queue, across all branches, instead of fifteen parallel conversations.</li>
+        <li>A real distinction between P1 and P4, so that a failed generator outranked a scuffed wall.</li>
+        <li>Which branches were performing and which were not &#8212; measured, not anecdotal.</li>
+        <li>Which of their own people were clearing work, and which were not.</li>
+        <li>A history per asset, so that repeated failure became visible as a pattern rather than a series of unrelated messages.</li>
+      </ul>
+      <p class="take">They did not need a chat replacement. They needed the same conversations to leave a record behind.</p>
+    </section>
+
+    <section class="sect" id="shipped">
+      <div class="sect-type"><h4>What Shipped First</h4>
+        <h2>Snap it, describe it, send it.</h2></div>
+      <p>The first version did the obvious thing. A member or staff member sees a problem, opens the app, takes a photo, writes a description, categorises it, and the ticket routes to the relevant department. Everything landed in one queue with a status, an owner and an activity trail. Mobile apps went out so that the people who actually walk the buildings were not tied to a desk.</p>
+      <p>It worked, in the sense that tickets arrived and got closed. It took a few weeks of real use to see that the parts we had asked people to fill in were the parts that broke.</p>
+    </section>
+
+    <section class="sect" id="broke">
+      <div class="sect-type"><h4>Where It Broke</h4>
+        <h2>Three fields, each one quietly useless.</h2></div>
+      <div class="sub">
+        <h3>Everything arrived as P1</h3>
+        <p>Reporters set their own priority, so almost every ticket came in as priority one. Operations opened a queue in which nothing was more urgent than anything else, which is the same as having no priority at all.</p>
+      </div>
+      <div class="sub">
+        <h3>Assignment added a hop nobody was doing work in</h3>
+        <p>Tickets went to the operations team, who read them and passed them to whoever should actually handle it. On a team that size, that meant a ticket was reported, opened, read, reassigned, opened again, and only then acted on. Two of those five steps were people forwarding work rather than doing it.</p>
+      </div>
+      <div class="sub">
+        <h3>The form was being defeated, not filled</h3>
+        <p>We had asked for a title, a description, an asset and a due date, because we wanted the record. In practice people wrote everything into the title, left the description empty, and set every due date to today. The form took longer and captured less.</p>
+      </div>
+      <p class="pull">Every one of those was a rational response to the form we shipped. People were not misusing it. They were routing around it.</p>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 230" role="img" aria-label="Priority as reported collapses into a single bucket: almost every ticket arrives P1."><text class="d-lbl" x="0" y="12">Priority, as chosen by the person reporting the problem</text><rect class="u-on" x="40" y="28" width="104" height="152"/><text class="d-lbl" x="92" y="200" text-anchor="middle">P1</text><rect class="u-off" x="220" y="150" width="104" height="30"/><text class="d-lbl" x="272" y="200" text-anchor="middle">P2</text><rect class="u-off" x="400" y="171" width="104" height="9"/><text class="d-lbl" x="452" y="200" text-anchor="middle">P3</text><rect class="u-off" x="580" y="175" width="104" height="5"/><text class="d-lbl" x="632" y="200" text-anchor="middle">P4</text><line class="d-line" x1="0" y1="180" x2="760" y2="180"/><text class="d-lbl d-acc" x="756" y="222" text-anchor="end">One bucket, and everything in it</text></svg>
+        </div>
+        <figcaption>Shape, not measured counts &#8212; this is the distribution operations described. Marking your own problem urgent is the rational move when urgency is self-declared, so the field told them nothing.</figcaption>
+      </figure>
+
+    </section>
+
+    <section class="sect" id="asset">
+      <div class="sect-type"><h4>Let The Asset Decide</h4>
+        <h2>Stop asking the reporter for anything they have no reason to answer honestly.</h2></div>
+      <p>We removed the priority field. We removed the assignee field. We collapsed title and description into a single box: describe the problem. Then we asked for the one thing a reporter genuinely knows and has no incentive to distort &#8212; which thing is broken, and where.</p>
+      <div class="sub">
+        <h3>Priority comes from the asset</h3>
+        <p>I sat with the operations team and we went through the register. Is a failed air conditioner a P1 or a P2? A generator? A lift? Once the mapping existed, priority stopped being a claim and became a property of the equipment.</p>
+      </div>
+      <div class="sub">
+        <h3>Routing comes from the asset</h3>
+        <p>The same tag drives department. Generator faults reach the genset team; cleanliness reaches housekeeping; HVAC reaches HVAC. The ticket arrives with the right people already on it.</p>
+      </div>
+      <div class="sub">
+        <h3>The rules belong to the client, not to us</h3>
+        <p>All of it is editable in an admin panel: if the asset matches this, assign that department, at that priority. This was the requirement I cared most about. A routing system that needs its builder every time the organisation changes shape is a dependency, not a tool.</p>
+      </div>
+      <p class="take">The reporter&#8217;s job shrank to two things they cannot get wrong: what is broken, and what it looks like.</p>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 240" role="img" aria-label="Before, a ticket passed through three hand-offs; after, it goes straight to the work."><text class="d-lbl" x="0" y="14">Before &#183; three hand-offs between the fault and the fix</text><line class="d-line" x1="30" y1="62" x2="718" y2="62"/><circle class="d-node-a" cx="30" cy="62" r="7"/><text class="d-lbl" x="30" y="90" text-anchor="middle">Fault</text><circle class="d-panel" cx="202" cy="62" r="9"/><text class="d-lbl" x="202" y="90" text-anchor="middle">Ops opens</text><text class="d-lbl d-acc" x="202" y="44" text-anchor="middle">wait</text><circle class="d-panel" cx="374" cy="62" r="9"/><text class="d-lbl" x="374" y="90" text-anchor="middle">Ops assigns</text><text class="d-lbl d-acc" x="374" y="44" text-anchor="middle">wait</text><circle class="d-panel" cx="546" cy="62" r="9"/><text class="d-lbl" x="546" y="90" text-anchor="middle">Tech opens</text><text class="d-lbl d-acc" x="546" y="44" text-anchor="middle">wait</text><circle class="d-node-a" cx="718" cy="62" r="7"/><text class="d-lbl" x="718" y="90" text-anchor="middle">Work</text><text class="d-lbl d-acc" x="0" y="152">After &#183; the asset tag does the routing</text><line class="d-line-a" x1="30" y1="196" x2="718" y2="196"/><circle class="d-node-a" cx="30" cy="196" r="7"/><text class="d-lbl" x="30" y="224" text-anchor="middle">Fault</text><circle class="d-node-a" cx="718" cy="196" r="7"/><text class="d-lbl" x="718" y="224" text-anchor="middle">Work</text><text class="d-lbl" x="374" y="182" text-anchor="middle">priority &#183; department &#183; assignee, all derived</text></svg>
+        </div>
+        <figcaption>The three hollow points are hand-offs. Nobody standing on one of them was working on the fault &#8212; they were reading it in order to give it to someone else.</figcaption>
+      </figure>
+
+    </section>
+
+    <section class="sect" id="blocker">
+      <div class="sect-type"><h4>The Blocker System</h4>
+        <h2>A low completion rate is not the same as a person not working.</h2></div>
+      <p>Once performance was visible, the reports started producing unfair answers. An engineer sitting at thirty per cent completion looked like the problem. He was not. He had inspected his tickets, priced the fix, and been waiting on finance to release funds that never came.</p>
+      <p>So assignees can mark a ticket blocked and tag the department or person holding it up. The ticket stays open, the clock keeps running, and the delay attaches to whoever caused it. A branch with poor numbers can now show that its numbers are poor for a reason that sits outside the branch.</p>
+      <p class="pull">A delayed ticket is fine if the system can say who is holding it and why. An untracked delay is the actual failure.</p>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 230" role="img" aria-label="Without blocking the delay lands on the engineer; with blocking it attaches to the finance department that caused it."><text class="d-lbl" x="0" y="12">What the report used to show</text><rect class="u-off" x="0" y="24" width="756" height="42"/><text class="d-sm" x="16" y="50" style="font-size:13px">Engineer A &#183; ticket open 21 days &#183; 30% completion</text><text class="d-lbl t-neg" x="0" y="86">Conclusion: the engineer is underperforming</text><text class="d-lbl d-acc" x="0" y="140">With the blocker recorded on the same ticket</text><rect class="u-off" x="0" y="152" width="112" height="42"/><text class="d-lbl" x="10" y="177">Inspected</text><rect class="u-on" x="112" y="152" width="530" height="42"/><text class="d-sm d-on" x="126" y="178" style="font-size:13px">Blocked &#183; Finance &#183; funds not released</text><rect class="u-off" x="642" y="152" width="114" height="42"/><text class="d-lbl" x="652" y="177">Fixed</text><text class="d-lbl t-pos" x="0" y="214">Conclusion: the delay belongs to finance, and the clock says so</text></svg>
+        </div>
+        <figcaption>The same twenty-one days, twice. Until the delay had somewhere to attach, the clock could only bill it to the person holding the ticket.</figcaption>
+      </figure>
+
+    </section>
+
+    <section class="sect" id="ai">
+      <div class="sect-type"><h4>Where AI Belonged</h4>
+        <h2>First nothing, then titles, then the thing worth having.</h2></div>
+      <p>The first version had no AI in it at all. Priority derivation, routing rules and the blocker system are ordinary logic, and they carried most of the benefit. That order was deliberate: anything a rule can do reliably should not be handed to a model.</p>
+      <p>The first genuine use was small. Because we had collapsed the form to one field, tickets had good descriptions and no titles &#8212; so a model writes the title from the description. The reporter gets one box; the queue still reads cleanly.</p>
+      <p>The one that changed conversations came later, once two to three months of tickets had accumulated against real assets. The system could finally say: this air conditioner has been repaired four times in two months and has cost you a hundred and ten thousand rupees. Projected across a year, continuing to repair it costs roughly twice what replacing it would &#8212; and replacement comes with a warranty.</p>
+      <p class="take">That recommendation was never a modelling problem. It was a data-capture problem, solved eight months earlier by making people tag the asset.</p>
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 215" role="img" aria-label="For one air conditioner, projected annual repair cost exceeded the cost of replacing it."><text class="d-lbl" x="0" y="12">AC-034 &#183; four repairs in two months &#183; PKR 110,000 spent</text><text class="d-lbl" x="0" y="52">Keep repairing &#183; projected 12 months</text><rect class="u-off" x="0" y="62" width="700" height="34"/><text class="d-sm" x="16" y="84" style="font-size:14px">PKR 400,000</text><text class="d-lbl d-acc" x="0" y="132">Replace once &#183; one-year warranty</text><rect class="u-on" x="0" y="142" width="350" height="34"/><text class="d-sm d-on" x="16" y="164" style="font-size:14px">PKR 200,000</text><text class="d-lbl d-acc" x="756" y="205" text-anchor="end">The system proposed this. Nobody had to notice it.</text></svg>
+        </div>
+        <figcaption>One asset, drawn to scale. The recommendation is only possible because every repair had been logged against the asset rather than described in a chat message.</figcaption>
+      </figure>
+
+    </section>
+
+    <section class="sect" id="beforeafter">
+      <div class="sect-type"><h4>Before And After</h4>
+        <h2>What changed about the way the operation runs.</h2></div>
+      <div class="cmp-wrap">
+      <table class="cmp">
+        <thead><tr><th scope="col"></th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Where faults live</th><td>14&#8211;15 WhatsApp groups</td><td>One queue across all branches</td></tr>
+          <tr><th scope="row">Priority</th><td>Set by the reporter, always P1</td><td>Derived from the asset</td></tr>
+          <tr><th scope="row">Routing</th><td>Operations reads and forwards</td><td>Rule on the asset, no human hop</td></tr>
+          <tr><th scope="row">Steps to work starting</th><td>Five</td><td>Two</td></tr>
+          <tr><th scope="row">The report form</th><td>Title, description, priority, due date</td><td>One description, one asset tag</td></tr>
+          <tr><th scope="row">Delay attribution</th><td>Lands on the assignee</td><td>Attaches to whoever is blocking</td></tr>
+          <tr><th scope="row">Asset history</th><td>Scattered across chats</td><td>Full repair record per asset</td></tr>
+          <tr><th scope="row">Maintenance posture</th><td>Reactive, after failure</td><td>Repair-versus-replace, before failure</td></tr>
+          <tr><th scope="row">Rule changes</th><td>&#8212;</td><td>Client edits them without us</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+
+    <section class="sect" id="results">
+      <div class="sect-type"><h4>Results</h4>
+        <h2>What the system does now.</h2></div>
+      <div class="stats">
+        <div class="stat"><b>15 &#8594; 1</b><h4>Branch chats replaced by a single queue</h4></div>
+        <div class="stat"><b>5 &#8594; 2</b><h4>Steps between a fault and work starting</h4></div>
+        <div class="stat"><b>10,000+</b><h4>Assets with a real repair history</h4></div>
+      </div>
+      <ul class="plain">
+        <li><strong>Priority became meaningful</strong>, because it stopped being self-declared.</li>
+        <li><strong>Performance became fair to read</strong>, because blocked time attaches to the blocker.</li>
+        <li><strong>Maintenance moved from reactive to planned</strong>, with recurring schedules and preventive checklists generated on cadence.</li>
+        <li><strong>Repair-versus-replace became a costed decision</strong> instead of a judgement call.</li>
+        <li><strong>The client owns its own routing</strong> and changes it without coming back to us.</li>
+      </ul>
+      <p>The platform is live at <code>ticket.truenorthpk.com</code>, with an Android app wrapping the same system and push notifications to the people who walk the buildings.</p>
+      <div class="internal">
+        <p>Built as a single TypeScript codebase &#8212; React and Vite on the front, Express and Prisma against PostgreSQL behind it &#8212; running twenty-two server modules, thirty-three screens, sixty permission keys and nineteen notification event types, deployed on a self-hosted runner behind nginx.</p>
+      </div>
+    </section>
+
+    <section class="sect" id="learnings">
+      <div class="sect-type"><h4>What I&#8217;d Carry Forward</h4>
+        <h2>Four things this project taught me properly.</h2></div>
+      <div class="sub">
+        <h3>Never ask a user to declare something they benefit from exaggerating.</h3>
+        <p>Self-declared priority is not a data-quality problem you can train out of people. It is a design error, and the fix is to derive the field from something the reporter has no stake in.</p>
+      </div>
+      <div class="sub">
+        <h3>A form people defeat is a form that asked the wrong questions.</h3>
+        <p>Everything dumped in the title and every due date set to today told us precisely what was worth capturing and what was not. That behaviour was the research.</p>
+      </div>
+      <div class="sub">
+        <h3>Measure the delay, not just the person.</h3>
+        <p>Any completion metric without a blocking model will eventually punish the wrong people, and it will do it confidently.</p>
+      </div>
+      <div class="sub">
+        <h3>Earn the AI by capturing the data first.</h3>
+        <p>The valuable model output here was a repair-versus-replace recommendation, and it was only possible because a boring decision months earlier forced every fault to be tagged to an asset.</p>
+      </div>
+    </section>
+
+    <section class="sect" id="reflection">
+      <div class="sect-type"><h4>Reflection</h4>
+        <h2>What the system actually replaced.</h2></div>
+      <p>Daftarkhwan did not have a communication problem. Fifteen group chats moved information around perfectly well. What they lacked was any residue &#8212; nothing that survived the conversation, accumulated against the equipment, or could be counted at the end of a month.</p>
+      <p>Most of the work was not building the ticketing system. It was noticing which fields the people using it were quietly refusing to fill in, and then taking those fields away.</p>
+      <p class="pull">Track accountability, not just completion.</p>
+    </section>
+
+  </div>
+  <div class="spacer"></div>
+</div></div>
+
+<footer>Daftarkhwan &#183; Product Owner &#183; 2026</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  var burger=document.getElementById('burger'), mob=document.getElementById('mobnav');
+  if(burger&&mob){
+    burger.addEventListener('click',function(){
+      var open=mob.classList.toggle('open');
+      burger.setAttribute('aria-expanded',open?'true':'false');
+      burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    });
+    mob.addEventListener('click',function(e){ if(e.target.tagName==='A'){
+      mob.classList.remove('open'); burger.setAttribute('aria-expanded','false'); } });
+  }
+
+  var btns = [].slice.call(document.querySelectorAll('.sectnav button'));
+  btns.forEach(function(b){
+    b.setAttribute('data-cur','big');
+    b.addEventListener('click', function(){
+      var t = document.getElementById(b.dataset.to);
+      if(t) t.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+    });
+  });
+  var sections = btns.map(function(b){ return document.getElementById(b.dataset.to); }).filter(Boolean);
+  function setCurrent(id){
+    btns.forEach(function(b){
+      if(b.dataset.to===id) b.setAttribute('aria-current','true');
+      else b.removeAttribute('aria-current');
+    });
+  }
+  setCurrent('problem');
+  if('IntersectionObserver' in window){
+    var seen = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      var best=null,bestV=0;
+      sections.forEach(function(s){ var v=seen[s.id]||0; if(v>bestV){bestV=v;best=s.id;} });
+      if(best) setCurrent(best);
+    }, {rootMargin:'-10% 0px -55% 0px', threshold:[0,0.25,0.5,0.75,1]});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(fine && !reduce){
+    document.body.classList.add('cursor-on');
+    var cur=document.getElementById('cur'), x=-50,y=-50,tick=false;
+    window.addEventListener('mousemove', function(e){
+      x=e.clientX; y=e.clientY;
+      if(!tick){ tick=true; requestAnimationFrame(function(){
+        cur.style.transform='translate3d('+(x-6.5)+'px,'+(y-6.5)+'px,0)'; tick=false; }); }
+    }, {passive:true});
+    document.addEventListener('mouseover', function(e){
+      var t = e.target.closest && e.target.closest('[data-cur="big"], a, button');
+      if(t) cur.classList.add('big'); else cur.classList.remove('big');
+    });
+    document.addEventListener('mouseleave', function(){ cur.style.opacity='0'; });
+    document.addEventListener('mouseenter', function(){ cur.style.opacity=''; });
+  }
+})();
+</script>
