@@ -102,48 +102,26 @@ h1 em{font-style:italic}
   text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .card:not(.nolink):hover .cmeta h3{color:var(--accent)}
 
-/* cover treatments — typographic, not fake screenshots */
+/* cover treatments — gradient family, all start saturated at 90deg and run pale */
 .c-tall{aspect-ratio:4/3}
 .c-wide{aspect-ratio:16/9}
 .c-sq{aspect-ratio:5/4}
-.c-victor{background:var(--navy)}
-.c-victor::before{content:"";position:absolute;inset:0;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.42'/></svg>");
-  mix-blend-mode:overlay;opacity:.55}
-.paycard{position:relative;z-index:2;background:#fff;width:min(78%,320px);border-radius:8px;
-  padding:18px;box-shadow:0 14px 34px rgba(10,22,52,.32);display:flex;flex-direction:column;gap:10px}
-.paycard i{font-style:normal;font-size:11px;color:#32404F;opacity:.8}
-.paycard .f{background:#EDF2FB;border-radius:5px;padding:9px 11px;display:flex;
-  justify-content:space-between;gap:8px;font-size:12px;color:#32404F}
-.paycard .f b{font-family:var(--mono);font-weight:400}
-.paycard .b{background:#3B7DED;color:#fff;border-radius:5px;padding:9px;text-align:center;font-size:12px}
 
-.c-type{background:var(--field)}
-.c-type .big{font-family:var(--serif);font-size:clamp(26px,4vw,40px);line-height:1.1;
-  letter-spacing:-0.02em;color:var(--fg);text-align:center;margin:0}
-.c-type .sub{font-family:var(--mono);font-size:12px;text-transform:uppercase;
-  color:var(--muted);text-align:center;margin:10px 0 0}
+.cover{align-items:flex-end;justify-content:flex-start;padding:clamp(20px,3vw,32px)}
+.cover .txt{position:relative;z-index:2;max-width:78%}
+.cover .big{font-family:var(--serif);font-size:clamp(23px,3.2vw,34px);line-height:1.14;
+  letter-spacing:-0.02em;color:#fff;margin:0;text-shadow:0 1px 10px rgba(20,20,60,.28)}
+.cover .sub{font-family:var(--mono);font-size:12.5px;line-height:1.4;text-transform:uppercase;
+  color:rgba(255,255,255,.92);margin:10px 0 0;text-shadow:0 1px 8px rgba(20,20,60,.34)}
 
-.c-dark{background:#1B2434}
-.c-dark .big{font-family:var(--serif);font-size:clamp(24px,3.6vw,36px);line-height:1.15;
-  color:#EDE9E1;text-align:center;margin:0;letter-spacing:-0.02em}
-.c-dark .sub{font-family:var(--mono);font-size:12px;text-transform:uppercase;
-  color:rgba(237,233,225,.55);text-align:center;margin:10px 0 0}
-
-.c-chart{background:var(--card)}
-.chart{width:100%;max-width:340px}
-.chart .bar{fill:var(--hairline-2)}
-.chart .bar-a{fill:var(--accent)}
-.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
-.chart text.v{fill:var(--fg);font-size:13px}
-
-.c-grid-bg{background:var(--card);
-  background-image:linear-gradient(var(--hairline) 1px,transparent 1px),
-                   linear-gradient(90deg,var(--hairline) 1px,transparent 1px);
-  background-size:26px 26px}
-.c-grid-bg .big{font-family:var(--serif);font-size:clamp(24px,3.4vw,34px);line-height:1.15;
-  letter-spacing:-0.02em;color:var(--fg);text-align:center;margin:0;
-  background:var(--card);padding:14px 20px;border:1px solid var(--hairline)}
+.g1{background:linear-gradient(90deg,hsla(239,100%,67%,1) 0%,hsla(187,100%,89%,1) 100%)}
+.g2{background:linear-gradient(90deg,hsla(285,100%,67%,1) 0%,hsla(233,100%,89%,1) 100%)}
+.g3{background:linear-gradient(90deg,hsla(330,100%,67%,1) 0%,hsla(278,100%,89%,1) 100%)}
+.g4{background:linear-gradient(90deg,hsla(15,100%,64%,1) 0%,hsla(323,100%,89%,1) 100%)}
+.g5{background:linear-gradient(90deg,hsla(45,100%,58%,1) 0%,hsla(353,100%,90%,1) 100%)}
+.g6{background:linear-gradient(90deg,hsla(160,85%,42%,1) 0%,hsla(108,100%,88%,1) 100%)}
+.g7{background:linear-gradient(90deg,hsla(195,100%,50%,1) 0%,hsla(143,100%,88%,1) 100%)}
+.g8{background:linear-gradient(90deg,hsla(265,100%,67%,1) 0%,hsla(213,100%,89%,1) 100%)}
 
 .note{border:1px dashed var(--flag-edge);background:var(--flag-bg);padding:20px;
   display:flex;flex-direction:column;gap:8px;margin:0 0 32px}
@@ -223,19 +201,18 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
     <div class="wcol">
 
       <a class="card" href="/projects/victorfi/">
-        <div class="cover c-victor c-tall">
-          <div class="paycard">
-            <i>Payment authorisation</i>
-            <div class="f"><span>Merchant settlement · ACH</span><b>$50,000.00</b></div>
-            <div class="b">Approve and send</div>
+        <div class="cover g1 c-tall">
+          <div class="txt">
+            <p class="big">$80B+ processed</p>
+            <p class="sub">Payments-as-a-Service</p>
           </div>
         </div>
         <div class="cmeta"><h3>Turning banking infrastructure into a product</h3><span>VictorFi · Acquired 2025</span></div>
       </a>
 
       <div class="card nolink">
-        <div class="cover c-type c-wide">
-          <div>
+        <div class="cover g3 c-wide">
+          <div class="txt">
             <p class="big">10,000+ teams<br>reviewing work</p>
             <p class="sub">Review &amp; approval workflows</p>
           </div>
@@ -244,15 +221,17 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
       </div>
 
       <div class="card nolink">
-        <div class="cover c-grid-bg c-sq">
-          <p class="big">455 passing tests,<br>and a space I run</p>
+        <div class="cover g5 c-sq">
+          <div class="txt">
+            <p class="big">455 passing tests,<br>and a space I run</p>
+          </div>
         </div>
         <div class="cmeta"><h3>Coworking software built from inside the business</h3><span>Launchbox OMS · Shipped</span></div>
       </div>
 
       <div class="card nolink">
-        <div class="cover c-type c-wide">
-          <div>
+        <div class="cover g7 c-wide">
+          <div class="txt">
             <p class="big">Retrieval over<br>Pakistani tax law</p>
             <p class="sub">Statute &amp; case law</p>
           </div>
@@ -265,23 +244,18 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
     <div class="wcol">
 
       <div class="card nolink">
-        <div class="cover c-chart c-wide">
-          <svg class="chart" viewBox="0 0 340 150" role="img" aria-label="Monthly recurring revenue rising from thirty-five thousand to sixty-five thousand dollars">
-            <text x="60" y="132" text-anchor="middle">BEFORE</text>
-            <text x="260" y="132" text-anchor="middle">AFTER</text>
-            <rect class="bar" x="24" y="66" width="72" height="48"/>
-            <rect class="bar-a" x="224" y="24" width="72" height="90"/>
-            <text class="v" x="60" y="58" text-anchor="middle">$35K</text>
-            <text class="v" x="260" y="16" text-anchor="middle">$65K</text>
-            <line x1="12" y1="114" x2="328" y2="114" stroke="currentColor" opacity="0.2"/>
-          </svg>
+        <div class="cover g2 c-wide">
+          <div class="txt">
+            <p class="big">$35K → $65K MRR</p>
+            <p class="sub">Held through 2026</p>
+          </div>
         </div>
         <div class="cmeta"><h3>Moving a stalled marketplace, and holding it</h3><span>MakersRow · 4 years</span></div>
       </div>
 
       <div class="card nolink">
-        <div class="cover c-dark c-tall">
-          <div>
+        <div class="cover g4 c-tall">
+          <div class="txt">
             <p class="big">438 products,<br>one photo each</p>
             <p class="sub">Generative catalogue at volume</p>
           </div>
@@ -290,8 +264,8 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
       </div>
 
       <div class="card nolink">
-        <div class="cover c-type c-sq">
-          <div>
+        <div class="cover g6 c-sq">
+          <div class="txt">
             <p class="big">14 data models,<br>20 business rules</p>
             <p class="sub">Greenfield multi-tenant SaaS</p>
           </div>
@@ -300,8 +274,10 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
       </div>
 
       <div class="card nolink">
-        <div class="cover c-grid-bg c-wide">
-          <p class="big">A UX audit that<br>became a fix list</p>
+        <div class="cover g8 c-wide">
+          <div class="txt">
+            <p class="big">A UX audit that<br>became a fix list</p>
+          </div>
         </div>
         <div class="cmeta"><h3>Ticket and network management, audited</h3><span>TNMS · Handed off 2026</span></div>
       </div>
@@ -309,7 +285,7 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
     </div>
   </div>
 
-  </main>
+</main>
 </div>
 
 <footer>
