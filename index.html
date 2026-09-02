@@ -85,7 +85,7 @@ h1 em{font-style:italic}
 .lrl{font-size:15px;line-height:22.5px;color:var(--muted)}
 
 /* ---------- work grid ---------- */
-.work{display:grid;grid-template-columns:1fr;gap:24px;padding:0 0 32px}
+.work{display:grid;grid-template-columns:1fr;gap:24px 24px;padding:0 0 32px;align-items:start}
 @media (min-width:1024px){.work{grid-template-columns:1fr 1fr}}
 .wcol{display:flex;flex-direction:column;gap:24px}
 .card{display:flex;flex-direction:column;gap:12px;text-decoration:none;color:inherit}
@@ -102,9 +102,7 @@ h1 em{font-style:italic}
 .card:not(.nolink):hover .cmeta h3{color:var(--accent)}
 
 /* cover treatments — gradient family, all start saturated at 90deg and run pale */
-.c-tall{aspect-ratio:4/3}
-.c-wide{aspect-ratio:16/9}
-.c-sq{aspect-ratio:5/4}
+.cover{aspect-ratio:4/3}
 
 .cover{align-items:flex-end;justify-content:flex-start;padding:clamp(20px,3vw,32px)}
 .cover .txt{position:relative;z-index:2;max-width:78%}
@@ -193,15 +191,12 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
       <div class="lrow"><span class="lyr">Current</span><span class="lco">Elbi Digital</span><span class="lrl">Founder</span></div>
     </div>
   </div>
-  </div>
 
   <!-- ===== work ===== -->
   <div class="work" id="work">
 
-    <div class="wcol">
-
-      <a class="card" href="/projects/victorfi/">
-        <div class="cover g1 c-tall">
+    <a class="card" href="/projects/victorfi/">
+        <div class="cover g1">
           <div class="txt">
             <p class="big">$80B+ processed</p>
             <p class="sub">Payments-as-a-Service</p>
@@ -210,41 +205,8 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
         <div class="cmeta"><h3>Turning banking infrastructure into a product</h3><span>VictorFi · Acquired 2025</span></div>
       </a>
 
-      <div class="card nolink">
-        <div class="cover g3 c-wide">
-          <div class="txt">
-            <p class="big">10,000+ teams<br>reviewing work</p>
-            <p class="sub">Review &amp; approval workflows</p>
-          </div>
-        </div>
-        <div class="cmeta"><h3>Product-led growth for a review tool</h3><span>GoVisually · 3 years</span></div>
-      </div>
-
-      <div class="card nolink">
-        <div class="cover g5 c-sq">
-          <div class="txt">
-            <p class="big">455 passing tests,<br>and a space I run</p>
-          </div>
-        </div>
-        <div class="cmeta"><h3>Coworking software built from inside the business</h3><span>Launchbox OMS · Shipped</span></div>
-      </div>
-
-      <div class="card nolink">
-        <div class="cover g7 c-wide">
-          <div class="txt">
-            <p class="big">Retrieval over<br>Pakistani tax law</p>
-            <p class="sub">Statute &amp; case law</p>
-          </div>
-        </div>
-        <div class="cmeta"><h3>Answering legal questions from the statute</h3><span>Law Bot · Shipped 2026</span></div>
-      </div>
-
-    </div>
-
-    <div class="wcol">
-
-      <div class="card nolink">
-        <div class="cover g2 c-wide">
+    <div class="card nolink">
+        <div class="cover g2">
           <div class="txt">
             <p class="big">$35K → $65K MRR</p>
             <p class="sub">Held through 2026</p>
@@ -253,8 +215,18 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
         <div class="cmeta"><h3>Moving a stalled marketplace, and holding it</h3><span>MakersRow · 4 years</span></div>
       </div>
 
-      <div class="card nolink">
-        <div class="cover g4 c-tall">
+    <div class="card nolink">
+        <div class="cover g3">
+          <div class="txt">
+            <p class="big">10,000+ teams<br>reviewing work</p>
+            <p class="sub">Review &amp; approval workflows</p>
+          </div>
+        </div>
+        <div class="cmeta"><h3>Product-led growth for a review tool</h3><span>GoVisually · 3 years</span></div>
+      </div>
+
+    <div class="card nolink">
+        <div class="cover g4">
           <div class="txt">
             <p class="big">438 products,<br>one photo each</p>
             <p class="sub">Generative catalogue at volume</p>
@@ -263,8 +235,17 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
         <div class="cmeta"><h3>A catalogue photography pipeline</h3><span>1-OPH · Shipped 2026</span></div>
       </div>
 
-      <div class="card nolink">
-        <div class="cover g6 c-sq">
+    <div class="card nolink">
+        <div class="cover g5">
+          <div class="txt">
+            <p class="big">455 passing tests,<br>and a space I run</p>
+          </div>
+        </div>
+        <div class="cmeta"><h3>Coworking software built from inside the business</h3><span>Launchbox OMS · Shipped</span></div>
+      </div>
+
+    <div class="card nolink">
+        <div class="cover g6">
           <div class="txt">
             <p class="big">14 data models,<br>20 business rules</p>
             <p class="sub">Greenfield multi-tenant SaaS</p>
@@ -273,8 +254,18 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
         <div class="cmeta"><h3>Facility management, built from scratch</h3><span>FixDesk · Shipped</span></div>
       </div>
 
-      <div class="card nolink">
-        <div class="cover g8 c-wide">
+    <div class="card nolink">
+        <div class="cover g7">
+          <div class="txt">
+            <p class="big">Retrieval over<br>Pakistani tax law</p>
+            <p class="sub">Statute &amp; case law</p>
+          </div>
+        </div>
+        <div class="cmeta"><h3>Answering legal questions from the statute</h3><span>Law Bot · Shipped 2026</span></div>
+      </div>
+
+    <div class="card nolink">
+        <div class="cover g8">
           <div class="txt">
             <p class="big">A UX audit that<br>became a fix list</p>
           </div>
@@ -282,7 +273,6 @@ footer{width:100%;display:flex;align-items:center;justify-content:center;
         <div class="cmeta"><h3>Ticket and network management, audited</h3><span>TNMS · Handed off 2026</span></div>
       </div>
 
-    </div>
   </div>
 
 </main>
