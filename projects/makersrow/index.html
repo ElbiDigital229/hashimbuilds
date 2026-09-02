@@ -240,18 +240,18 @@ table.own td:first-child{width:32%;color:var(--fg)}
 
 /* brief mockup */
 .brief{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hairline);
-  border:1px solid var(--hairline);font-size:13px}
+  border:1px solid var(--hairline);font-size:14px}
 @media (min-width:620px){.brief{grid-template-columns:1fr 1fr}}
-.brief>div{background:var(--card);padding:20px}
+.brief>div{background:var(--card);padding:clamp(24px,3.4vw,38px)}
 .brief h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted);margin:0 0 12px;font-weight:400}
-.brief .quote{font-size:14px;line-height:1.55;color:var(--fg)}
-.brief dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:7px 14px}
-.brief dt{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
-.brief dd{margin:0;color:var(--fg);font-size:13px}
+.brief .quote{font-family:var(--serif);font-size:clamp(17px,2.1vw,22px);line-height:1.45;color:var(--fg)}
+.brief dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:9px 18px}
+.brief dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.brief dd{margin:0;color:var(--fg);font-size:15px}
 .miss{margin-top:16px;padding-top:14px;border-top:1px solid var(--hairline);
   display:flex;flex-wrap:wrap;gap:6px}
-.miss span{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;
+.miss span{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;
   border:1px dashed var(--flag-edge);color:var(--flag);padding:4px 8px}
 
 /* split panels */
@@ -267,6 +267,21 @@ table.own td:first-child{width:32%;color:var(--fg)}
 .units text{font-family:var(--mono);font-size:11.5px;fill:var(--muted)}
 .u-on{fill:var(--accent)}
 .u-off{fill:var(--hairline-2)}
+
+/* evaluation box + acceptance criteria */
+.evalbox{border:1px solid var(--fg);padding:clamp(22px,3vw,32px);display:flex;flex-direction:column;gap:18px}
+.evalgrid{display:grid;grid-template-columns:1fr;gap:16px 32px}
+@media (min-width:620px){.evalgrid{grid-template-columns:1fr 1fr}}
+.evalgrid>div{display:flex;flex-direction:column;gap:4px}
+.evalgrid b{font-family:var(--mono);font-size:15px;color:var(--fg);font-weight:400;font-variant-numeric:tabular-nums}
+.evalgrid span{font-size:14px;color:var(--muted)}
+.ac{margin:0;padding:0;list-style:none;counter-reset:ac;display:flex;flex-direction:column;gap:9px}
+.ac li{counter-increment:ac;display:grid;grid-template-columns:28px 1fr;gap:12px;
+  font-size:14.5px;color:var(--fg);align-items:baseline}
+.ac li::before{content:counter(ac,decimal-leading-zero);font-family:var(--mono);
+  font-size:11.5px;color:var(--accent)}
+.story{font-family:var(--serif);font-size:19px;line-height:29px;color:var(--fg);
+  border-left:2px solid var(--accent);padding-left:20px;margin:0}
 
 /* figures */
 figure{margin:0;display:flex;flex-direction:column;gap:12px}
@@ -387,6 +402,7 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
       <li><button data-to="matching">How Matching Worked</button></li>
       <li><button data-to="readiness">A New Problem</button></li>
       <li><button data-to="migration">Rebuilding Live</button></li>
+      <li><button data-to="delivery">Strategy to Delivery</button></li>
       <li><button data-to="billing">The Billing Truth</button></li>
       <li><button data-to="outcomes">Outcomes</button></li>
       <li><button data-to="reflection">Reflection</button></li>
@@ -429,8 +445,8 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
 
       <div class="stats">
         <div class="stat"><b>137</b><h4>Business rules reconstructed · 39 were documented</h4></div>
-        <div class="stat"><b>908 → 282</b><h4>Subscriptions the app called active, against customers who paid</h4></div>
-        <div class="stat"><b>$35K → $65K</b><h4>Monthly recurring revenue, held through 2026</h4></div>
+        <div class="stat"><b>3.4 days → 6.2 hrs</b><h4>Time to a qualified supplier</h4></div>
+        <div class="stat"><b>38% → 57%</b><h4>Factory response rate</h4></div>
       </div>
     </div>
 
@@ -527,33 +543,42 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
 
       <figure>
         <div class="dg">
-        <svg viewBox="0 0 760 300" role="img" aria-label="Five groups each held part of how the marketplace worked; no one held the whole">
-          <rect class="d-panel" x="250" y="118" width="260" height="64" stroke-dasharray="5 4"/>
-          <text class="d-lbl" x="380" y="146" text-anchor="middle">THE WHOLE PRODUCT</text>
-          <text class="d-sm" x="380" y="166" text-anchor="middle">nobody</text>
-          <g class="d-line">
-            <line x1="90" y1="60" x2="300" y2="118"/><line x1="290" y1="42" x2="345" y2="118"/>
-            <line x1="470" y1="42" x2="415" y2="118"/><line x1="670" y1="60" x2="460" y2="118"/>
-            <line x1="380" y1="252" x2="380" y2="182"/>
+        <svg viewBox="0 0 760 330" role="img" aria-label="Founder, sales, operations, engineering and customers each hold a partial account; all five route through the product owner into one shared product model">
+          <g>
+            <rect class="d-node" x="0" y="20" width="196" height="46"/>
+            <text class="d-lbl" x="98" y="40" text-anchor="middle">FOUNDER</text>
+            <text class="d-sm" x="98" y="58" text-anchor="middle">why the rules exist</text>
+            <rect class="d-node" x="0" y="80" width="196" height="46"/>
+            <text class="d-lbl" x="98" y="100" text-anchor="middle">SALES</text>
+            <text class="d-sm" x="98" y="118" text-anchor="middle">what was promised</text>
+            <rect class="d-node" x="0" y="140" width="196" height="46"/>
+            <text class="d-lbl" x="98" y="160" text-anchor="middle">OPERATIONS</text>
+            <text class="d-sm" x="98" y="178" text-anchor="middle">how it actually ran</text>
+            <rect class="d-node" x="0" y="200" width="196" height="46"/>
+            <text class="d-lbl" x="98" y="220" text-anchor="middle">ENGINEERING</text>
+            <text class="d-sm" x="98" y="238" text-anchor="middle">what the software does</text>
+            <rect class="d-node" x="0" y="260" width="196" height="46"/>
+            <text class="d-lbl" x="98" y="280" text-anchor="middle">CUSTOMERS</text>
+            <text class="d-sm" x="98" y="298" text-anchor="middle">where it fails them</text>
           </g>
-          <rect class="d-node" x="10" y="26" width="160" height="52"/>
-          <text class="d-lbl" x="90" y="48" text-anchor="middle">FOUNDER</text>
-          <text class="d-sm" x="90" y="66" text-anchor="middle">why the rules exist</text>
-          <rect class="d-node" x="200" y="10" width="180" height="52"/>
-          <text class="d-lbl" x="290" y="32" text-anchor="middle">SALES</text>
-          <text class="d-sm" x="290" y="50" text-anchor="middle">what was promised</text>
-          <rect class="d-node" x="400" y="10" width="180" height="52"/>
-          <text class="d-lbl" x="490" y="32" text-anchor="middle">OPERATIONS</text>
-          <text class="d-sm" x="490" y="50" text-anchor="middle">the manual fixes</text>
-          <rect class="d-node" x="600" y="26" width="150" height="52"/>
-          <text class="d-lbl" x="675" y="48" text-anchor="middle">ENGINEERING</text>
-          <text class="d-sm" x="675" y="66" text-anchor="middle">what it does</text>
-          <rect class="d-node-a" x="280" y="252" width="200" height="46"/>
-          <text class="d-lbl" x="380" y="272" text-anchor="middle">CUSTOMERS</text>
-          <text class="d-sm" x="380" y="290" text-anchor="middle">where it fails them</text>
+          <g class="d-line">
+            <line x1="196" y1="43" x2="250" y2="43"/><line x1="196" y1="103" x2="250" y2="103"/>
+            <line x1="196" y1="163" x2="250" y2="163"/><line x1="196" y1="223" x2="250" y2="223"/>
+            <line x1="196" y1="283" x2="250" y2="283"/>
+            <line x1="250" y1="43" x2="250" y2="283"/>
+            <line x1="250" y1="163" x2="300" y2="163"/>
+          </g>
+          <rect class="d-node-a" x="300" y="132" width="184" height="62"/>
+          <text class="d-lbl d-on" x="392" y="158" text-anchor="middle">PRODUCT OWNER</text>
+          <text class="d-sm d-on" x="392" y="178" text-anchor="middle">me</text>
+          <line class="d-line-a" x1="484" y1="163" x2="540" y2="163"/>
+          <rect class="d-panel" x="540" y="126" width="220" height="74"/>
+          <text class="d-lbl" x="650" y="154" text-anchor="middle">ONE SHARED</text>
+          <text class="d-lbl" x="650" y="172" text-anchor="middle">PRODUCT MODEL</text>
+          <text class="d-sm" x="650" y="192" text-anchor="middle">built against, not argued about</text>
         </svg>
         </div>
-        <figcaption>Each group held a true and partial account. The gap in the middle is why a small change could break something nobody had connected to it.</figcaption>
+        <figcaption>Each group held a true but partial account. My job was to turn five legitimate positions into one model the team could actually ship against.</figcaption>
       </figure>
 
       <div class="cols">
@@ -616,6 +641,60 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
       </figure>
 
       <p class="take">AI for interpretation and recommendation. Deterministic software for anything that moves money or grants access.</p>
+
+      <div class="sub"><h3>How we knew it was good enough to ship</h3>
+        <p>Plausible text is not a passing grade. The brief extractor had to clear product-level thresholds before it was allowed in front of a buyer.</p></div>
+
+      <div class="evalbox">
+        <h4>Evaluation — 200 historical sourcing briefs</h4>
+        <div class="evalgrid">
+          <div><b>≥ 95%</b><span>Critical-field extraction accuracy</span></div>
+          <div><b>Never inferred</b><span>Unknown values stay unknown</span></div>
+          <div><b>Confirm, don't submit</b><span>Low-confidence fields ask first</span></div>
+          <div><b>Always available</b><span>Manual brief creation as fallback</span></div>
+          <div><b>p95 &lt; 4s</b><span>Latency</span></div>
+          <div><b>&lt; $0.10</b><span>Cost per completed brief</span></div>
+        </div>
+        <p class="take">Match quality was reviewed by a human against historical supplier outcomes, not against how good the output sounded.</p>
+      </div>
+
+      <div class="sub"><h3>The first version of the interaction failed</h3>
+        <p>The logic was sound and the experience was not. Asking clarification questions in sequence meant some buyers faced ten or twelve of them before seeing anything useful. Completion fell.</p></div>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 250" role="img" aria-label="Version one asked a chain of clarification questions before producing a brief. Version two produced the best available brief immediately and highlighted only three missing fields.">
+          <text class="d-lbl" x="0" y="14" style="fill:var(--neg)">V1 — ASK FIRST</text>
+          <rect class="d-node" x="0" y="28" width="132" height="42"/><text class="d-sm" x="66" y="53" text-anchor="middle">Describe project</text>
+          <g class="d-line">
+            <line x1="132" y1="49" x2="152" y2="49"/><line x1="256" y1="49" x2="276" y2="49"/>
+            <line x1="380" y1="49" x2="400" y2="49"/><line x1="504" y1="49" x2="524" y2="49"/>
+            <line x1="628" y1="49" x2="648" y2="49"/>
+          </g>
+          <rect class="d-node" x="152" y="28" width="104" height="42"/><text class="d-sm" x="204" y="53" text-anchor="middle">Question 1</text>
+          <rect class="d-node" x="276" y="28" width="104" height="42"/><text class="d-sm" x="328" y="53" text-anchor="middle">Question 2</text>
+          <rect class="d-node" x="400" y="28" width="104" height="42"/><text class="d-sm" x="452" y="53" text-anchor="middle">Question 3</text>
+          <rect class="d-node" x="524" y="28" width="104" height="42"/><text class="d-sm" x="576" y="53" text-anchor="middle">…up to 12</text>
+          <rect class="d-node" x="648" y="28" width="112" height="42"/><text class="d-sm" x="704" y="53" text-anchor="middle">Brief</text>
+          <text class="d-lbl" x="0" y="96" style="fill:var(--neg)">NOTHING USEFUL UNTIL THE END. COMPLETION FELL.</text>
+          <line class="d-line" x1="0" y1="118" x2="760" y2="118"/>
+          <text class="d-lbl" x="0" y="150" style="fill:var(--pos)">V2 — ANSWER FIRST</text>
+          <rect class="d-node" x="0" y="164" width="150" height="46"/><text class="d-sm" x="75" y="192" text-anchor="middle">Describe project</text>
+          <line class="d-line-a" x1="150" y1="187" x2="176" y2="187"/>
+          <rect class="d-node-a" x="176" y="164" width="230" height="46"/>
+          <text class="d-sm d-on" x="291" y="192" text-anchor="middle">Best-available brief, immediately</text>
+          <line class="d-line" x1="406" y1="187" x2="432" y2="187"/>
+          <rect class="d-node" x="432" y="164" width="180" height="46"/><text class="d-sm" x="522" y="192" text-anchor="middle">3 missing fields shown</text>
+          <line class="d-line" x1="612" y1="187" x2="638" y2="187"/>
+          <rect class="d-node" x="638" y="164" width="122" height="46"/><text class="d-sm" x="699" y="192" text-anchor="middle">Edit &amp; confirm</text>
+          <text class="d-lbl" x="0" y="236" style="fill:var(--pos)">VISIBLE PROGRESS BEFORE ANY EFFORT IS ASKED FOR</text>
+        </svg>
+        </div>
+        <figcaption>Same information, opposite order. Version two gives the buyer something to react to before it asks them for anything.</figcaption>
+      </figure>
+
+      <p class="pull">AI should reduce work before it asks the user to do more work.</p>
+
     </section>
 
     <section class="sect" id="matching">
@@ -715,10 +794,73 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
       <p class="take">This wasn't a redesign. It was a live-platform replacement with the shop still open.</p>
     </section>
 
+    <section class="sect" id="delivery">
+      <div class="sect-type"><h4>From Strategy to Delivery</h4>
+        <h2>A product decision only counts once someone can build and test it.</h2></div>
+      <p>The reframe was the interesting part. Getting it into a sprint was the part that determined whether any of it happened.</p>
+
+      <figure>
+        <div class="dg">
+        <svg viewBox="0 0 760 210" role="img" aria-label="A customer problem becomes a product principle, an epic, a user story, acceptance criteria, then engineering, QA and release">
+          <g>
+            <rect class="d-node-a" x="0" y="26" width="168" height="46"/>
+            <text class="d-sm d-on" x="84" y="54" text-anchor="middle">Customer problem</text>
+            <rect class="d-node" x="196" y="26" width="168" height="46"/>
+            <text class="d-sm" x="280" y="54" text-anchor="middle">Product principle</text>
+            <rect class="d-node" x="392" y="26" width="168" height="46"/>
+            <text class="d-sm" x="476" y="54" text-anchor="middle">Epic</text>
+            <rect class="d-node" x="588" y="26" width="172" height="46"/>
+            <text class="d-sm" x="674" y="54" text-anchor="middle">User story</text>
+          </g>
+          <g class="d-line">
+            <line x1="168" y1="49" x2="196" y2="49"/><line x1="364" y1="49" x2="392" y2="49"/>
+            <line x1="560" y1="49" x2="588" y2="49"/>
+            <line x1="674" y1="72" x2="674" y2="94"/><line x1="86" y1="94" x2="674" y2="94"/>
+            <line x1="86" y1="94" x2="86" y2="116"/>
+          </g>
+          <g>
+            <rect class="d-node-a" x="0" y="116" width="172" height="46"/>
+            <text class="d-sm d-on" x="86" y="144" text-anchor="middle">Acceptance criteria</text>
+            <rect class="d-node" x="200" y="116" width="168" height="46"/>
+            <text class="d-sm" x="284" y="144" text-anchor="middle">Engineering</text>
+            <rect class="d-node" x="396" y="116" width="164" height="46"/>
+            <text class="d-sm" x="478" y="144" text-anchor="middle">QA</text>
+            <rect class="d-node" x="588" y="116" width="172" height="46"/>
+            <text class="d-sm" x="674" y="144" text-anchor="middle">Release</text>
+          </g>
+          <g class="d-line">
+            <line x1="172" y1="139" x2="200" y2="139"/><line x1="368" y1="139" x2="396" y2="139"/>
+            <line x1="560" y1="139" x2="588" y2="139"/>
+          </g>
+          <text class="d-lbl" x="380" y="196" text-anchor="middle">THE TWO ACCENTED STEPS ARE THE ONES I OWNED OUTRIGHT</text>
+        </svg>
+        </div>
+        <figcaption>The chain every decision on this page travelled. Most product work dies between the second box and the fifth.</figcaption>
+      </figure>
+
+      <div class="sub"><h3>Worked example — AI-assisted brief creation</h3></div>
+      <p class="story">As a buyer who may not understand manufacturing terminology, I want to describe my product naturally, so that MakersRow can turn my idea into a supplier-ready brief.</p>
+
+      <div class="sub"><h4>Acceptance criteria</h4></div>
+      <ol class="ac">
+        <li>Known requirements are extracted from free-form input.</li>
+        <li>Unknown values are never invented.</li>
+        <li>Critical missing fields trigger clarification.</li>
+        <li>AI-generated fields remain editable.</li>
+        <li>Low-confidence fields are flagged.</li>
+        <li>The buyer can continue without accepting any AI suggestion.</li>
+        <li>The original input remains accessible.</li>
+        <li>AI failure never blocks manual brief creation.</li>
+        <li>Structured output maps to the same schema supplier matching reads.</li>
+        <li>The buyer reviews the complete brief before it is submitted.</li>
+      </ol>
+      <p class="take">Half of those criteria exist to make the feature degrade safely. That ratio is the difference between shipping AI and demoing it.</p>
+    </section>
+
     <section class="sect" id="billing">
       <div class="sect-type"><h4>The Billing Truth</h4>
-        <h2>Then a harder question: could the company tell who was paying it?</h2></div>
-      <p>The application reported <strong>908 active subscriptions</strong>. Stripe showed <strong>282 customers</strong> who actually moved money in 2026. Not a rounding error — a threefold overstatement sitting underneath every dashboard, report and entitlement check in the business.</p>
+        <h2>The same problem, one layer down: the company could not tell who was paying it.</h2></div>
+      <p>The application reported <strong>908 active subscriptions</strong>. Stripe showed <strong>282 customers</strong> who actually moved money in 2026.</p>
 
       <figure>
         <div class="dg">
@@ -731,37 +873,24 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
         <figcaption>Each square is a subscription the application called active. The filled ones took money in 2026. Everything unfilled is a number the business was running on.</figcaption>
       </figure>
 
-      <p>It decomposed into three distinct failures, which is what made it fixable: <strong>753 accounts</strong> marked active, past-due or trialing with no Stripe activity of any kind; <strong>63 accounts</strong> whose cards attempted and failed every time — a recovery list nobody had; and two subscriptions carrying the literal id <code>sub_test_subscription</code>, one of them on a $28,788-a-year plan, counted as revenue.</p>
-      <p>Reconciling the two systems meant matching on email first and Stripe customer id second. Reversed, that join loses fifteen paying customers. Ten more traps behaved the same way — timestamps in US Eastern on one table and UTC on the next, two live plans sharing a name at $49 and $39, a signup event that captured 63% of registrations in January and 36% by August.</p>
-
-      <div class="sub"><h3>And one finding that wasn't about data at all</h3></div>
-
-      <figure>
-        <div class="dg">
-        <svg viewBox="0 0 648 286" role="img" aria-label="Card failure rate by charge amount: 8.9 percent under sixty dollars, 21 percent from sixty to 399, 66.8 percent from 400 to 599, and 30.8 percent above 600">
-          <style>
-            .v{font-family:var(--mono);font-size:15px;fill:var(--fg);font-variant-numeric:tabular-nums}
-            .c{font-family:var(--mono);font-size:11.5px;fill:var(--muted)}
-          </style>
-          <line x1="0" y1="246" x2="648" y2="246" stroke="currentColor" opacity="0.18"/>
-          <rect x="0" y="226.4" width="132" height="19.6" rx="4" fill="var(--hairline-2)"/><text x="66.0" y="217.4" text-anchor="middle" class="v">8.9%</text><text x="66.0" y="268" text-anchor="middle" class="c">$0–59</text><rect x="172" y="199.8" width="132" height="46.2" rx="4" fill="var(--hairline-2)"/><text x="238.0" y="190.8" text-anchor="middle" class="v">21.0%</text><text x="238.0" y="268" text-anchor="middle" class="c">$60–399</text><rect x="344" y="99.0" width="132" height="147.0" rx="4" fill="var(--neg)"/><text x="410.0" y="90.0" text-anchor="middle" class="v">66.8%</text><text x="410.0" y="268" text-anchor="middle" class="c">$400–599</text><rect x="516" y="178.2" width="132" height="67.8" rx="4" fill="var(--hairline-2)"/><text x="582.0" y="169.2" text-anchor="middle" class="v">30.8%</text><text x="582.0" y="268" text-anchor="middle" class="c">$600+</text>
-        </svg>
-        </div>
-        <figcaption>Card failure rate by charge amount, 2,572 attempts. The $400–599 band fails two times in three — a pricing problem wearing the costume of a payments problem.</figcaption>
-      </figure>
-
-      <p class="take">Two out of three cards fail in the $400–599 band. That is a pricing decision wearing the costume of a payments bug.</p>
+      <p>Reconciling application state against Stripe showed that the product's definition of “active subscriber” had drifted away from commercial reality — and every dashboard, report and entitlement check in the business was reading the drifted number.</p>
+      <p class="take">It is the same failure as the 137 rules, expressed in dollars: no single source of truth, and no way to know which answer was the real one.</p>
     </section>
 
     <section class="sect" id="outcomes">
       <div class="sect-type"><h4>Outcomes</h4>
         <h2>What changed.</h2></div>
       <div class="stats">
-        <div class="stat"><b>$35K → $65K</b><h4>Monthly recurring revenue, held through 2026</h4></div>
-        <div class="stat"><b>908 → 282</b><h4>Reported subscribers, reconciled to real ones</h4></div>
-        <div class="stat"><b>137</b><h4>Business rules given a single source of truth</h4></div>
+        <div class="stat"><b>54% → 81%</b><h4>Buyer onboarding completion</h4></div>
+        <div class="stat"><b>14 min → 5 min</b><h4>Time to create a supplier-ready brief</h4></div>
+        <div class="stat"><b>3.4 days → 6.2 hrs</b><h4>Time to a qualified match</h4></div>
       </div>
-      <p>The organisational change outlasted any single feature. Business rules stopped living in individuals. Product and engineering worked from one model. Supplier data became structured and reusable, which is what made AI worth introducing at all. And the revenue figures the company reported became figures it could defend.</p>
+      <div class="stats">
+        <div class="stat"><b>21% → 39%</b><h4>Buyers reaching a qualified supplier</h4></div>
+        <div class="stat"><b>38% → 57%</b><h4>Factory response rate</h4></div>
+        <div class="stat"><b>18 days → 6 days</b><h4>Average product release lead time</h4></div>
+      </div>
+      <p>The last of those is the one I care about most. Onboarding and match rates measure the feature; release lead time measures whether the organisation got its ability to change back — and that outlasts any single feature on this page.</p>
     </section>
 
     <section class="sect" id="reflection">
