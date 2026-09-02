@@ -66,9 +66,8 @@ body{background:var(--ground);color:var(--fg);font-family:var(--sans);
 .spacer{display:none}
 @media (min-width:768px){.spacer{display:block;padding:48px 24px}}
 
-.back{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);
-  font-size:15px;line-height:22.5px;text-transform:uppercase;color:var(--muted);
-  text-decoration:none;transition:color .2s}
+.back{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:15px;line-height:22.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 200ms cubic-bezier(.4,0,.2,1)}
+.back svg{width:18px;height:18px;fill:currentColor;flex-shrink:0;transition:fill 200ms cubic-bezier(.4,0,.2,1)}
 .back:hover,.back:focus-visible{color:var(--fg)}
 .sectnav{margin-top:32px;display:none}
 @media (min-width:768px){.sectnav{display:block}}
@@ -348,7 +347,7 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
 <div class="shell"><div class="grid">
 
   <aside class="aside">
-    <a class="back" href="/" data-cur="big">← Back</a>
+    <a class="back" href="/" data-cur="big"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"></path></svg>Back</a>
     <nav class="sectnav" aria-label="Sections"><ul>
       <li><button data-to="overview">Overview</button></li>
       <li><button data-to="challenge">The Challenge</button></li>
