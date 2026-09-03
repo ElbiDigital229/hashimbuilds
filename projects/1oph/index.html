@@ -281,6 +281,18 @@ table.own td:first-child{width:32%;color:var(--fg)}
   font-size:14.5px;color:var(--fg);align-items:baseline}
 .ac li::before{content:counter(ac,decimal-leading-zero);font-family:var(--mono);
   font-size:11.5px;color:var(--accent)}
+.faq{border-top:1px solid var(--hairline)}
+.faq:last-of-type{border-bottom:1px solid var(--hairline)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;
+  font-family:var(--serif);font-size:17px;line-height:26px;color:var(--fg);
+  transition:color 200ms cubic-bezier(.4,0,.2,1)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:17px;font-family:var(--mono);
+  font-size:17px;line-height:1.4;color:var(--accent)}
+.faq[open] summary::after{content:"\2013"}
+.faq summary:hover,.faq summary:focus-visible{color:var(--accent)}
+.faq .ans{padding:0 40px 22px 0;display:flex;flex-direction:column;gap:14px}
+.faqlist{display:flex;flex-direction:column}
 .cmp-wrap{overflow-x:auto}
 .cmp{width:100%;border-collapse:collapse;min-width:520px}
 .cmp th,.cmp td{text-align:left;padding:13px 20px 13px 0;border-bottom:1px solid var(--hairline);vertical-align:top}
@@ -408,6 +420,7 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
       <li><button data-to="reliability">The Reliability Layer</button></li>
       <li><button data-to="impact">Impact</button></li>
       <li><button data-to="learnings">Learnings</button></li>
+      <li><button data-to="faq">FAQ</button></li>
     </ul></nav>
   </aside>
 
@@ -622,6 +635,82 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
       </ul>
       <p>The shape of the work was: business problem, prototype, deployment failure, system redesign, client feedback, scaling, operational impact. Each stage was defined by the constraint the previous one exposed.</p>
       <p class="pull">This was never about finding the perfect model. It was about building enough structure around imperfect models that they could reliably do real client work.</p>
+    </section>
+
+    <section class="sect" id="faq">
+      <div class="sect-type"><h4>FAQ</h4>
+        <h2>The questions this project usually gets.</h2></div>
+      <div class="faqlist">
+        <details class="faq">
+          <summary>Why didn&#8217;t you just use a better image model and improve the prompts?</summary>
+          <div class="ans">
+            <p>That was my first instinct, and it worked up to a point. The problem was that the failures were not only prompt-quality failures &#8212; they spanned client taste, product fidelity, scene consistency, catalogue repetition and cost.</p>
+            <p>A better prompt could improve one image. It could not reliably preserve the same product across seven views, or decide when a bad concept should be rejected before I spent money rendering the whole set.</p>
+            <p class="take">I eventually treated the model as one component inside a larger production system rather than the system itself.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>What was the hardest part to make reliable?</summary>
+          <div class="ans">
+            <p>Product and scene fidelity. The images could look beautiful while still being wrong &#8212; a $30K&#8211;$40K sculpture could come back with a slightly different base, changed proportions or altered material, and the room could drift between angles.</p>
+            <p>I had to make fidelity a hard constraint and introduce a canonical scene, so every later view inherited the same approved environment instead of rebuilding it each time.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>How did you get the AI to understand the client&#8217;s taste?</summary>
+          <div class="ans">
+            <p>I stopped using vague prompts like &#8220;luxury interior&#8221; and started treating taste as structured context. I asked the client for approved and rejected references, then broke that feedback into lighting, greenery, architecture, material palette, furniture density, geography and product dominance.</p>
+            <p>That became preference memory for the interior design agent.</p>
+            <p class="take">The idea was not to ask the model to magically have taste, but to give it a reusable representation of the client&#8217;s taste.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>Where did you use AI, and where did you deliberately not use it?</summary>
+          <div class="ans">
+            <p>AI was useful for product interpretation, scene planning, prompt generation, multimodal evaluation and visual reasoning.</p>
+            <p>I did not let the model freely decide hard constraints &#8212; product geometry, prohibited content, scene-state rules, or whether an approved room should change. Those belonged in guardrails and deterministic workflow logic.</p>
+            <p class="take">AI for interpretation, rules for non-negotiables, humans for ambiguous creative judgement.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>How did you stop bad generations from becoming expensive?</summary>
+          <div class="ans">
+            <p>I moved evaluation earlier in the workflow. At a hundred products and roughly seven renders each, rejecting a bad room after the full set was generated could waste hundreds of finished images.</p>
+            <p>So I added one eval at the concept stage, then generated a single proof image and ran a multimodal eval on that. Only concepts that passed both gates earned the remaining six renders.</p>
+            <p class="take">Reject while the mistake is still cheap.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>Why did you still need humans if the goal was automation?</summary>
+          <div class="ans">
+            <p>Because taste remained the hardest part to fully automate. Reviewing every first image gave excellent quality, but on a 500-product batch that meant 500 client decisions.</p>
+            <p>So I introduced confidence-based routing: high-confidence concepts continued automatically, lower-confidence ones went to the client. That reduced client review by roughly 90% while keeping approval around 95%.</p>
+            <p class="take">The goal was not maximum automation. It was the best operating point between AI cost, human attention and quality.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>What did the production architecture look like by the end?</summary>
+          <div class="ans">
+            <p>A staged pipeline: ingest the product, retrieve catalogue and preference context, plan the environment, run a concept eval, generate one proof, run a visual eval, route by confidence, lock the approved scene, generate the full shot family, run final QA, and package the assets for ecommerce.</p>
+            <p class="take">The important part was the orchestration around the model &#8212; context, memory, evals, retries, thresholds, scene state, escalation and publishing.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>What would you change if you rebuilt it today?</summary>
+          <div class="ans">
+            <p>I&#8217;d invest earlier in observability and eval infrastructure. I&#8217;d want better tracking of:</p>
+            <ul class="plain">
+              <li>Why concepts fail</li>
+              <li>Which guardrails trigger most often</li>
+              <li>How often humans override the confidence score</li>
+              <li>How approval varies by product category</li>
+              <li>Where catalogue repetition starts creeping in</li>
+            </ul>
+            <p>I&#8217;d also make model swapping easier, so the system could compare generators without changing the surrounding workflow.</p>
+            <p class="take">Production AI quality depends as much on measurement and routing as it does on model capability.</p>
+          </div>
+        </details>
+      </div>
     </section>
 
   </div>

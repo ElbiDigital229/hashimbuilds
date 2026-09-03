@@ -281,6 +281,18 @@ table.own td:first-child{width:32%;color:var(--fg)}
   font-size:14.5px;color:var(--fg);align-items:baseline}
 .ac li::before{content:counter(ac,decimal-leading-zero);font-family:var(--mono);
   font-size:11.5px;color:var(--accent)}
+.faq{border-top:1px solid var(--hairline)}
+.faq:last-of-type{border-bottom:1px solid var(--hairline)}
+.faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;
+  font-family:var(--serif);font-size:17px;line-height:26px;color:var(--fg);
+  transition:color 200ms cubic-bezier(.4,0,.2,1)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:17px;font-family:var(--mono);
+  font-size:17px;line-height:1.4;color:var(--accent)}
+.faq[open] summary::after{content:"\2013"}
+.faq summary:hover,.faq summary:focus-visible{color:var(--accent)}
+.faq .ans{padding:0 40px 22px 0;display:flex;flex-direction:column;gap:14px}
+.faqlist{display:flex;flex-direction:column}
 .cmp-wrap{overflow-x:auto}
 .cmp{width:100%;border-collapse:collapse;min-width:520px}
 .cmp th,.cmp td{text-align:left;padding:13px 20px 13px 0;border-bottom:1px solid var(--hairline);vertical-align:top}
@@ -408,6 +420,7 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
       <li><button data-to="redesign">Redesigning It</button></li>
       <li><button data-to="impact">Impact</button></li>
       <li><button data-to="learnings">Learnings</button></li>
+      <li><button data-to="faq">FAQ</button></li>
     </ul></nav>
   </aside>
 
@@ -636,6 +649,73 @@ table.ui-tbl{width:100%;border-collapse:collapse;font-size:10px;min-width:440px}
         <li><strong>Humans</strong> &#8212; spending decisions, replacement approval, policy exceptions, high-judgement cases.</li>
       </ul>
       <p class="pull">The real product was not a better ticketing system. It was an operational memory layer that let the company make better decisions about its buildings, assets and teams.</p>
+    </section>
+
+    <section class="sect" id="faq">
+      <div class="sect-type"><h4>FAQ</h4>
+        <h2>The questions this project usually gets.</h2></div>
+      <div class="faqlist">
+        <details class="faq">
+          <summary>Why didn&#8217;t you just build a normal ticketing system?</summary>
+          <div class="ans">
+            <p>That was my first approach. It worked technically, but the assumptions were wrong. I asked users to choose priority, assignee and due date, and those fields quickly became unreliable &#8212; everyone thought their own issue was urgent, most reporters didn&#8217;t know who owned the fault, and due dates became &#8220;today&#8221;.</p>
+            <p class="take">The redesign was less about better software and more about deciding what the user should provide versus what the system could derive itself.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>Why did you make the asset the centre of the system?</summary>
+          <div class="ans">
+            <p>Because tickets disappear once they&#8217;re closed, but the asset stays. Once every repair was attached to the same physical unit, I could build a real history: how often it failed, what had already been spent on it, how long repairs lasted, and whether the same issue kept recurring.</p>
+            <p class="take">That one architecture decision unlocked preventive maintenance and repair-versus-replace later.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>Where did AI actually fit into this?</summary>
+          <div class="ans">
+            <p>I deliberately kept AI out of anything that had to be predictable. Priority, routing, SLA, escalation and permissions were deterministic.</p>
+            <p>AI was useful for interpretation &#8212; cleaning up issue descriptions, summarising repair history, surfacing recurring patterns and explaining repair-versus-replace recommendations.</p>
+            <p class="take">Rules when the answer must be consistent, AI when interpretation helps, and humans when judgement or money is involved.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>What happened when the real-world process got messy?</summary>
+          <div class="ans">
+            <p>That was most of the project. Information started in WhatsApp, ownership crossed facilities, operations, finance, vendors and procurement, and tickets could sit open for reasons that had nothing to do with the technician.</p>
+            <p>I had to model those blockers explicitly instead of pretending every ticket moved cleanly from open to done. That also stopped the system judging people by a misleading total-completion-time metric.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>How did you make sure the system could still work if AI failed?</summary>
+          <div class="ans">
+            <p>The core workflow did not depend on AI. A fault could still be reported, routed, prioritised, escalated and closed using the structured data and rules. AI sat on top as an assistive layer.</p>
+            <p class="take">If an AI feature failed or gave a weak answer, the operational system still functioned. That separation was important for reliability.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>How did you explain all of this to non-technical teams?</summary>
+          <div class="ans">
+            <p>I avoided architecture language. Instead of &#8220;assignment is derived from asset metadata&#8221;, I&#8217;d say:</p>
+            <p class="take">The reporter should only tell us what they know &#8212; what&#8217;s broken and what it looks like. The system should already know where the asset is and who owns it.</p>
+            <p>That made it much easier for operations and facilities to challenge the workflow and help shape the rules.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>What was the biggest trade-off you made?</summary>
+          <div class="ans">
+            <p>Not automating everything. There were plenty of places where I could have added AI, but doing so would have made the system harder to trust.</p>
+            <p>I kept high-cost decisions like replacement approval and policy exceptions with humans, while automating repetitive decisions the data could support reliably.</p>
+            <p class="take">The goal was not maximum automation; it was the right division of responsibility between software, AI and people.</p>
+          </div>
+        </details>
+        <details class="faq">
+          <summary>What would you do differently if you rebuilt it today?</summary>
+          <div class="ans">
+            <p>I&#8217;d add observability earlier &#8212; dashboards for routing failures, manual overrides, bad asset metadata, blocker frequency, AI confidence and recommendation acceptance.</p>
+            <p>I&#8217;d also put more explicit evals around the AI layer, so I could measure when summaries or recommendations were useful versus when users corrected them.</p>
+            <p class="take">Production AI is as much about monitoring and fallbacks as it is about model quality.</p>
+          </div>
+        </details>
+      </div>
     </section>
 
   </div>
