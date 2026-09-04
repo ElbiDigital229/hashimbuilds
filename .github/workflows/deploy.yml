@@ -8,6 +8,9 @@ on:
       - '**.svg'
       - '**.css'
       - '**.js'
+      - '**.webp'
+      - '**.png'
+      - '**.jpg'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
