@@ -291,7 +291,8 @@ table.own td:first-child{width:32%;color:var(--fg)}
   font-size:17px;line-height:1.4;color:var(--accent)}
 .faq[open] summary::after{content:"\2013"}
 .faq summary:hover,.faq summary:focus-visible{color:var(--accent)}
-.faq .ans{padding:0 40px 22px 0;display:flex;flex-direction:column;gap:14px}
+.faq .ans{padding:0 40px 22px 0}
+.faq[open] .ans{display:flex;flex-direction:column;gap:14px}
 .faqlist{display:flex;flex-direction:column}
 .cmp-wrap{overflow-x:auto}
 .cmp{width:100%;border-collapse:collapse;min-width:520px}
