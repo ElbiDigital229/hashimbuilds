@@ -1,0 +1,97 @@
+name: Deploy to S3 + CloudFront
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - '**.svg'
+      - '**.css'
+      - '**.js'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write        # required for OIDC; no AWS keys are stored
+
+env:
+  BUCKET: hashimbuilds-site
+  DISTRIBUTION: E1PA92Q5OLDGU2
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check tag balance
+        run: |
+          python3 - <<'PY'
+          import re,glob,sys
+          bad=False
+          for f in glob.glob('**/*.html',recursive=True):
+              s=open(f,encoding='utf-8').read()
+              for t in ['div','section','figure','p','ul','li','table','svg','a','details','summary']:
+                  o=len(re.findall(r'<%s\b'%t,s)); c=s.count('</%s>'%t)
+                  if o!=c:
+                      print(f'::error file={f}::unbalanced <{t}> {o} open / {c} close'); bad=True
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Check rail matches sections
+        run: |
+          python3 - <<'PY'
+          import re,glob,sys
+          bad=False
+          for f in glob.glob('projects/*/index.html'):
+              s=open(f,encoding='utf-8').read()
+              nav=re.findall(r'data-to="([^"]+)"',s)
+              sec=re.findall(r'<section class="sect" id="([^"]+)"',s)
+              if nav!=sec:
+                  print(f'::error file={f}::rail {nav} != sections {sec}'); bad=True
+          sys.exit(1 if bad else 0)
+          PY
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::304359596288:role/hashimbuilds-deploy
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync non-HTML
+        run: |
+          aws s3 sync . s3://$BUCKET --delete \
+            --exclude "*.html" \
+            --exclude ".git/*" --exclude ".github/*" --exclude ".gitignore"
+
+      - name: Upload HTML with charset
+        # must be a second pass: index.html and victorfi declare no <meta charset>,
+        # so the header is the only thing keeping them from rendering as mojibake
+        run: |
+          aws s3 cp . s3://$BUCKET --recursive \
+            --exclude "*" --include "*.html" \
+            --exclude ".git/*" --exclude ".github/*" \
+            --content-type "text/html; charset=utf-8" \
+            --cache-control "public,max-age=300"
+
+      - name: Invalidate CloudFront
+        run: |
+          ID=$(aws cloudfront create-invalidation --distribution-id $DISTRIBUTION \
+                 --paths "/*" --query 'Invalidation.Id' --output text)
+          echo "invalidation $ID"
+
+      - name: Verify live
+        run: |
+          sleep 20
+          fail=0
+          for u in / /projects/1oph/ /projects/daftarkhwan/ /projects/makersrow/ /projects/victorfi/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://hashimbuilds.com$u")
+            echo "$u -> $code"
+            [ "$code" = "200" ] || fail=1
+          done
+          exit $fail
